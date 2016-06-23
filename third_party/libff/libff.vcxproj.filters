@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="libff\ff-callbacks.c" />
+    <ClCompile Include="libff\ff-circular-queue.c" />
+    <ClCompile Include="libff\ff-clock.c" />
+    <ClCompile Include="libff\ff-packet-queue.c" />
+    <ClCompile Include="libff\ff-timer.c" />
+    <ClCompile Include="libff\ff-util.c" />
+    <ClCompile Include="libff\ff-demuxer.c" />
+    <ClCompile Include="libff\ff-decoder.c" />
+    <ClCompile Include="libff\ff-audio-decoder.c" />
+    <ClCompile Include="libff\ff-video-decoder.c" />
+    <ClCompile Include="libff\ff-threading-windows.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="libff\ff-callbacks.h" />
+    <ClInclude Include="libff\ff-circular-queue.h" />
+    <ClInclude Include="libff\ff-clock.h" />
+    <ClInclude Include="libff\ff-frame.h" />
+    <ClInclude Include="libff\ff-packet-queue.h" />
+    <ClInclude Include="libff\ff-threading.h" />
+    <ClInclude Include="libff\ff-timer.h" />
+    <ClInclude Include="libff\ff-util.h" />
+    <ClInclude Include="libff\ff-demuxer.h" />
+    <ClInclude Include="libff\ff-decoder.h" />
+  </ItemGroup>
+</Project>

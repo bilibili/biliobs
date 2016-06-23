@@ -1,0 +1,17 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "get-graphics-offsets", "get-graphics-offsets.vcxproj", "{7A01D1BB-A0C1-330D-A4A5-D765E82638D7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F197EBB4-920E-3927-9C85-19D67245B611} = {F197EBB4-920E-3927-9C85-19D67245B611}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

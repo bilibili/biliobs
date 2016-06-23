@@ -1,0 +1,1816 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{69E03E5C-2918-4B4E-ACE6-7AA321FB44BE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Label="Configuration">
+    <CharacterSet>Unicode</CharacterSet>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\build\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\build\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;_WIN32_WINNT=0x0A00;WINVER=0x0A00;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;BASE_IMPLEMENTATION;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..;..\third_party\icu\source\i18n;..\third_party\icu\source\common;..\third_party\tcmalloc\chromium\src</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4091;4127;4351;4355;4503;4589;4611;4100;4121;4244;4505;4510;4512;4610;4838;4995;4996;4456;4457;4458;4459;4312;4702;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)lib\$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;NO_TCMALLOC;ALLOCATOR_SHIM;_WIN32_WINNT=0x0A00;WINVER=0x0A00;_WINDOWS;NOMINMAX;WIN32_LEAN_AND_MEAN;BASE_IMPLEMENTATION;_HAS_EXCEPTIONS=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>..;..\third_party\icu\source\i18n;..\third_party\icu\source\common;..\third_party\tcmalloc\chromium\src</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>$(OutDir)lib\$(TargetName)$(TargetExt)</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="allocator\allocator_extension.cc" />
+    <ClCompile Include="allocator\allocator_extension_thunks.cc" />
+    <ClCompile Include="allocator\allocator_shim_win.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="allocator\debugallocation_shim.cc" />
+    <ClCompile Include="allocator\unittest_utils.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\animation_frame_time_histogram.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\apk_assets.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\application_status_listener.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\base_jni_onload.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\base_jni_registrar.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\build_info.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\command_line_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\content_uri_utils.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\cpu_features.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\cxa_demangle_stub.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\event_log.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\field_trial_list.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\fifo_utils.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\important_file_writer_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\java_handler_thread.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\java_runtime.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\jni_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\jni_array.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\jni_generator\sample_for_tests.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\jni_registrar.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\jni_string.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\jni_utils.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\jni_weak_ref.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\library_loader\library_loader_hooks.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\library_loader\library_prefetcher.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\linker\legacy_linker_jni.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\linker\linker_jni.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\linker\modern_linker_jni.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\locale_utils.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\memory_pressure_listener_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\path_service_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\path_utils.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\record_histogram.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\record_user_action.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\scoped_java_ref.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\sys_utils.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="android\trace_event_binding.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="at_exit.cc" />
+    <ClCompile Include="barrier_closure.cc" />
+    <ClCompile Include="base64.cc" />
+    <ClCompile Include="base64url.cc" />
+    <ClCompile Include="base_paths.cc" />
+    <ClCompile Include="base_paths_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base_paths_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="base_paths_win.cc" />
+    <ClCompile Include="base_switches.cc" />
+    <ClCompile Include="big_endian.cc" />
+    <ClCompile Include="bind_helpers.cc" />
+    <ClCompile Include="build_time.cc" />
+    <ClCompile Include="callback_helpers.cc" />
+    <ClCompile Include="callback_internal.cc" />
+    <ClCompile Include="check_example.cc" />
+    <ClCompile Include="command_line.cc" />
+    <ClCompile Include="cpu.cc" />
+    <ClCompile Include="debug\alias.cc" />
+    <ClCompile Include="debug\asan_invalid_access.cc" />
+    <ClCompile Include="debug\crash_logging.cc" />
+    <ClCompile Include="debug\debugger.cc" />
+    <ClCompile Include="debug\debugger_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\debugger_win.cc" />
+    <ClCompile Include="debug\dump_without_crashing.cc" />
+    <ClCompile Include="debug\gdi_debug_util_win.cc" />
+    <ClCompile Include="debug\proc_maps_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\profiler.cc" />
+    <ClCompile Include="debug\stack_trace.cc" />
+    <ClCompile Include="debug\stack_trace_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\stack_trace_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="debug\stack_trace_win.cc" />
+    <ClCompile Include="debug\task_annotator.cc" />
+    <ClCompile Include="deferred_sequenced_task_runner.cc" />
+    <ClCompile Include="environment.cc" />
+    <ClCompile Include="feature_list.cc" />
+    <ClCompile Include="files\file.cc" />
+    <ClCompile Include="files\file_enumerator.cc" />
+    <ClCompile Include="files\file_enumerator_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_enumerator_win.cc" />
+    <ClCompile Include="files\file_path.cc" />
+    <ClCompile Include="files\file_path_constants.cc" />
+    <ClCompile Include="files\file_path_watcher.cc" />
+    <ClCompile Include="files\file_path_watcher_fsevents.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_path_watcher_kqueue.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_path_watcher_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_path_watcher_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_path_watcher_stub.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_path_watcher_win.cc" />
+    <ClCompile Include="files\file_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_proxy.cc" />
+    <ClCompile Include="files\file_tracing.cc" />
+    <ClCompile Include="files\file_util.cc" />
+    <ClCompile Include="files\file_util_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_util_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_util_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\file_util_proxy.cc" />
+    <ClCompile Include="files\file_util_win.cc" />
+    <ClCompile Include="files\file_win.cc" />
+    <ClCompile Include="files\important_file_writer.cc" />
+    <ClCompile Include="files\memory_mapped_file.cc" />
+    <ClCompile Include="files\memory_mapped_file_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="files\memory_mapped_file_win.cc" />
+    <ClCompile Include="files\scoped_file.cc" />
+    <ClCompile Include="files\scoped_temp_dir.cc" />
+    <ClCompile Include="file_version_info_win.cc" />
+    <ClCompile Include="guid.cc" />
+    <ClCompile Include="guid_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="guid_win.cc" />
+    <ClCompile Include="hash.cc" />
+    <ClCompile Include="i18n\bidi_line_iterator.cc" />
+    <ClCompile Include="i18n\break_iterator.cc" />
+    <ClCompile Include="i18n\build_utf8_validator_tables.cc" />
+    <ClCompile Include="i18n\case_conversion.cc" />
+    <ClCompile Include="i18n\char_iterator.cc" />
+    <ClCompile Include="i18n\file_util_icu.cc" />
+    <ClCompile Include="i18n\i18n_constants.cc" />
+    <ClCompile Include="i18n\icu_encoding_detection.cc" />
+    <ClCompile Include="i18n\icu_string_conversions.cc" />
+    <ClCompile Include="i18n\icu_util.cc" />
+    <ClCompile Include="i18n\icu_util_nacl_win64.cc" />
+    <ClCompile Include="i18n\message_formatter.cc" />
+    <ClCompile Include="i18n\number_formatting.cc" />
+    <ClCompile Include="i18n\rtl.cc" />
+    <ClCompile Include="i18n\streaming_utf8_validator.cc" />
+    <ClCompile Include="i18n\streaming_utf8_validator_perftest.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="i18n\string_compare.cc" />
+    <ClCompile Include="i18n\string_search.cc" />
+    <ClCompile Include="i18n\timezone.cc" />
+    <ClCompile Include="i18n\time_formatting.cc" />
+    <ClCompile Include="i18n\utf8_validator_tables.cc" />
+    <ClCompile Include="json\json_file_value_serializer.cc" />
+    <ClCompile Include="json\json_parser.cc" />
+    <ClCompile Include="json\json_reader.cc" />
+    <ClCompile Include="json\json_string_value_serializer.cc" />
+    <ClCompile Include="json\json_value_converter.cc" />
+    <ClCompile Include="json\json_writer.cc" />
+    <ClCompile Include="json\string_escape.cc" />
+    <ClCompile Include="lazy_instance.cc" />
+    <ClCompile Include="linux_util.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="location.cc" />
+    <ClCompile Include="logging.cc" />
+    <ClCompile Include="logging_win.cc" />
+    <ClCompile Include="mac\call_with_eh_frame.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\close_nocancel.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\dispatch_source_mach.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\launchd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\launch_services_util.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\libdispatch_task_runner.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\mach_logging.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\mac_logging.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\os_crash_dumps.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\scoped_mach_port.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="mac\scoped_mach_vm.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="md5.cc" />
+    <ClCompile Include="memory\aligned_memory.cc" />
+    <ClCompile Include="memory\discardable_memory.cc" />
+    <ClCompile Include="memory\discardable_memory_allocator.cc" />
+    <ClCompile Include="memory\discardable_shared_memory.cc" />
+    <ClCompile Include="memory\memory_pressure_listener.cc" />
+    <ClCompile Include="memory\memory_pressure_monitor.cc" />
+    <ClCompile Include="memory\memory_pressure_monitor_chromeos.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\memory_pressure_monitor_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\memory_pressure_monitor_win.cc" />
+    <ClCompile Include="memory\ref_counted.cc" />
+    <ClCompile Include="memory\ref_counted_memory.cc" />
+    <ClCompile Include="memory\shared_memory_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\shared_memory_handle_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\shared_memory_handle_win.cc" />
+    <ClCompile Include="memory\shared_memory_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\shared_memory_nacl.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\shared_memory_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="memory\shared_memory_win.cc" />
+    <ClCompile Include="memory\singleton.cc" />
+    <ClCompile Include="memory\weak_ptr.cc" />
+    <ClCompile Include="message_loop\incoming_task_queue.cc" />
+    <ClCompile Include="message_loop\message_loop.cc" />
+    <ClCompile Include="message_loop\message_loop_task_runner.cc" />
+    <ClCompile Include="message_loop\message_loop_test.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump.cc" />
+    <ClCompile Include="message_loop\message_pump_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_default.cc" />
+    <ClCompile Include="message_loop\message_pump_glib.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_io_ios.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_libevent.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_perftest.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="message_loop\message_pump_win.cc" />
+    <ClCompile Include="metrics\bucket_ranges.cc" />
+    <ClCompile Include="metrics\field_trial.cc" />
+    <ClCompile Include="metrics\histogram.cc" />
+    <ClCompile Include="metrics\histogram_base.cc" />
+    <ClCompile Include="metrics\histogram_delta_serialization.cc" />
+    <ClCompile Include="metrics\histogram_samples.cc" />
+    <ClCompile Include="metrics\histogram_snapshot_manager.cc" />
+    <ClCompile Include="metrics\sample_map.cc" />
+    <ClCompile Include="metrics\sample_vector.cc" />
+    <ClCompile Include="metrics\sparse_histogram.cc" />
+    <ClCompile Include="metrics\statistics_recorder.cc" />
+    <ClCompile Include="metrics\user_metrics.cc" />
+    <ClCompile Include="native_library_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="native_library_win.cc" />
+    <ClCompile Include="nix\mime_util_xdg.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="nix\xdg_util.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="os_compat_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="os_compat_nacl.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="path_service.cc" />
+    <ClCompile Include="pending_task.cc" />
+    <ClCompile Include="pickle.cc" />
+    <ClCompile Include="posix\file_descriptor_shuffle.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="posix\global_descriptors.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="posix\safe_strerror.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="posix\unix_domain_socket_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor.cc" />
+    <ClCompile Include="power_monitor\power_monitor_device_source.cc" />
+    <ClCompile Include="power_monitor\power_monitor_device_source_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor_device_source_chromeos.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor_device_source_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="power_monitor\power_monitor_device_source_win.cc" />
+    <ClCompile Include="power_monitor\power_monitor_source.cc" />
+    <ClCompile Include="prefs\default_pref_store.cc" />
+    <ClCompile Include="prefs\json_pref_store.cc" />
+    <ClCompile Include="prefs\mock_pref_change_callback.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="prefs\overlay_user_pref_store.cc" />
+    <ClCompile Include="prefs\pref_change_registrar.cc" />
+    <ClCompile Include="prefs\pref_member.cc" />
+    <ClCompile Include="prefs\pref_notifier_impl.cc" />
+    <ClCompile Include="prefs\pref_registry.cc" />
+    <ClCompile Include="prefs\pref_registry_simple.cc" />
+    <ClCompile Include="prefs\pref_service.cc" />
+    <ClCompile Include="prefs\pref_service_factory.cc" />
+    <ClCompile Include="prefs\pref_store.cc" />
+    <ClCompile Include="prefs\pref_store_observer_mock.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="prefs\pref_value_map.cc" />
+    <ClCompile Include="prefs\pref_value_store.cc" />
+    <ClCompile Include="prefs\scoped_user_pref_update.cc" />
+    <ClCompile Include="prefs\value_map_pref_store.cc" />
+    <ClCompile Include="process\internal_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\kill.cc" />
+    <ClCompile Include="process\kill_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\kill_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\kill_win.cc" />
+    <ClCompile Include="process\launch.cc" />
+    <ClCompile Include="process\launch_ios.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\launch_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\launch_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\launch_win.cc" />
+    <ClCompile Include="process\memory.cc" />
+    <ClCompile Include="process\memory_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\memory_stubs.cc" />
+    <ClCompile Include="process\memory_win.cc" />
+    <ClCompile Include="process\port_provider_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_handle.cc" />
+    <ClCompile Include="process\process_handle_freebsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_handle_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_handle_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_handle_openbsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_handle_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_handle_win.cc" />
+    <ClCompile Include="process\process_info_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_info_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_info_win.cc" />
+    <ClCompile Include="process\process_iterator.cc" />
+    <ClCompile Include="process\process_iterator_freebsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator_openbsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_iterator_win.cc" />
+    <ClCompile Include="process\process_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics.cc" />
+    <ClCompile Include="process\process_metrics_freebsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_ios.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_nacl.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_openbsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_unittest_ios.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_metrics_win.cc" />
+    <ClCompile Include="process\process_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="process\process_win.cc" />
+    <ClCompile Include="profiler\alternate_timer.cc" />
+    <ClCompile Include="profiler\native_stack_sampler.cc" />
+    <ClCompile Include="profiler\native_stack_sampler_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="profiler\native_stack_sampler_win.cc" />
+    <ClCompile Include="profiler\scoped_profile.cc" />
+    <ClCompile Include="profiler\scoped_tracker.cc" />
+    <ClCompile Include="profiler\stack_sampling_profiler.cc" />
+    <ClCompile Include="profiler\tracked_time.cc" />
+    <ClCompile Include="profiler\win32_stack_frame_unwinder.cc" />
+    <ClCompile Include="rand_util.cc" />
+    <ClCompile Include="rand_util_nacl.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="rand_util_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="rand_util_win.cc" />
+    <ClCompile Include="run_loop.cc" />
+    <ClCompile Include="scoped_native_library.cc" />
+    <ClCompile Include="sequenced_task_runner.cc" />
+    <ClCompile Include="sequence_checker_impl.cc" />
+    <ClCompile Include="sha1_portable.cc" />
+    <ClCompile Include="sha1_win.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="strings\latin1_string_conversions.cc" />
+    <ClCompile Include="strings\nullable_string16.cc" />
+    <ClCompile Include="strings\pattern.cc" />
+    <ClCompile Include="strings\safe_sprintf.cc" />
+    <ClCompile Include="strings\string16.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="strings\stringprintf.cc" />
+    <ClCompile Include="strings\string_number_conversions.cc" />
+    <ClCompile Include="strings\string_piece.cc" />
+    <ClCompile Include="strings\string_split.cc" />
+    <ClCompile Include="strings\string_util.cc" />
+    <ClCompile Include="strings\string_util_constants.cc" />
+    <ClCompile Include="strings\sys_string_conversions_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="strings\sys_string_conversions_win.cc" />
+    <ClCompile Include="strings\utf_offset_string_conversions.cc" />
+    <ClCompile Include="strings\utf_string_conversions.cc" />
+    <ClCompile Include="strings\utf_string_conversion_utils.cc" />
+    <ClCompile Include="supports_user_data.cc" />
+    <ClCompile Include="synchronization\cancellation_flag.cc" />
+    <ClCompile Include="synchronization\condition_variable_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="synchronization\condition_variable_win.cc" />
+    <ClCompile Include="synchronization\lock.cc" />
+    <ClCompile Include="synchronization\lock_impl_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="synchronization\lock_impl_win.cc" />
+    <ClCompile Include="synchronization\waitable_event_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="synchronization\waitable_event_watcher_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="synchronization\waitable_event_watcher_win.cc" />
+    <ClCompile Include="synchronization\waitable_event_win.cc" />
+    <ClCompile Include="sync_socket_nacl.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sync_socket_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sync_socket_win.cc" />
+    <ClCompile Include="system_monitor\system_monitor.cc" />
+    <ClCompile Include="sys_info.cc" />
+    <ClCompile Include="sys_info_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys_info_chromeos.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys_info_freebsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys_info_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys_info_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys_info_openbsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys_info_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="sys_info_win.cc" />
+    <ClCompile Include="task\cancelable_task_tracker.cc" />
+    <ClCompile Include="task_runner.cc" />
+    <ClCompile Include="test\histogram_tester.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\icu_test_util.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\launcher\unit_test_launcher.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\launcher\unit_test_launcher_ios.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\launcher\unit_test_launcher_nacl_nonsfi.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\malloc_wrapper.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\mock_devices_changed_observer.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\mock_entropy_provider.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\mock_log.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\multiprocess_test.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\multiprocess_test_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\null_task_runner.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\opaque_ref_counted.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\perf_log.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\perf_test_suite.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\perf_time_logger.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\power_monitor_test_base.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\run_all_perftests.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\run_all_unittests.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\scoped_locale.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\scoped_path_override.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\sequenced_task_runner_test_template.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\sequenced_worker_pool_owner.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\simple_test_clock.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\simple_test_tick_clock.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\task_runner_test_template.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\thread_test_helper.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\trace_event_analyzer.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\trace_to_file.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\user_action_tester.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="test\values_test_util.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\dmg_fp\dtoa.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\dmg_fp\dtoa_wrapper.cc" />
+    <ClCompile Include="third_party\dmg_fp\g_fmt.cc" />
+    <ClCompile Include="third_party\dynamic_annotations\dynamic_annotations.c" />
+    <ClCompile Include="third_party\icu\icu_utf.cc" />
+    <ClCompile Include="third_party\nspr\prtime.cc" />
+    <ClCompile Include="third_party\superfasthash\superfasthash.c" />
+    <ClCompile Include="third_party\symbolize\demangle.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\symbolize\symbolize.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmime.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmimealias.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmimecache.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmimeglob.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmimeicon.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmimeint.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmimemagic.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_mime\xdgmimeparent.c">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="third_party\xdg_user_dirs\xdg_user_dir_lookup.cc" />
+    <ClCompile Include="threading\non_thread_safe_impl.cc" />
+    <ClCompile Include="threading\platform_thread_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\platform_thread_freebsd.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\platform_thread_internal_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\platform_thread_linux.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\platform_thread_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\platform_thread_win.cc" />
+    <ClCompile Include="threading\post_task_and_reply_impl.cc" />
+    <ClCompile Include="threading\sequenced_task_runner_handle.cc" />
+    <ClCompile Include="threading\sequenced_worker_pool.cc" />
+    <ClCompile Include="threading\simple_thread.cc" />
+    <ClCompile Include="threading\thread.cc" />
+    <ClCompile Include="threading\thread_checker_impl.cc" />
+    <ClCompile Include="threading\thread_collision_warner.cc" />
+    <ClCompile Include="threading\thread_id_name_manager.cc" />
+    <ClCompile Include="threading\thread_local_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\thread_local_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\thread_local_storage.cc" />
+    <ClCompile Include="threading\thread_local_storage_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\thread_local_storage_win.cc" />
+    <ClCompile Include="threading\thread_local_win.cc" />
+    <ClCompile Include="threading\thread_perftest.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\thread_restrictions.cc" />
+    <ClCompile Include="threading\watchdog.cc" />
+    <ClCompile Include="threading\worker_pool.cc" />
+    <ClCompile Include="threading\worker_pool_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="threading\worker_pool_win.cc" />
+    <ClCompile Include="thread_task_runner_handle.cc" />
+    <ClCompile Include="timer\elapsed_timer.cc" />
+    <ClCompile Include="timer\hi_res_timer_manager_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="timer\hi_res_timer_manager_win.cc" />
+    <ClCompile Include="timer\mock_timer.cc" />
+    <ClCompile Include="timer\timer.cc" />
+    <ClCompile Include="time\clock.cc" />
+    <ClCompile Include="time\default_clock.cc" />
+    <ClCompile Include="time\default_tick_clock.cc" />
+    <ClCompile Include="time\tick_clock.cc" />
+    <ClCompile Include="time\time.cc" />
+    <ClCompile Include="time\time_mac.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="time\time_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="time\time_win.cc" />
+    <ClCompile Include="trace_event\java_heap_dump_provider_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="trace_event\malloc_dump_provider.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="trace_event\memory_allocator_dump.cc" />
+    <ClCompile Include="trace_event\memory_allocator_dump_guid.cc" />
+    <ClCompile Include="trace_event\memory_dump_manager.cc" />
+    <ClCompile Include="trace_event\memory_dump_request_args.cc" />
+    <ClCompile Include="trace_event\memory_dump_session_state.cc" />
+    <ClCompile Include="trace_event\memory_profiler_allocation_context.cc" />
+    <ClCompile Include="trace_event\memory_profiler_allocation_register.cc" />
+    <ClCompile Include="trace_event\memory_profiler_allocation_register_posix.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="trace_event\memory_profiler_allocation_register_win.cc" />
+    <ClCompile Include="trace_event\memory_profiler_heap_dump_writer.cc" />
+    <ClCompile Include="trace_event\process_memory_dump.cc" />
+    <ClCompile Include="trace_event\process_memory_maps.cc" />
+    <ClCompile Include="trace_event\process_memory_maps_dump_provider.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="trace_event\process_memory_totals.cc" />
+    <ClCompile Include="trace_event\process_memory_totals_dump_provider.cc" />
+    <ClCompile Include="trace_event\trace_buffer.cc" />
+    <ClCompile Include="trace_event\trace_config.cc" />
+    <ClCompile Include="trace_event\trace_event_android.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="trace_event\trace_event_argument.cc" />
+    <ClCompile Include="trace_event\trace_event_etw_export_win.cc" />
+    <ClCompile Include="trace_event\trace_event_impl.cc" />
+    <ClCompile Include="trace_event\trace_event_memory.cc" />
+    <ClCompile Include="trace_event\trace_event_memory_overhead.cc" />
+    <ClCompile Include="trace_event\trace_event_synthetic_delay.cc" />
+    <ClCompile Include="trace_event\trace_event_system_stats_monitor.cc" />
+    <ClCompile Include="trace_event\trace_log.cc" />
+    <ClCompile Include="trace_event\trace_log_constants.cc" />
+    <ClCompile Include="trace_event\trace_sampling_thread.cc" />
+    <ClCompile Include="trace_event\winheap_dump_provider_win.cc" />
+    <ClCompile Include="tracked_objects.cc" />
+    <ClCompile Include="tracking_info.cc" />
+    <ClCompile Include="values.cc" />
+    <ClCompile Include="value_conversions.cc" />
+    <ClCompile Include="version.cc" />
+    <ClCompile Include="vlog.cc" />
+    <ClCompile Include="win\dllmain.cc" />
+    <ClCompile Include="win\enum_variant.cc">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="win\event_trace_controller.cc" />
+    <ClCompile Include="win\event_trace_provider.cc" />
+    <ClCompile Include="win\i18n.cc" />
+    <ClCompile Include="win\iat_patch_function.cc" />
+    <ClCompile Include="win\iunknown_impl.cc" />
+    <ClCompile Include="win\message_window.cc" />
+    <ClCompile Include="win\metro.cc" />
+    <ClCompile Include="win\object_watcher.cc" />
+    <ClCompile Include="win\pe_image.cc" />
+    <ClCompile Include="win\pe_image_test.cc">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="win\process_startup_helper.cc" />
+    <ClCompile Include="win\registry.cc" />
+    <ClCompile Include="win\resource_util.cc" />
+    <ClCompile Include="win\scoped_bstr.cc" />
+    <ClCompile Include="win\scoped_handle.cc" />
+    <ClCompile Include="win\scoped_process_information.cc" />
+    <ClCompile Include="win\scoped_variant.cc" />
+    <ClCompile Include="win\shortcut.cc" />
+    <ClCompile Include="win\startup_information.cc" />
+    <ClCompile Include="win\windows_version.cc" />
+    <ClCompile Include="win\win_util.cc" />
+    <ClCompile Include="win\wrapped_window_proc.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="allocator\allocator_extension.h" />
+    <ClInclude Include="allocator\allocator_extension_thunks.h" />
+    <ClInclude Include="android\animation_frame_time_histogram.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\apk_assets.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\application_status_listener.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\base_jni_onload.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\base_jni_registrar.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\build_info.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\command_line_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\content_uri_utils.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\cpu_features.h" />
+    <ClInclude Include="android\event_log.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\field_trial_list.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\fifo_utils.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\important_file_writer_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\java_handler_thread.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\java_runtime.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_array.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_generator\golden_sample_for_tests_jni.h" />
+    <ClInclude Include="android\jni_generator\jni_generator_helper.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_generator\sample_for_tests.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_int_wrapper.h" />
+    <ClInclude Include="android\jni_registrar.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_string.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_utils.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\jni_weak_ref.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\library_loader\library_loader_hooks.h" />
+    <ClInclude Include="android\library_loader\library_load_from_apk_status_codes.h" />
+    <ClInclude Include="android\library_loader\library_prefetcher.h" />
+    <ClInclude Include="android\linker\android_dlext.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\linker\legacy_linker_jni.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\linker\linker_jni.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\linker\modern_linker_jni.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\locale_utils.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\memory_pressure_listener_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\path_service_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\path_utils.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\record_histogram.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\record_user_action.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\scoped_java_ref.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\sys_utils.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\thread_utils.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="android\trace_event_binding.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="atomicops.h" />
+    <ClInclude Include="atomicops_internals_atomicword_compat.h" />
+    <ClInclude Include="atomicops_internals_mac.h" />
+    <ClInclude Include="atomicops_internals_portable.h" />
+    <ClInclude Include="atomicops_internals_x86_msvc.h" />
+    <ClInclude Include="atomic_ref_count.h" />
+    <ClInclude Include="atomic_sequence_num.h" />
+    <ClInclude Include="at_exit.h" />
+    <ClInclude Include="auto_reset.h" />
+    <ClInclude Include="barrier_closure.h" />
+    <ClInclude Include="base64.h" />
+    <ClInclude Include="base64url.h" />
+    <ClInclude Include="base_export.h" />
+    <ClInclude Include="base_paths.h" />
+    <ClInclude Include="base_paths_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="base_paths_mac.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="base_paths_posix.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="base_paths_win.h" />
+    <ClInclude Include="base_switches.h" />
+    <ClInclude Include="basictypes.h" />
+    <ClInclude Include="big_endian.h" />
+    <ClInclude Include="bind.h" />
+    <ClInclude Include="bind_helpers.h" />
+    <ClInclude Include="bind_internal.h" />
+    <ClInclude Include="bind_internal_win.h" />
+    <ClInclude Include="bits.h" />
+    <ClInclude Include="build_time.h" />
+    <ClInclude Include="callback.h" />
+    <ClInclude Include="callback_forward.h" />
+    <ClInclude Include="callback_helpers.h" />
+    <ClInclude Include="callback_internal.h" />
+    <ClInclude Include="callback_list.h" />
+    <ClInclude Include="cancelable_callback.h" />
+    <ClInclude Include="command_line.h" />
+    <ClInclude Include="compiler_specific.h" />
+    <ClInclude Include="containers\adapters.h" />
+    <ClInclude Include="containers\hash_tables.h" />
+    <ClInclude Include="containers\linked_list.h" />
+    <ClInclude Include="containers\mru_cache.h" />
+    <ClInclude Include="containers\scoped_ptr_hash_map.h" />
+    <ClInclude Include="containers\scoped_ptr_map.h" />
+    <ClInclude Include="containers\small_map.h" />
+    <ClInclude Include="containers\stack_container.h" />
+    <ClInclude Include="cpu.h" />
+    <ClInclude Include="critical_closure.h" />
+    <ClInclude Include="debug\alias.h" />
+    <ClInclude Include="debug\asan_invalid_access.h" />
+    <ClInclude Include="debug\crash_logging.h" />
+    <ClInclude Include="debug\debugger.h" />
+    <ClInclude Include="debug\dump_without_crashing.h" />
+    <ClInclude Include="debug\gdi_debug_util_win.h" />
+    <ClInclude Include="debug\leak_annotations.h" />
+    <ClInclude Include="debug\leak_tracker.h" />
+    <ClInclude Include="debug\proc_maps_linux.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="debug\profiler.h" />
+    <ClInclude Include="debug\stack_trace.h" />
+    <ClInclude Include="debug\task_annotator.h" />
+    <ClInclude Include="deferred_sequenced_task_runner.h" />
+    <ClInclude Include="environment.h" />
+    <ClInclude Include="event_types.h" />
+    <ClInclude Include="feature_list.h" />
+    <ClInclude Include="files\dir_reader_fallback.h" />
+    <ClInclude Include="files\dir_reader_linux.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="files\dir_reader_posix.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="files\file.h" />
+    <ClInclude Include="files\file_enumerator.h" />
+    <ClInclude Include="files\file_path.h" />
+    <ClInclude Include="files\file_path_watcher.h" />
+    <ClInclude Include="files\file_path_watcher_fsevents.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="files\file_path_watcher_kqueue.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="files\file_proxy.h" />
+    <ClInclude Include="files\file_tracing.h" />
+    <ClInclude Include="files\file_util.h" />
+    <ClInclude Include="files\file_util_proxy.h" />
+    <ClInclude Include="files\important_file_writer.h" />
+    <ClInclude Include="files\memory_mapped_file.h" />
+    <ClInclude Include="files\scoped_file.h" />
+    <ClInclude Include="files\scoped_temp_dir.h" />
+    <ClInclude Include="file_descriptor_posix.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="file_version_info.h" />
+    <ClInclude Include="file_version_info_mac.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="file_version_info_win.h" />
+    <ClInclude Include="format_macros.h" />
+    <ClInclude Include="guid.h" />
+    <ClInclude Include="hash.h" />
+    <ClInclude Include="i18n\base_i18n_export.h" />
+    <ClInclude Include="i18n\bidi_line_iterator.h" />
+    <ClInclude Include="i18n\break_iterator.h" />
+    <ClInclude Include="i18n\case_conversion.h" />
+    <ClInclude Include="i18n\char_iterator.h" />
+    <ClInclude Include="i18n\file_util_icu.h" />
+    <ClInclude Include="i18n\i18n_constants.h" />
+    <ClInclude Include="i18n\icu_encoding_detection.h" />
+    <ClInclude Include="i18n\icu_string_conversions.h" />
+    <ClInclude Include="i18n\icu_util.h" />
+    <ClInclude Include="i18n\message_formatter.h" />
+    <ClInclude Include="i18n\number_formatting.h" />
+    <ClInclude Include="i18n\rtl.h" />
+    <ClInclude Include="i18n\streaming_utf8_validator.h" />
+    <ClInclude Include="i18n\string_compare.h" />
+    <ClInclude Include="i18n\string_search.h" />
+    <ClInclude Include="i18n\timezone.h" />
+    <ClInclude Include="i18n\time_formatting.h" />
+    <ClInclude Include="i18n\utf8_validator_tables.h" />
+    <ClInclude Include="id_map.h" />
+    <ClInclude Include="ios\block_types.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ios\crb_protocol_observers.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ios\device_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ios\ios_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ios\ns_error_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ios\scoped_critical_action.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="ios\weak_nsobject.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="json\json_file_value_serializer.h" />
+    <ClInclude Include="json\json_parser.h" />
+    <ClInclude Include="json\json_reader.h" />
+    <ClInclude Include="json\json_string_value_serializer.h" />
+    <ClInclude Include="json\json_value_converter.h" />
+    <ClInclude Include="json\json_writer.h" />
+    <ClInclude Include="json\string_escape.h" />
+    <ClInclude Include="lazy_instance.h" />
+    <ClInclude Include="linux_util.h" />
+    <ClInclude Include="location.h" />
+    <ClInclude Include="logging.h" />
+    <ClInclude Include="logging_win.h" />
+    <ClInclude Include="macros.h" />
+    <ClInclude Include="mac\authorization_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\bind_objc_block.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\bundle_locations.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\call_with_eh_frame.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\cocoa_protocols.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\dispatch_source_mach.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\foundation_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\launchd.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\launch_services_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\libdispatch_task_runner.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\mach_logging.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\mac_logging.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\mac_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\objc_property_releaser.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\os_crash_dumps.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_aedesc.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_authorizationref.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_block.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_cffiledescriptorref.h" />
+    <ClInclude Include="mac\scoped_cftyperef.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_ioobject.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_ioplugininterface.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_launch_data.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_mach_port.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_mach_vm.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_nsautorelease_pool.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_nsobject.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_objc_class_swizzler.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_sending_event.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\scoped_typeref.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="mac\sdk_forward_declarations.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="memory\aligned_memory.h" />
+    <ClInclude Include="memory\discardable_memory.h" />
+    <ClInclude Include="memory\discardable_memory_allocator.h" />
+    <ClInclude Include="memory\discardable_shared_memory.h" />
+    <ClInclude Include="memory\linked_ptr.h" />
+    <ClInclude Include="memory\manual_constructor.h" />
+    <ClInclude Include="memory\memory_pressure_listener.h" />
+    <ClInclude Include="memory\memory_pressure_monitor.h" />
+    <ClInclude Include="memory\memory_pressure_monitor_chromeos.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="memory\memory_pressure_monitor_mac.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="memory\memory_pressure_monitor_win.h" />
+    <ClInclude Include="memory\raw_scoped_refptr_mismatch_checker.h" />
+    <ClInclude Include="memory\ref_counted.h" />
+    <ClInclude Include="memory\ref_counted_delete_on_message_loop.h" />
+    <ClInclude Include="memory\ref_counted_memory.h" />
+    <ClInclude Include="memory\scoped_policy.h" />
+    <ClInclude Include="memory\scoped_ptr.h" />
+    <ClInclude Include="memory\scoped_vector.h" />
+    <ClInclude Include="memory\shared_memory.h" />
+    <ClInclude Include="memory\shared_memory_handle.h" />
+    <ClInclude Include="memory\singleton.h" />
+    <ClInclude Include="memory\singleton_objc.h" />
+    <ClInclude Include="memory\weak_ptr.h" />
+    <ClInclude Include="message_loop\incoming_task_queue.h" />
+    <ClInclude Include="message_loop\message_loop.h" />
+    <ClInclude Include="message_loop\message_loop_task_runner.h" />
+    <ClInclude Include="message_loop\message_loop_test.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump.h" />
+    <ClInclude Include="message_loop\message_pump_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_default.h" />
+    <ClInclude Include="message_loop\message_pump_dispatcher.h" />
+    <ClInclude Include="message_loop\message_pump_glib.h" />
+    <ClInclude Include="message_loop\message_pump_io_ios.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_libevent.h" />
+    <ClInclude Include="message_loop\message_pump_mac.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="message_loop\message_pump_win.h" />
+    <ClInclude Include="message_loop\timer_slack.h" />
+    <ClInclude Include="metrics\bucket_ranges.h" />
+    <ClInclude Include="metrics\field_trial.h" />
+    <ClInclude Include="metrics\histogram.h" />
+    <ClInclude Include="metrics\histogram_base.h" />
+    <ClInclude Include="metrics\histogram_delta_serialization.h" />
+    <ClInclude Include="metrics\histogram_flattener.h" />
+    <ClInclude Include="metrics\histogram_macros.h" />
+    <ClInclude Include="metrics\histogram_samples.h" />
+    <ClInclude Include="metrics\histogram_snapshot_manager.h" />
+    <ClInclude Include="metrics\sample_map.h" />
+    <ClInclude Include="metrics\sample_vector.h" />
+    <ClInclude Include="metrics\sparse_histogram.h" />
+    <ClInclude Include="metrics\statistics_recorder.h" />
+    <ClInclude Include="metrics\user_metrics.h" />
+    <ClInclude Include="metrics\user_metrics_action.h" />
+    <ClInclude Include="move.h" />
+    <ClInclude Include="native_library.h" />
+    <ClInclude Include="nix\mime_util_xdg.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="nix\xdg_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="numerics\safe_conversions.h" />
+    <ClInclude Include="numerics\safe_conversions_impl.h" />
+    <ClInclude Include="numerics\safe_math.h" />
+    <ClInclude Include="numerics\safe_math_impl.h" />
+    <ClInclude Include="observer_list.h" />
+    <ClInclude Include="observer_list_threadsafe.h" />
+    <ClInclude Include="os_compat_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="os_compat_nacl.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="path_service.h" />
+    <ClInclude Include="pending_task.h" />
+    <ClInclude Include="pickle.h" />
+    <ClInclude Include="posix\eintr_wrapper.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="posix\file_descriptor_shuffle.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="posix\global_descriptors.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="posix\safe_strerror.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="posix\unix_domain_socket_linux.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="power_monitor\power_monitor.h" />
+    <ClInclude Include="power_monitor\power_monitor_device_source.h" />
+    <ClInclude Include="power_monitor\power_monitor_device_source_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="power_monitor\power_monitor_source.h" />
+    <ClInclude Include="power_monitor\power_observer.h" />
+    <ClInclude Include="prefs\base_prefs_export.h" />
+    <ClInclude Include="prefs\default_pref_store.h" />
+    <ClInclude Include="prefs\json_pref_store.h" />
+    <ClInclude Include="prefs\mock_pref_change_callback.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="prefs\overlay_user_pref_store.h" />
+    <ClInclude Include="prefs\persistent_pref_store.h" />
+    <ClInclude Include="prefs\pref_change_registrar.h" />
+    <ClInclude Include="prefs\pref_filter.h" />
+    <ClInclude Include="prefs\pref_member.h" />
+    <ClInclude Include="prefs\pref_notifier.h" />
+    <ClInclude Include="prefs\pref_notifier_impl.h" />
+    <ClInclude Include="prefs\pref_observer.h" />
+    <ClInclude Include="prefs\pref_registry.h" />
+    <ClInclude Include="prefs\pref_registry_simple.h" />
+    <ClInclude Include="prefs\pref_service.h" />
+    <ClInclude Include="prefs\pref_service_factory.h" />
+    <ClInclude Include="prefs\pref_store.h" />
+    <ClInclude Include="prefs\pref_store_observer_mock.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="prefs\pref_value_map.h" />
+    <ClInclude Include="prefs\pref_value_store.h" />
+    <ClInclude Include="prefs\scoped_user_pref_update.h" />
+    <ClInclude Include="prefs\value_map_pref_store.h" />
+    <ClInclude Include="prefs\writeable_pref_store.h" />
+    <ClInclude Include="process\internal_linux.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="process\kill.h" />
+    <ClInclude Include="process\launch.h" />
+    <ClInclude Include="process\memory.h" />
+    <ClInclude Include="process\memory_unittest_mac.h" />
+    <ClInclude Include="process\port_provider_mac.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="process\process.h" />
+    <ClInclude Include="process\process_handle.h" />
+    <ClInclude Include="process\process_info.h" />
+    <ClInclude Include="process\process_iterator.h" />
+    <ClInclude Include="process\process_metrics.h" />
+    <ClInclude Include="profiler\alternate_timer.h" />
+    <ClInclude Include="profiler\native_stack_sampler.h" />
+    <ClInclude Include="profiler\scoped_profile.h" />
+    <ClInclude Include="profiler\scoped_tracker.h" />
+    <ClInclude Include="profiler\stack_sampling_profiler.h" />
+    <ClInclude Include="profiler\tracked_time.h" />
+    <ClInclude Include="profiler\win32_stack_frame_unwinder.h" />
+    <ClInclude Include="rand_util.h" />
+    <ClInclude Include="run_loop.h" />
+    <ClInclude Include="scoped_clear_errno.h" />
+    <ClInclude Include="scoped_generic.h" />
+    <ClInclude Include="scoped_native_library.h" />
+    <ClInclude Include="scoped_observer.h" />
+    <ClInclude Include="sequenced_task_runner.h" />
+    <ClInclude Include="sequenced_task_runner_helpers.h" />
+    <ClInclude Include="sequence_checker.h" />
+    <ClInclude Include="sequence_checker_impl.h" />
+    <ClInclude Include="sha1.h" />
+    <ClInclude Include="single_thread_task_runner.h" />
+    <ClInclude Include="stl_util.h" />
+    <ClInclude Include="strings\latin1_string_conversions.h" />
+    <ClInclude Include="strings\nullable_string16.h" />
+    <ClInclude Include="strings\pattern.h" />
+    <ClInclude Include="strings\safe_sprintf.h" />
+    <ClInclude Include="strings\string16.h" />
+    <ClInclude Include="strings\stringize_macros.h" />
+    <ClInclude Include="strings\stringprintf.h" />
+    <ClInclude Include="strings\string_number_conversions.h" />
+    <ClInclude Include="strings\string_piece.h" />
+    <ClInclude Include="strings\string_split.h" />
+    <ClInclude Include="strings\string_tokenizer.h" />
+    <ClInclude Include="strings\string_util.h" />
+    <ClInclude Include="strings\string_util_posix.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="strings\string_util_win.h" />
+    <ClInclude Include="strings\sys_string_conversions.h" />
+    <ClInclude Include="strings\utf_offset_string_conversions.h" />
+    <ClInclude Include="strings\utf_string_conversions.h" />
+    <ClInclude Include="strings\utf_string_conversion_utils.h" />
+    <ClInclude Include="supports_user_data.h" />
+    <ClInclude Include="synchronization\cancellation_flag.h" />
+    <ClInclude Include="synchronization\condition_variable.h" />
+    <ClInclude Include="synchronization\lock.h" />
+    <ClInclude Include="synchronization\lock_impl.h" />
+    <ClInclude Include="synchronization\spin_wait.h" />
+    <ClInclude Include="synchronization\waitable_event.h" />
+    <ClInclude Include="synchronization\waitable_event_watcher.h" />
+    <ClInclude Include="sync_socket.h" />
+    <ClInclude Include="system_monitor\system_monitor.h" />
+    <ClInclude Include="sys_byteorder.h" />
+    <ClInclude Include="sys_info.h" />
+    <ClInclude Include="sys_info_internal.h" />
+    <ClInclude Include="task\cancelable_task_tracker.h" />
+    <ClInclude Include="task_runner.h" />
+    <ClInclude Include="task_runner_util.h" />
+    <ClInclude Include="template_util.h" />
+    <ClInclude Include="test\histogram_tester.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\icu_test_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\ios\wait_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\launcher\unit_test_launcher.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\malloc_wrapper.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\mock_chrome_application_mac.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\mock_devices_changed_observer.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\mock_entropy_provider.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\mock_log.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\multiprocess_test.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\null_task_runner.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\opaque_ref_counted.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\perf_log.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\perf_test_suite.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\perf_time_logger.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\power_monitor_test_base.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\scoped_locale.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\scoped_path_override.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\sequenced_task_runner_test_template.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\sequenced_worker_pool_owner.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\simple_test_clock.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\simple_test_tick_clock.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\task_runner_test_template.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\thread_test_helper.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\trace_event_analyzer.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\trace_to_file.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\user_action_tester.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="test\values_test_util.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\dmg_fp\dmg_fp.h" />
+    <ClInclude Include="third_party\dynamic_annotations\dynamic_annotations.h" />
+    <ClInclude Include="third_party\icu\icu_utf.h" />
+    <ClInclude Include="third_party\nspr\prtime.h" />
+    <ClInclude Include="third_party\symbolize\config.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\symbolize\demangle.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\symbolize\glog\logging.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\symbolize\glog\raw_logging.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\symbolize\symbolize.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\symbolize\utilities.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\valgrind\memcheck.h" />
+    <ClInclude Include="third_party\valgrind\valgrind.h" />
+    <ClInclude Include="third_party\xdg_mime\xdgmime.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_mime\xdgmimealias.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_mime\xdgmimecache.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_mime\xdgmimeglob.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_mime\xdgmimeicon.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_mime\xdgmimeint.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_mime\xdgmimemagic.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_mime\xdgmimeparent.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="third_party\xdg_user_dirs\xdg_user_dir_lookup.h" />
+    <ClInclude Include="threading\non_thread_safe.h" />
+    <ClInclude Include="threading\non_thread_safe_impl.h" />
+    <ClInclude Include="threading\platform_thread.h" />
+    <ClInclude Include="threading\platform_thread_internal_posix.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="threading\post_task_and_reply_impl.h" />
+    <ClInclude Include="threading\sequenced_task_runner_handle.h" />
+    <ClInclude Include="threading\sequenced_worker_pool.h" />
+    <ClInclude Include="threading\simple_thread.h" />
+    <ClInclude Include="threading\thread.h" />
+    <ClInclude Include="threading\thread_checker.h" />
+    <ClInclude Include="threading\thread_checker_impl.h" />
+    <ClInclude Include="threading\thread_collision_warner.h" />
+    <ClInclude Include="threading\thread_id_name_manager.h" />
+    <ClInclude Include="threading\thread_local.h" />
+    <ClInclude Include="threading\thread_local_storage.h" />
+    <ClInclude Include="threading\thread_restrictions.h" />
+    <ClInclude Include="threading\watchdog.h" />
+    <ClInclude Include="threading\worker_pool.h" />
+    <ClInclude Include="threading\worker_pool_posix.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="thread_task_runner_handle.h" />
+    <ClInclude Include="timer\elapsed_timer.h" />
+    <ClInclude Include="timer\hi_res_timer_manager.h" />
+    <ClInclude Include="timer\mock_timer.h" />
+    <ClInclude Include="timer\timer.h" />
+    <ClInclude Include="time\clock.h" />
+    <ClInclude Include="time\default_clock.h" />
+    <ClInclude Include="time\default_tick_clock.h" />
+    <ClInclude Include="time\tick_clock.h" />
+    <ClInclude Include="time\time.h" />
+    <ClInclude Include="trace_event\common\trace_event_common.h" />
+    <ClInclude Include="trace_event\java_heap_dump_provider_android.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="trace_event\malloc_dump_provider.h" />
+    <ClInclude Include="trace_event\memory_allocator_dump.h" />
+    <ClInclude Include="trace_event\memory_allocator_dump_guid.h" />
+    <ClInclude Include="trace_event\memory_dump_manager.h" />
+    <ClInclude Include="trace_event\memory_dump_provider.h" />
+    <ClInclude Include="trace_event\memory_dump_request_args.h" />
+    <ClInclude Include="trace_event\memory_dump_session_state.h" />
+    <ClInclude Include="trace_event\memory_profiler_allocation_context.h" />
+    <ClInclude Include="trace_event\memory_profiler_allocation_register.h" />
+    <ClInclude Include="trace_event\memory_profiler_heap_dump_writer.h" />
+    <ClInclude Include="trace_event\process_memory_dump.h" />
+    <ClInclude Include="trace_event\process_memory_maps.h" />
+    <ClInclude Include="trace_event\process_memory_maps_dump_provider.h" />
+    <ClInclude Include="trace_event\process_memory_totals.h" />
+    <ClInclude Include="trace_event\process_memory_totals_dump_provider.h" />
+    <ClInclude Include="trace_event\trace_buffer.h" />
+    <ClInclude Include="trace_event\trace_config.h" />
+    <ClInclude Include="trace_event\trace_config_memory_test_util.h" />
+    <ClInclude Include="trace_event\trace_event.h" />
+    <ClInclude Include="trace_event\trace_event_argument.h" />
+    <ClInclude Include="trace_event\trace_event_etw_export_win.h">
+      <ExcludedFromBuild>true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="trace_event\trace_event_impl.h" />
+    <ClInclude Include="trace_event\trace_event_memory.h" />
+    <ClInclude Include="trace_event\trace_event_memory_overhead.h" />
+    <ClInclude Include="trace_event\trace_event_synthetic_delay.h" />
+    <ClInclude Include="trace_event\trace_event_system_stats_monitor.h" />
+    <ClInclude Include="trace_event\trace_log.h" />
+    <ClInclude Include="trace_event\trace_sampling_thread.h" />
+    <ClInclude Include="trace_event\winheap_dump_provider_win.h" />
+    <ClInclude Include="tracked_objects.h" />
+    <ClInclude Include="tracking_info.h" />
+    <ClInclude Include="tuple.h" />
+    <ClInclude Include="values.h" />
+    <ClInclude Include="value_conversions.h" />
+    <ClInclude Include="version.h" />
+    <ClInclude Include="vlog.h" />
+    <ClInclude Include="win\enum_variant.h" />
+    <ClInclude Include="win\event_trace_consumer.h" />
+    <ClInclude Include="win\event_trace_controller.h" />
+    <ClInclude Include="win\event_trace_provider.h" />
+    <ClInclude Include="win\i18n.h" />
+    <ClInclude Include="win\iat_patch_function.h" />
+    <ClInclude Include="win\iunknown_impl.h" />
+    <ClInclude Include="win\message_window.h" />
+    <ClInclude Include="win\metro.h" />
+    <ClInclude Include="win\object_watcher.h" />
+    <ClInclude Include="win\pe_image.h" />
+    <ClInclude Include="win\process_startup_helper.h" />
+    <ClInclude Include="win\registry.h" />
+    <ClInclude Include="win\resource_util.h" />
+    <ClInclude Include="win\scoped_bstr.h" />
+    <ClInclude Include="win\scoped_comptr.h" />
+    <ClInclude Include="win\scoped_com_initializer.h" />
+    <ClInclude Include="win\scoped_co_mem.h" />
+    <ClInclude Include="win\scoped_gdi_object.h" />
+    <ClInclude Include="win\scoped_handle.h" />
+    <ClInclude Include="win\scoped_hdc.h" />
+    <ClInclude Include="win\scoped_hglobal.h" />
+    <ClInclude Include="win\scoped_process_information.h" />
+    <ClInclude Include="win\scoped_propvariant.h" />
+    <ClInclude Include="win\scoped_select_object.h" />
+    <ClInclude Include="win\scoped_variant.h" />
+    <ClInclude Include="win\shortcut.h" />
+    <ClInclude Include="win\startup_information.h" />
+    <ClInclude Include="win\windows_version.h" />
+    <ClInclude Include="win\win_util.h" />
+    <ClInclude Include="win\wrapped_window_proc.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

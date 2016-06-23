@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="d3d11-indexbuffer.cpp" />
+    <ClCompile Include="d3d11-samplerstate.cpp" />
+    <ClCompile Include="d3d11-shader.cpp" />
+    <ClCompile Include="d3d11-shaderprocessor.cpp" />
+    <ClCompile Include="d3d11-stagesurf.cpp" />
+    <ClCompile Include="d3d11-subsystem.cpp" />
+    <ClCompile Include="d3d11-texture2d.cpp" />
+    <ClCompile Include="d3d11-vertexbuffer.cpp" />
+    <ClCompile Include="d3d11-duplicator.cpp" />
+    <ClCompile Include="d3d11-zstencilbuffer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d3d11-shaderprocessor.hpp" />
+    <ClInclude Include="d3d11-subsystem.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{06E49CDA-E47E-3C69-88A6-8748278D8EEF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{22B4BD78-3D76-3F66-8959-79EE7F00C318}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\build\buildcfg\versionno.rc" />
+  </ItemGroup>
+</Project>

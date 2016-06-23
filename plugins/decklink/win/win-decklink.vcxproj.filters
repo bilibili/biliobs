@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\plugin-main.cpp" />
+    <ClCompile Include="..\decklink.cpp" />
+    <ClCompile Include="..\decklink-device-instance.cpp" />
+    <ClCompile Include="..\decklink-device-discovery.cpp" />
+    <ClCompile Include="..\decklink-device.cpp" />
+    <ClCompile Include="..\decklink-device-mode.cpp" />
+    <ClCompile Include="DeckLinkAPI_i.c" />
+    <ClCompile Include="platform.cpp">
+      <Filter>win</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\platform.hpp" />
+    <ClInclude Include="..\decklink.hpp" />
+    <ClInclude Include="..\decklink-device-instance.hpp" />
+    <ClInclude Include="..\decklink-device-discovery.hpp" />
+    <ClInclude Include="..\decklink-device.hpp" />
+    <ClInclude Include="..\decklink-device-mode.hpp" />
+    <ClInclude Include="decklink-sdk\DeckLinkAPIVersion.h" />
+    <ClInclude Include="DeckLinkAPI.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="win">
+      <UniqueIdentifier>{53603116-f70c-430a-80d7-9f83e10c464b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win\decklink-sdk">
+      <UniqueIdentifier>{1320139f-905d-430a-a8a9-f153a207bcf8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Midl Include="decklink-sdk\DeckLinkAPI.idl">
+      <Filter>win\decklink-sdk</Filter>
+    </Midl>
+  </ItemGroup>
+</Project>

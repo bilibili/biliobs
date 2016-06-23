@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetStatusWgt</class>
+ <widget class="QWidget" name="NetStatusWgt">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>406</width>
+    <height>98</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>406</width>
+    <height>98</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>406</width>
+    <height>98</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QLabel" name="color_lbl">
+   <property name="geometry">
+    <rect>
+     <x>14</x>
+     <y>71</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLabel" name="net_up_speed_lbl">
+   <property name="geometry">
+    <rect>
+     <x>33</x>
+     <y>71</y>
+     <width>34</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>Ascending velocity:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="net_up_speed_display">
+   <property name="geometry">
+    <rect>
+     <x>68</x>
+     <y>71</y>
+     <width>72</width>
+     <height>15</height>
+    </rect>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>72</width>
+     <height>15</height>
+    </size>
+   </property>
+   <property name="text">
+    <string>1kbs</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="frame_lose_rate_lbl">
+   <property name="geometry">
+    <rect>
+     <x>165</x>
+     <y>71</y>
+     <width>46</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>frame lost rate:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="frame_lose_rate_display">
+   <property name="geometry">
+    <rect>
+     <x>212</x>
+     <y>71</y>
+     <width>55</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>2.33%</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="viewer_num_lbl">
+   <property name="geometry">
+    <rect>
+     <x>278</x>
+     <y>71</y>
+     <width>36</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>viewer:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="viewer_num_display">
+   <property name="geometry">
+    <rect>
+     <x>311</x>
+     <y>71</y>
+     <width>83</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>10 people</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="header_text">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>20</y>
+     <width>251</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color:#e28db5;font-size:20px;font-family: &quot;Microsoft YaHei&quot;</string>
+   </property>
+   <property name="text">
+    <string>弹幕姬 Stand by</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

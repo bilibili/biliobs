@@ -1,0 +1,44 @@
+//CopyRight·ûºÅµÄ Ascii ÂëÎª 0xA9
+
+#ifndef VER_H
+#define VOS_NT_WINDOWS32        0x00040004L
+#define VFT_DLL                 0x00000002L
+#define VS_VERSION_INFO         1
+#endif
+
+#include "buildcfg.h"
+#include "buildversion.h"
+
+VS_VERSION_INFO VERSIONINFO
+  FILEVERSION VI_FILE_VERSION
+  PRODUCTVERSION VI_FILE_VERSION
+  FILEFLAGSMASK 0x3fL
+  #ifdef _DEBUG
+    FILEFLAGS VS_FF_DEBUG
+  #else
+    FILEFLAGS 0x0L
+  #endif
+  FILEOS VOS_NT_WINDOWS32 
+  FILETYPE VFT_DLL
+  FILESUBTYPE 0x0L
+  BEGIN
+      BLOCK "StringFileInfo"
+      BEGIN
+          BLOCK "000004B0"
+          BEGIN
+              VALUE "CompanyName", "bilibili Corporation"
+              VALUE "ProductName", VI_PRODUCT_NAME
+              VALUE "LegalCopyright", "Copyright (C) 2016 bilibili Corporation"
+              VALUE "InternalName", VI_INTERNALNAME
+              VALUE "OriginalFilename", VI_ORIGINALFILENAME
+              VALUE "FileDescription", VI_FILEDESCRIPTION
+              VALUE "FileVersion", VI_FILE_VERSION_DOT
+              VALUE "ProductVersion", VI_FILE_VERSION_DOT
+              VALUE "Official Build", "1"
+          END
+      END
+      BLOCK "VarFileInfo"
+      BEGIN
+          VALUE "Translation", 0x0000, 1200
+      END
+  END

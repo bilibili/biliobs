@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGUID>{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}</ProjectGUID>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>Win32</Platform>
+    <ProjectName>libobs</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <OutDir>..\build\$(Configuration)\</OutDir>
+    <IntDir>$(OutDir)obj\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)</TargetName>
+    <TargetPath>$(OutDir)$(ProjectName)$(TargetExt)</TargetPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /EHc- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>./;../;..\build\buildcfg;..\third_party_lib\ffmpeg\include;..\third_party\jansson\include;..\third_party\w32-pthreads;..\third_party\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;DEBUG=1;_DEBUG=1;_DEBUG;HAVE_OBSCONFIG_H;UNICODE;_UNICODE;LIBOBS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions> /machine:X86 /debug %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;winmm.lib;$(OutDir)lib\jansson.lib;$(OutDir)lib\w32-pthreads.lib;$(OutDir)lib\zlib.lib;..\third_party_lib\ffmpeg\avcodec.lib;..\third_party_lib\ffmpeg\avformat.lib;..\third_party_lib\ffmpeg\avutil.lib;..\third_party_lib\ffmpeg\swscale.lib;..\third_party_lib\ffmpeg\swresample.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <ImportLibrary>$(OutDir)lib\$(TargetName).lib</ImportLibrary>
+      <ProgramDataBaseFile>$(OutDir)$(TargetName).pdb</ProgramDataBaseFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions> /EHc- %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>./;../;..\build\buildcfg;..\third_party_lib\ffmpeg\include;..\third_party\jansson\include;..\third_party\w32-pthreads;..\third_party\zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <CompileAs>CompileAsC</CompileAs>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;HAVE_OBSCONFIG_H;UNICODE;_UNICODE;LIBOBS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions> /machine:X86 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;winmm.lib;$(OutDir)lib\jansson.lib;$(OutDir)lib\w32-pthreads.lib;$(OutDir)lib\zlib.lib;..\third_party_lib\ffmpeg\avcodec.lib;..\third_party_lib\ffmpeg\avformat.lib;..\third_party_lib\ffmpeg\avutil.lib;..\third_party_lib\ffmpeg\swscale.lib;..\third_party_lib\ffmpeg\swresample.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <ImportLibrary>$(OutDir)lib\$(TargetName).lib</ImportLibrary>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\build\buildcfg\obsconfig.h" />
+    <ClInclude Include="graphics\image-file.h" />
+    <ClInclude Include="graphics\libnsgif\libnsgif.h" />
+    <ClInclude Include="obs-config.h" />
+    <ClInclude Include="callback\calldata.h" />
+    <ClInclude Include="callback\decl.h" />
+    <ClInclude Include="callback\proc.h" />
+    <ClInclude Include="callback\signal.h" />
+    <ClInclude Include="graphics\plane.h" />
+    <ClInclude Include="graphics\quat.h" />
+    <ClInclude Include="graphics\input.h" />
+    <ClInclude Include="graphics\axisang.h" />
+    <ClInclude Include="graphics\shader-parser.h" />
+    <ClInclude Include="graphics\effect.h" />
+    <ClInclude Include="graphics\math-defs.h" />
+    <ClInclude Include="graphics\matrix4.h" />
+    <ClInclude Include="graphics\graphics.h" />
+    <ClInclude Include="graphics\graphics-internal.h" />
+    <ClInclude Include="graphics\device-exports.h" />
+    <ClInclude Include="graphics\vec2.h" />
+    <ClInclude Include="graphics\vec4.h" />
+    <ClInclude Include="graphics\matrix3.h" />
+    <ClInclude Include="graphics\vec3.h" />
+    <ClInclude Include="graphics\math-extra.h" />
+    <ClInclude Include="graphics\bounds.h" />
+    <ClInclude Include="graphics\effect-parser.h" />
+    <ClInclude Include="media-io\media-io-defs.h" />
+    <ClInclude Include="media-io\video-io.h" />
+    <ClInclude Include="media-io\audio-io.h" />
+    <ClInclude Include="media-io\audio-math.h" />
+    <ClInclude Include="media-io\video-frame.h" />
+    <ClInclude Include="media-io\format-conversion.h" />
+    <ClInclude Include="media-io\audio-resampler.h" />
+    <ClInclude Include="media-io\video-scaler.h" />
+    <ClInclude Include="media-io\media-remux.h" />
+    <ClInclude Include="util\array-serializer.h" />
+    <ClInclude Include="util\utf8.h" />
+    <ClInclude Include="util\base.h" />
+    <ClInclude Include="util\text-lookup.h" />
+    <ClInclude Include="util\vc\vc_inttypes.h" />
+    <ClInclude Include="util\vc\vc_stdbool.h" />
+    <ClInclude Include="util\vc\vc_stdint.h" />
+    <ClInclude Include="util\bmem.h" />
+    <ClInclude Include="util\c99defs.h" />
+    <ClInclude Include="util\cf-parser.h" />
+    <ClInclude Include="util\threading.h" />
+    <ClInclude Include="util\pipe.h" />
+    <ClInclude Include="util\cf-lexer.h" />
+    <ClInclude Include="util\darray.h" />
+    <ClInclude Include="util\circlebuf.h" />
+    <ClInclude Include="util\dstr.h" />
+    <ClInclude Include="util\serializer.h" />
+    <ClInclude Include="util\config-file.h" />
+    <ClInclude Include="util\lexer.h" />
+    <ClInclude Include="util\platform.h" />
+    <ClInclude Include="util\profiler.h" />
+    <ClInclude Include="util\profiler.hpp" />
+    <ClInclude Include="obs-audio-controls.h" />
+    <ClInclude Include="obs-defs.h" />
+    <ClInclude Include="obs-avc.h" />
+    <ClInclude Include="obs-encoder.h" />
+    <ClInclude Include="obs-service.h" />
+    <ClInclude Include="obs-internal.h" />
+    <ClInclude Include="obs.h" />
+    <ClInclude Include="obs-ui.h" />
+    <ClInclude Include="obs-properties.h" />
+    <ClInclude Include="obs-data.h" />
+    <ClInclude Include="obs-interaction.h" />
+    <ClInclude Include="obs-hotkey.h" />
+    <ClInclude Include="obs-hotkeys.h" />
+    <ClInclude Include="obs-module.h" />
+    <ClInclude Include="obs-scene.h" />
+    <ClInclude Include="obs-source.h" />
+    <ClInclude Include="obs-output.h" />
+    <ClInclude Include="obs-ffmpeg-compat.h" />
+    <ClInclude Include="obs.hpp" />
+    <ClCompile Include="callback\calldata.c" />
+    <ClCompile Include="callback\decl.c" />
+    <ClCompile Include="callback\signal.c" />
+    <ClCompile Include="callback\proc.c" />
+    <ClCompile Include="graphics\graphics-ffmpeg.c" />
+    <ClCompile Include="graphics\image-file.c" />
+    <ClCompile Include="graphics\libnsgif\libnsgif.c" />
+    <ClCompile Include="graphics\quat.c" />
+    <ClCompile Include="graphics\effect-parser.c" />
+    <ClCompile Include="graphics\axisang.c" />
+    <ClCompile Include="graphics\vec4.c" />
+    <ClCompile Include="graphics\vec2.c" />
+    <ClCompile Include="graphics\texture-render.c" />
+    <ClCompile Include="graphics\bounds.c" />
+    <ClCompile Include="graphics\matrix3.c" />
+    <ClCompile Include="graphics\matrix4.c" />
+    <ClCompile Include="graphics\vec3.c" />
+    <ClCompile Include="graphics\graphics.c" />
+    <ClCompile Include="graphics\shader-parser.c" />
+    <ClCompile Include="graphics\plane.c" />
+    <ClCompile Include="graphics\effect.c" />
+    <ClCompile Include="graphics\math-extra.c" />
+    <ClCompile Include="graphics\graphics-imports.c" />
+    <ClCompile Include="media-io\video-io.c" />
+    <ClCompile Include="media-io\video-fourcc.c" />
+    <ClCompile Include="media-io\video-matrices.c" />
+    <ClCompile Include="media-io\audio-io.c" />
+    <ClCompile Include="media-io\video-frame.c" />
+    <ClCompile Include="media-io\format-conversion.c" />
+    <ClCompile Include="media-io\audio-resampler-ffmpeg.c" />
+    <ClCompile Include="media-io\video-scaler-ffmpeg.c" />
+    <ClCompile Include="media-io\media-remux.c" />
+    <ClCompile Include="util\array-serializer.c" />
+    <ClCompile Include="util\base.c" />
+    <ClCompile Include="util\platform.c" />
+    <ClCompile Include="util\cf-lexer.c" />
+    <ClCompile Include="util\bmem.c" />
+    <ClCompile Include="util\config-file.c" />
+    <ClCompile Include="util\lexer.c" />
+    <ClCompile Include="util\dstr.c" />
+    <ClCompile Include="util\utf8.c" />
+    <ClCompile Include="util\text-lookup.c" />
+    <ClCompile Include="util\cf-parser.c" />
+    <ClCompile Include="util\profiler.c" />
+    <ClCompile Include="obs-win-crash-handler.c" />
+    <ClCompile Include="obs-windows.c" />
+    <ClCompile Include="util\threading-windows.c" />
+    <ClCompile Include="util\pipe-windows.c" />
+    <ClCompile Include="util\platform-windows.c" />
+    <ClCompile Include="obs-audio-controls.c" />
+    <ClCompile Include="obs-avc.c" />
+    <ClCompile Include="obs-encoder.c" />
+    <ClCompile Include="obs-service.c" />
+    <ClCompile Include="obs-source.c" />
+    <ClCompile Include="obs-output.c" />
+    <ClCompile Include="obs-output-delay.c" />
+    <ClCompile Include="obs.c" />
+    <ClCompile Include="obs-properties.c" />
+    <ClCompile Include="obs-data.c" />
+    <ClCompile Include="obs-hotkey.c" />
+    <ClCompile Include="obs-hotkey-name-map.c" />
+    <ClCompile Include="obs-module.c" />
+    <ClCompile Include="obs-display.c" />
+    <ClCompile Include="obs-view.c" />
+    <ClCompile Include="obs-scene.c" />
+    <ClCompile Include="obs-video.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\build\buildcfg\versionno.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

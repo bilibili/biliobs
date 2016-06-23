@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="test\bin\json_process.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{D78CEC51-23B3-3599-A7E1-176DDB1B3C7A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

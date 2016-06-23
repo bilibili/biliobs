@@ -1,0 +1,39 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coreaudio-encoder", "coreaudio-encoder.vcxproj", "{A5C4ED53-A27B-3CE5-8C62-2E8D225B0D75}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37} = {2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libobs", "..\..\libobs\libobs.vcxproj", "{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5810ED8-6B78-372C-8219-E69F2930D198} = {B5810ED8-6B78-372C-8219-E69F2930D198}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "w32-pthreads", "..\..\third_party\w32-pthreads\w32-pthreads.vcxproj", "{B5810ED8-6B78-372C-8219-E69F2930D198}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5C4ED53-A27B-3CE5-8C62-2E8D225B0D75}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A5C4ED53-A27B-3CE5-8C62-2E8D225B0D75}.Debug|Win32.Build.0 = Debug|Win32
+		{A5C4ED53-A27B-3CE5-8C62-2E8D225B0D75}.Release|Win32.ActiveCfg = Release|Win32
+		{A5C4ED53-A27B-3CE5-8C62-2E8D225B0D75}.Release|Win32.Build.0 = Release|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Debug|Win32.Build.0 = Debug|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Release|Win32.ActiveCfg = Release|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Release|Win32.Build.0 = Release|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Debug|Win32.Build.0 = Debug|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Release|Win32.ActiveCfg = Release|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

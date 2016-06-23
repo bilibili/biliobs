@@ -1,0 +1,106 @@
+uniform float4x4 ViewProj;
+uniform texture2d image;
+uniform float4 beauty_params;
+uniform float2 step_offset;
+
+sampler_state textureSampler {
+	Filter    = Linear;
+	AddressU  = Wrap;
+	AddressV  = Wrap;
+};
+
+struct VertData {
+	float4 pos : POSITION;
+	float2 uv  : TEXCOORD0;
+};
+
+VertData VS_Through(VertData v_in)
+{
+	VertData vert_out;
+	vert_out.pos = mul(float4(v_in.pos.xyz, 1.0), ViewProj);
+	vert_out.uv  = v_in.uv;
+	return vert_out;
+}
+
+sampler_state samplers2D {
+	Filter    = Linear;
+	AddressU  = Wrap;
+	AddressV  = Wrap;
+};
+
+float4 gl_texture2D(float2 t)
+{
+    return image.Sample(samplers2D, t);
+}
+
+float4 processfrag(float4 cur, float4 center, float centerY, float centerU, float centerV, float2 inputPos, float weight)
+{
+    float4 input = gl_texture2D(inputPos);
+    float3 yext = float3(0.3, 0.587, 0.114);
+    float inputY = dot(input.xyz, yext);
+    float inputU = 0.5 * (input.z - inputY) / (1 - 0.114);
+    float inputV = 0.5 * (input.x - inputY) / (1 - 0.3);
+    
+    if (abs(centerY - inputY) > beauty_params.y || abs(centerU - inputU) > beauty_params.z || abs(centerV - inputV) > beauty_params.z)
+        return cur + center * weight;
+    else
+        return cur + weight * input;
+}
+
+float4 addlight(float4 inp, float inpY)
+{
+    return inp * (1 + (-beauty_params.w*inpY*inpY + beauty_params.w*inpY));
+}
+
+float4 gl_frag(float2 pos)
+{
+    float4 c = gl_texture2D(pos);
+    
+    int i;
+    int j;
+    float totalweight = 0;
+    
+    float4 r = c * beauty_params.x;
+    totalweight += beauty_params.x;
+    
+    float3 yext = float3(0.3, 0.587, 0.114);
+    float centerY = dot(c.xyz, yext);
+    float centerU = 0.5 * (c.z - centerY) / (1 - 0.114);
+    float centerV = 0.5 * (c.x - centerY) / (1 - 0.3);
+    
+    for (i = -2; i <= 2; ++i)
+    {
+        for (j = -2; j <= 2; ++j)
+        {
+            r = processfrag(r, c, centerY, centerU, centerV, float2(pos.x + step_offset.x * i, pos.y + step_offset.y * j), 1);
+            totalweight += 1;
+        }
+    }
+    
+    for (i = -5; i <= 5; ++i)
+    {
+        for (j = -5; j <= 5; ++j)
+        {
+            r = processfrag(r, c, centerY, centerU, centerV, float2(pos.x + step_offset.x * i, pos.y + step_offset.y * j), 1);
+            totalweight += 1;
+        }
+    }
+    
+    return addlight(r / totalweight, centerY);
+}
+
+float4 PS_Beauty(VertData v_in) : TARGET
+{
+    float4 clrs[9];
+
+	return gl_frag(v_in.uv.xy);
+}
+
+technique Draw
+{
+	pass
+	{
+		vertex_shader = VS_Through(v_in);
+		pixel_shader  = PS_Beauty(v_in);
+	}
+}

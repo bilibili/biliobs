@@ -1,0 +1,4 @@
+QColorDialog
+QDialogButtonBox
+QLineEdit
+QWidgetTextControl

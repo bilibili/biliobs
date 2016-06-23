@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics-hook", "graphics-hook.vcxproj", "{7913E51C-3275-304A-9F79-4617A7B7F7FB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F197EBB4-920E-3927-9C85-19D67245B611} = {F197EBB4-920E-3927-9C85-19D67245B611}
+		{80AA0E75-073C-3786-9B5B-7C53C2541BE5} = {80AA0E75-073C-3786-9B5B-7C53C2541BE5}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ipc-util", "..\..\..\third_party\ipc-util\ipc-util.vcxproj", "{80AA0E75-073C-3786-9B5B-7C53C2541BE5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F197EBB4-920E-3927-9C85-19D67245B611} = {F197EBB4-920E-3927-9C85-19D67245B611}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

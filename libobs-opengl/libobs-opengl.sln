@@ -1,0 +1,53 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "glad", "..\third_party\glad\glad.vcxproj", "{C48C27FD-D45C-369A-99B3-9EC9AB0EFCEA}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "jansson", "..\third_party\jansson\jansson.vcxproj", "{DB4C1A50-D771-3EEE-88E2-756B4FCBDD03}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libobs", "..\libobs\libobs.vcxproj", "{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DB4C1A50-D771-3EEE-88E2-756B4FCBDD03} = {DB4C1A50-D771-3EEE-88E2-756B4FCBDD03}
+		{B5810ED8-6B78-372C-8219-E69F2930D198} = {B5810ED8-6B78-372C-8219-E69F2930D198}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libobs-opengl", "libobs-opengl.vcxproj", "{022A1760-5391-3DA9-8708-0CDE0BA8771E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C48C27FD-D45C-369A-99B3-9EC9AB0EFCEA} = {C48C27FD-D45C-369A-99B3-9EC9AB0EFCEA}
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37} = {2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "w32-pthreads", "..\third_party\w32-pthreads\w32-pthreads.vcxproj", "{B5810ED8-6B78-372C-8219-E69F2930D198}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C48C27FD-D45C-369A-99B3-9EC9AB0EFCEA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C48C27FD-D45C-369A-99B3-9EC9AB0EFCEA}.Debug|Win32.Build.0 = Debug|Win32
+		{C48C27FD-D45C-369A-99B3-9EC9AB0EFCEA}.Release|Win32.ActiveCfg = Release|Win32
+		{C48C27FD-D45C-369A-99B3-9EC9AB0EFCEA}.Release|Win32.Build.0 = Release|Win32
+		{DB4C1A50-D771-3EEE-88E2-756B4FCBDD03}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DB4C1A50-D771-3EEE-88E2-756B4FCBDD03}.Debug|Win32.Build.0 = Debug|Win32
+		{DB4C1A50-D771-3EEE-88E2-756B4FCBDD03}.Release|Win32.ActiveCfg = Release|Win32
+		{DB4C1A50-D771-3EEE-88E2-756B4FCBDD03}.Release|Win32.Build.0 = Release|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Debug|Win32.Build.0 = Debug|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Release|Win32.ActiveCfg = Release|Win32
+		{2E77904B-BCEF-3648-9EDD-D9CB1E0D9E37}.Release|Win32.Build.0 = Release|Win32
+		{022A1760-5391-3DA9-8708-0CDE0BA8771E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{022A1760-5391-3DA9-8708-0CDE0BA8771E}.Debug|Win32.Build.0 = Debug|Win32
+		{022A1760-5391-3DA9-8708-0CDE0BA8771E}.Release|Win32.ActiveCfg = Release|Win32
+		{022A1760-5391-3DA9-8708-0CDE0BA8771E}.Release|Win32.Build.0 = Release|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Debug|Win32.Build.0 = Debug|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Release|Win32.ActiveCfg = Release|Win32
+		{B5810ED8-6B78-372C-8219-E69F2930D198}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
