@@ -109,8 +109,8 @@ void DanmakuMove::moveDM_(){
 		TKNS::DMTask *toPaintTk = dmCreater_->dmTaskHs_[i];
 
 		if (toPaintTk->dmOpacity_ <= 0.0){
-			//µ¯Ä»Ê±¼äÍÆ×§Îª999 ÔÙ½µµÍµ½×îµÍ, ·´¸´²Ù×÷ºó äÖÈ¾Ë³ÐòºÍÉ¾³ýË³Ðò
-			//»á½»Ìæ, ±ÜÃâÄÚ´æÐ¹Â©¼°É¾³ý´íÂÒ×öÒÔÏÂÅÐ¶Ï
+			//å¼¹å¹•æ—¶é—´æŽ¨æ‹½ä¸º999 å†é™ä½Žåˆ°æœ€ä½Ž, åå¤æ“ä½œåŽ æ¸²æŸ“é¡ºåºå’Œåˆ é™¤é¡ºåº
+			//ä¼šäº¤æ›¿, é¿å…å†…å­˜æ³„æ¼åŠåˆ é™¤é”™ä¹±åšä»¥ä¸‹åˆ¤æ–­
 			if (toPaintTk->dmIndex_ > dmCreater_->dmTaskHs_[startPaintDMIndex_]->dmIndex_)
 				continue;
 

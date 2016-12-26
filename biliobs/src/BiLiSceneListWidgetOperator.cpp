@@ -52,13 +52,13 @@ BiliSceneListWidgetOperator::BiliSceneListWidgetOperator(QTabWidget* tabWidget, 
 
 	, history_wgt_(history)
 {
-	//OBSÈ«¾ÖĞÅºÅ
+	//OBSå…¨å±€ä¿¡å·
 	signal_handler_t* globalSignalHandler = obs_get_signal_handler();
 	globalSignals.push_back(OBSSignalPtr(new OBSSignal(globalSignalHandler, "source_add", (signal_callback_t)&BiliSceneListWidgetOperator::on_signal_source_add, this)));
 	globalSignals.push_back(OBSSignalPtr(new OBSSignal(globalSignalHandler, "source_remove", (signal_callback_t)&BiliSceneListWidgetOperator::on_signal_scene_remove, this)));
 	globalSignals.push_back(OBSSignalPtr(new OBSSignal(globalSignalHandler, "source_rename", (signal_callback_t)&BiliSceneListWidgetOperator::on_signal_source_rename, this)));
 
-	//QT½çÃæĞÅºÅ
+	//QTç•Œé¢ä¿¡å·
 	QObject::connect(mSceneItemList, SIGNAL(currentItemChanged(QListWidgetItem*, QListWidgetItem*)), this, SLOT(OnSceneListCurrentItemChanged(QListWidgetItem*, QListWidgetItem*)));
 	QObject::connect(mSceneItemList, &QListWidget::itemClicked, this, &BiliSceneListWidgetOperator::OnSceneListItemClicked);
 	QObject::connect(mSceneItemList, &QListWidget::itemDoubleClicked, this, &BiliSceneListWidgetOperator::OnSceneListItemDoubleClicked);
@@ -70,7 +70,7 @@ BiliSceneListWidgetOperator::BiliSceneListWidgetOperator(QTabWidget* tabWidget, 
 
 	mSceneItemList->installEventFilter(this);
 
-	//¹¤¾ßÀ¸ĞÅºÅ
+	//å·¥å…·æ ä¿¡å·
 	QObject::connect(toolbar, &RightListToolbar::mvUpSignal, this, &BiliSceneListWidgetOperator::sceneEditMenuMoveUp);
 	QObject::connect(toolbar, &RightListToolbar::mvDnSignal, this, &BiliSceneListWidgetOperator::sceneEditMenuMoveDown);
 	QObject::connect(toolbar, &RightListToolbar::mvTopSignal, this, &BiliSceneListWidgetOperator::sceneEditMenuMoveTop);
@@ -81,7 +81,7 @@ BiliSceneListWidgetOperator::BiliSceneListWidgetOperator(QTabWidget* tabWidget, 
 	//auto ShortCut = new QShortcut(QKeySequence(Qt::Key_Delete), tabWidget);
 	//QObject::connect(ShortCut, &QShortcut::activated, this, &BiliSceneListWidgetOperator::sceneEditMenuRemove);
 
-	//¿ì½İ¼ü
+	//å¿«æ·é”®
 	HotkeyManager::GetInstance()->Register(BILI_HOTKEY_SWITCH_SCENE_NAME, CreateSourceHotkeyCallback(this, &BiliSceneListWidgetOperator::on_scene_change_hotkey_impl));
 }
 
@@ -98,7 +98,7 @@ void BiliSceneListWidgetOperator::OnSceneListButtonClicked()
 		return;
 	}
 
-	//»ñÈ¡³¡¾°ÁĞ±í
+	//è·å–åœºæ™¯åˆ—è¡¨
 	mSceneListMenu = new QMenu();
 	mSceneListMenu->setAttribute(Qt::WA_DeleteOnClose);
 	mSceneListMenu->setStyleSheet("QMenu::item { width: 100px; height: 30px }");
@@ -120,7 +120,7 @@ void BiliSceneListWidgetOperator::OnSceneListButtonClicked()
 	obs_source_t* videoChannel = obs_get_output_source(0); //current output scene
 
 #if 0
-	//µ±Ç°³¡¾°·ÅÔÚµÚÒ»¸ö
+	//å½“å‰åœºæ™¯æ”¾åœ¨ç¬¬ä¸€ä¸ª
 	scenes.push_front(videoChannel);
 	for (auto i = ++scenes.begin(); i != scenes.end(); ++i)
 	{
@@ -132,7 +132,7 @@ void BiliSceneListWidgetOperator::OnSceneListButtonClicked()
 	}
 #endif
 
-	//Ìí¼Óµ½²Ëµ¥£¬²¢Á¬½ÓĞĞÎª
+	//æ·»åŠ åˆ°èœå•ï¼Œå¹¶è¿æ¥è¡Œä¸º
 	for (obs_source_t* src : scenes)
 	{
 		QAction* sceneMenuItem = new QAction(obs_source_get_name(src), mSceneListMenu);
@@ -148,7 +148,7 @@ void BiliSceneListWidgetOperator::OnSceneListButtonClicked()
 
 	mSceneListButton->setStyleSheet("QPushButton { image: url(:/FucBtn/SceneUp); }");
 
-	//²Ëµ¥ÏûÊ§Ê±ºòÊÍ·Å³¡¾°ÒıÓÃ
+	//èœå•æ¶ˆå¤±æ—¶å€™é‡Šæ”¾åœºæ™¯å¼•ç”¨
 	QObject::connect(mSceneListMenu, &QMenu::aboutToHide, std::bind(&BiliSceneListWidgetOperator::OnSceneListMenuAboutToHide, this, mSceneListMenu));
 	int tabBarHeight = mTabWidget->tabBar()->height();
 	mSceneListMenu->popup(mTabWidget->mapToGlobal(QPoint(0, tabBarHeight)));
@@ -165,7 +165,7 @@ void BiliSceneListWidgetOperator::OnSceneListMenuAboutToHide(QMenu* popupMenu)
 	}
 	mSceneListButton->setStyleSheet("");
 
-	//Èç¹ûÊÇÍ¨¹ıµã»÷»áµ¯³ö²Ëµ¥µÄÄÇÁ½¸ö¶«Î÷À´¹Ø±Õ²Ëµ¥µÄ»°¡­¡­
+	//å¦‚æœæ˜¯é€šè¿‡ç‚¹å‡»ä¼šå¼¹å‡ºèœå•çš„é‚£ä¸¤ä¸ªä¸œè¥¿æ¥å…³é—­èœå•çš„è¯â€¦â€¦
 	QPoint mousePos = QCursor::pos();
 	if (QApplication::mouseButtons() != 0)
 	{
@@ -200,7 +200,7 @@ void BiliSceneListWidgetOperator::OnSceneListMenuItemClicked()
 
 void BiliSceneListWidgetOperator::OnSceneListCurrentItemChanged(QListWidgetItem* current, QListWidgetItem* previous)
 {
-	//»»Ã»ÁË
+	//æ¢æ²¡äº†
 	if (current == 0)
 		return;
 
@@ -303,17 +303,17 @@ void BiliSceneListWidgetOperator::addDefaultItem(uint reso_w, uint reso_h)
 
 	obs_source_t* existedSource = obs_get_source_by_name(name.toUtf8());
 
-	/*ÖØÃû*/
+	/*é‡å*/
 	if (existedSource) {
 		obs_source_release(existedSource);
 		return;
 	}
 
-	obs_source_t* sceneSource = obs_get_output_source(0); //ÄÚ²¿»áÔö¼ÓsourceµÄÒıÓÃ
+	obs_source_t* sceneSource = obs_get_output_source(0); //å†…éƒ¨ä¼šå¢åŠ sourceçš„å¼•ç”¨
 	if (!sceneSource)
 		return;
 
-	obs_scene_t* scene = obs_scene_from_source(sceneSource); //²»»áÌí¼Óscene»òÕßsceneSourceµÄÒıÓÃ
+	obs_scene_t* scene = obs_scene_from_source(sceneSource); //ä¸ä¼šæ·»åŠ sceneæˆ–è€…sceneSourceçš„å¼•ç”¨
 	if (!scene) {
 		obs_source_release(sceneSource);
 		return;
@@ -327,7 +327,7 @@ void BiliSceneListWidgetOperator::addDefaultItem(uint reso_w, uint reso_h)
 	obs_add_source(newSource);
 	obs_sceneitem_t *newSceneItem = obs_scene_add(scene, newSource);
 
-	//È¡ÏûËùÓĞÑ¡Ôñ
+	//å–æ¶ˆæ‰€æœ‰é€‰æ‹©
 	for (OBSSceneItem& item : OBSEnumSceneItems(scene))
 	{
 		obs_sceneitem_select(item, false);
@@ -367,7 +367,7 @@ bool BiliSceneListWidgetOperator::eventFilter(QObject* watched, QEvent* event)
 	if (watched == this)
 		return false;
 
-	//ÔÚÔ¤ÀÀ´°¿Ú»òÕß³¡¾°ÔªËØÁĞ±íµã»÷ÓÒ¼üÊ±³öÏÖµÄ²Ëµ¥
+	//åœ¨é¢„è§ˆçª—å£æˆ–è€…åœºæ™¯å…ƒç´ åˆ—è¡¨ç‚¹å‡»å³é”®æ—¶å‡ºç°çš„èœå•
 	if (event->type() == QEvent::ContextMenu)
 	{
 		QContextMenuEvent* contextMenuEvent = static_cast<QContextMenuEvent*>(event);
@@ -399,15 +399,15 @@ QMenu* BiliSceneListWidgetOperator::createSceneEditMenu()
 		const char* slot;
 	} menuItems[] =
 	{
-		"1:1\xe6\x98\xbe\xe7\xa4\xba", SLOT(sceneEditMenuResetSize()), //1:1ÏÔÊ¾
-		"\xe5\x85\xa8\xe5\xb1\x8f\xe6\x98\xbe\xe7\xa4\xba", SLOT(sceneEditMenuFullScreenSize()), //È«ÆÁÏÔÊ¾
-		"\xe5\x88\xa0\xe9\x99\xa4\xe5\xbd\x93\xe5\x89\x8d\xe9\xa1\xb9", SLOT(sceneEditMenuRemove()), //É¾³ıµ±Ç°Ïî
-		"\xe7\xbd\xae\xe4\xba\x8e\xe9\xa1\xb6\xe5\xb1\x82", SLOT(sceneEditMenuMoveTop()), //ÖÃÓÚ¶¥²ã
-		"\xe7\xbd\xae\xe4\xba\x8e\xe5\xba\x95\xe5\xb1\x82", SLOT(sceneEditMenuMoveBottom()), //ÖÃÓÚµ×²ã
-		"\xe4\xb8\x8a\xe7\xa7\xbb\xe4\xb8\x80\xe5\xb1\x82", SLOT(sceneEditMenuMoveUp()), //ÉÏÒÆÒ»²ã
-		"\xe4\xb8\x8b\xe7\xa7\xbb\xe4\xb8\x80\xe5\xb1\x82", SLOT(sceneEditMenuMoveDown()), //ÏÂÒÆÒ»²ã
-		"\xe9\x87\x8d\xe5\x91\xbd\xe5\x90\x8d", SLOT(sceneEditMenuRename()), //ÖØÃüÃû
-		"\xe5\xb1\x9e\xe6\x80\xa7", SLOT(sceneEditMenuProperty()) //ÊôĞÔ
+		"1:1\xe6\x98\xbe\xe7\xa4\xba", SLOT(sceneEditMenuResetSize()), //1:1æ˜¾ç¤º
+		"\xe5\x85\xa8\xe5\xb1\x8f\xe6\x98\xbe\xe7\xa4\xba", SLOT(sceneEditMenuFullScreenSize()), //å…¨å±æ˜¾ç¤º
+		"\xe5\x88\xa0\xe9\x99\xa4\xe5\xbd\x93\xe5\x89\x8d\xe9\xa1\xb9", SLOT(sceneEditMenuRemove()), //åˆ é™¤å½“å‰é¡¹
+		"\xe7\xbd\xae\xe4\xba\x8e\xe9\xa1\xb6\xe5\xb1\x82", SLOT(sceneEditMenuMoveTop()), //ç½®äºé¡¶å±‚
+		"\xe7\xbd\xae\xe4\xba\x8e\xe5\xba\x95\xe5\xb1\x82", SLOT(sceneEditMenuMoveBottom()), //ç½®äºåº•å±‚
+		"\xe4\xb8\x8a\xe7\xa7\xbb\xe4\xb8\x80\xe5\xb1\x82", SLOT(sceneEditMenuMoveUp()), //ä¸Šç§»ä¸€å±‚
+		"\xe4\xb8\x8b\xe7\xa7\xbb\xe4\xb8\x80\xe5\xb1\x82", SLOT(sceneEditMenuMoveDown()), //ä¸‹ç§»ä¸€å±‚
+		"\xe9\x87\x8d\xe5\x91\xbd\xe5\x90\x8d", SLOT(sceneEditMenuRename()), //é‡å‘½å
+		"\xe5\xb1\x9e\xe6\x80\xa7", SLOT(sceneEditMenuProperty()) //å±æ€§
 	};
 
 	QAction* action;
@@ -529,7 +529,7 @@ void BiliSceneListWidgetOperator::on_signal_scene_add_impl(obs_scene_t* scene)
 	int i;
 	obs_source_t* source = obs_scene_get_source(scene);
 
-	//Á¬½Ó³¡¾°µÄĞÅºÅ
+	//è¿æ¥åœºæ™¯çš„ä¿¡å·
 	struct {
 		const char* signame;
 		signal_callback_t cbfunc;
@@ -566,7 +566,7 @@ void BiliSceneListWidgetOperator::on_signal_scene_remove(BiliSceneListWidgetOper
 
 void BiliSceneListWidgetOperator::on_signal_scene_remove_impl(obs_scene_t* scene)
 {
-	//¶Ï¿ªËùÓĞÕâ¸ösceneµÄĞÅºÅ
+	//æ–­å¼€æ‰€æœ‰è¿™ä¸ªsceneçš„ä¿¡å·
 	{
 		auto i = sceneSignals.begin();
 		while (i != sceneSignals.end())
@@ -578,7 +578,7 @@ void BiliSceneListWidgetOperator::on_signal_scene_remove_impl(obs_scene_t* scene
 		}
 	}
 	
-	//É¾³ıÕâ¸ösceneÏà¹ØµÄ²éÕÒ±í
+	//åˆ é™¤è¿™ä¸ªsceneç›¸å…³çš„æŸ¥æ‰¾è¡¨
 	for (OBSSceneItem& item : OBSEnumSceneItems(scene))
 	{
 		auto x = obsSceneItemsMap.find(item);
@@ -721,10 +721,10 @@ void BiliSceneListWidgetOperator::on_signal_sceneitem_reorder_impl(obs_scene_t* 
 			newItemOrder.push_back(item);
 		}
 
-		//Ã¶¾Ù³öÀ´ÊÇ×îµ×²ãÔÚµÚÒ»¸ö£¬ËùÒÔ»»Ë³Ğò
+		//æšä¸¾å‡ºæ¥æ˜¯æœ€åº•å±‚åœ¨ç¬¬ä¸€ä¸ªï¼Œæ‰€ä»¥æ¢é¡ºåº
 		std::reverse(newItemOrder.begin(), newItemOrder.end());
 
-		//ÖØĞÂÅÅĞò
+		//é‡æ–°æ’åº
 		int itemCount = newItemOrder.size();
 		assert(mSceneItemList->count() == itemCount);
 
@@ -733,7 +733,7 @@ void BiliSceneListWidgetOperator::on_signal_sceneitem_reorder_impl(obs_scene_t* 
 		for (int i = 0; i < itemCount; ++i)
 		{
 			QListWidgetItem* listItem = mSceneItemList->item(i);
-			//¼ì²éµÚiÏîË³ĞòÊÇ²»ÊÇ¶ÔµÄ
+			//æ£€æŸ¥ç¬¬ié¡¹é¡ºåºæ˜¯ä¸æ˜¯å¯¹çš„
 			if (obsSceneItemsMap.at(newItemOrder[i]) == listItem)
 				continue;
 
@@ -746,7 +746,7 @@ void BiliSceneListWidgetOperator::on_signal_sceneitem_reorder_impl(obs_scene_t* 
 			customItemsMap.at(listItem) = customItem;
 		}
 
-		//ÖØÖÃµ±Ç°Ñ¡ÔñÏî
+		//é‡ç½®å½“å‰é€‰æ‹©é¡¹
 		if (hasChanged)
 		{
 			for (auto& x : newItemOrder)
@@ -782,11 +782,11 @@ void BiliSceneListWidgetOperator::on_signal_sceneitem_transform_impl(obs_scene_t
 	if (boundSize.x <= 0 || boundSize.y <= 0)
 		return;
 
-	//¹ö¶¯filterµÄ´¦ÀíÂß¼­£º
-	//¶ÔÓÚÓĞ¹ö¶¯filterµÄÔ´£¬Ò»°ãÀ´Ëµbounds type²»ÊÇnone£¬ÊÇÔÊĞíÍÏ·Å³öÀ´µÄ´óĞ¡ºÍÔ´µÄ´óĞ¡±ÈÀı²»Í¬µÄ
-	//ÏÖÔÚÓÃµ½µÄ¹ö¶¯Ö»ÓĞºáÏò¹ö¶¯Ò»ÖÖ£¬ËùÒÔ¿ÉÒÔÖ±½Ó°Ñ¹ö¶¯filterµÄ·¶Î§ÏŞÖÆÉèÖÃ³ÉboundµÄ¿í¶È
+	//æ»šåŠ¨filterçš„å¤„ç†é€»è¾‘ï¼š
+	//å¯¹äºæœ‰æ»šåŠ¨filterçš„æºï¼Œä¸€èˆ¬æ¥è¯´bounds typeä¸æ˜¯noneï¼Œæ˜¯å…è®¸æ‹–æ”¾å‡ºæ¥çš„å¤§å°å’Œæºçš„å¤§å°æ¯”ä¾‹ä¸åŒçš„
+	//ç°åœ¨ç”¨åˆ°çš„æ»šåŠ¨åªæœ‰æ¨ªå‘æ»šåŠ¨ä¸€ç§ï¼Œæ‰€ä»¥å¯ä»¥ç›´æ¥æŠŠæ»šåŠ¨filterçš„èŒƒå›´é™åˆ¶è®¾ç½®æˆboundçš„å®½åº¦
 
-	//²éÕÒÊÇ·ñÓĞ¹ö¶¯µÄfilter
+	//æŸ¥æ‰¾æ˜¯å¦æœ‰æ»šåŠ¨çš„filter
 	obs_source_t* scrollFilter = nullptr;
 	for (OBSSource& filter : OBSEnumFilters(source))
 	{
@@ -829,7 +829,7 @@ void BiliSceneListWidgetOperator::on_signal_source_rename(BiliSceneListWidgetOpe
 void BiliSceneListWidgetOperator::on_signal_source_rename_impl(obs_source_t* source)
 {
 	obs_scene_t* sce = obs_scene_from_source(source);
-	//Èç¹ûÖØÃüÃûµÄÊÇ³¡¾°
+	//å¦‚æœé‡å‘½åçš„æ˜¯åœºæ™¯
 	if (sce != 0)
 	{
 		if (currentSceneSource == source)
@@ -837,10 +837,10 @@ void BiliSceneListWidgetOperator::on_signal_source_rename_impl(obs_source_t* sou
 			NotifyCurrentSceneChanged();
 		}
 	}
-	//Èç¹ûÖØÃüÃûµÄÊÇ³¡¾°ÔªËØ
+	//å¦‚æœé‡å‘½åçš„æ˜¯åœºæ™¯å…ƒç´ 
 	else
 	{
-		//²éÕÒ
+		//æŸ¥æ‰¾
 		QListWidgetItem* affectedItem = 0;
 		for (auto& x : obsSceneItemsMap)
 		{
@@ -852,7 +852,7 @@ void BiliSceneListWidgetOperator::on_signal_source_rename_impl(obs_source_t* sou
 			}
 		}
 
-		//ÕÒµ½Ö®ºó¸ÄÃû
+		//æ‰¾åˆ°ä¹‹åæ”¹å
 		if (affectedItem)
 		{
 			auto x = customItemsMap.find(affectedItem);
@@ -876,17 +876,17 @@ void BiliSceneListWidgetOperator::on_signal_ft2_source_height_changed_impl(obs_s
 	if (before_height == 0)
 		return;
 
-	//±éÀúËùÓĞµÄscene
+	//éå†æ‰€æœ‰çš„scene
 	for (OBSSource src : OBSEnumSources())
 	{
 		const char* srcid = obs_source_get_id(src);
 		if (strcmp(srcid, "scene") == 0)
 		{
-			//±éÀúÕâ¸ösceneÏÂËùÓĞitem
+			//éå†è¿™ä¸ªsceneä¸‹æ‰€æœ‰item
 			obs_scene_t* scene = obs_scene_from_source(src);
 			for (OBSSceneItem item : OBSEnumSceneItems(scene))
 			{
-				//¶ÔsourceËùÊôµÄsceneitem¸Ä±ä±ß¿ò´óĞ¡
+				//å¯¹sourceæ‰€å±çš„sceneitemæ”¹å˜è¾¹æ¡†å¤§å°
 				if (obs_sceneitem_get_source(item) == source)
 				{
 					obs_bounds_type bt = obs_sceneitem_get_bounds_type(item);
@@ -956,8 +956,8 @@ void BiliSceneListWidgetOperator::sceneEditMenuMoveBottom()
 
 void BiliSceneListWidgetOperator::sceneEditMenuResetSize()
 {
-	//ÉèÖÃscaleÎª1
-	//±ß¿òÉèÖÃÎªÔ­´óĞ¡
+	//è®¾ç½®scaleä¸º1
+	//è¾¹æ¡†è®¾ç½®ä¸ºåŸå¤§å°
 
 	auto selectedItem = GetSelectedItem();
 	if (selectedItem)
@@ -965,7 +965,7 @@ void BiliSceneListWidgetOperator::sceneEditMenuResetSize()
 		obs_video_info ovi;
 		obs_get_video_info(&ovi);
 
-		obs_source_t* selectedSource = obs_sceneitem_get_source(selectedItem); //²»Ìí¼ÓÒıÓÃ²»ĞèÒªÊÍ·Å
+		obs_source_t* selectedSource = obs_sceneitem_get_source(selectedItem); //ä¸æ·»åŠ å¼•ç”¨ä¸éœ€è¦é‡Šæ”¾
 		int sourceWidth = obs_source_get_base_width(selectedSource);
 		int sourceHeight = obs_source_get_base_height(selectedSource);
 
@@ -990,8 +990,8 @@ void BiliSceneListWidgetOperator::sceneEditMenuResetSize()
 
 void BiliSceneListWidgetOperator::sceneEditMenuFullScreenSize()
 {
-	//±£³Ö±ÈÀıµÄÇé¿öÏÂ°Ñ¸ß»òÕß¿íÉèÖÃ³ÉºÍÆÁÄ»Ò»Ñù
-	//²¢ÇÒ´¦ÔÚÆÁÄ»ÕıÖĞ
+	//ä¿æŒæ¯”ä¾‹çš„æƒ…å†µä¸‹æŠŠé«˜æˆ–è€…å®½è®¾ç½®æˆå’Œå±å¹•ä¸€æ ·
+	//å¹¶ä¸”å¤„åœ¨å±å¹•æ­£ä¸­
 
 	auto selectedItem = GetSelectedItem();
 	if (selectedItem)
@@ -1005,18 +1005,18 @@ void BiliSceneListWidgetOperator::sceneEditMenuFullScreenSizeImpl(obs_sceneitem_
 	obs_video_info ovi;
 	obs_get_video_info(&ovi);
 
-	//»ñÈ¡Ñ¡ÖĞÏîµÄ·Ö¸ß¿í£¬¼ÆËã±ÈÀı
-	obs_source_t* selectedSource = obs_sceneitem_get_source(sceneItem); //²»Ìí¼ÓÒıÓÃ²»ĞèÒªÊÍ·Å
+	//è·å–é€‰ä¸­é¡¹çš„åˆ†é«˜å®½ï¼Œè®¡ç®—æ¯”ä¾‹
+	obs_source_t* selectedSource = obs_sceneitem_get_source(sceneItem); //ä¸æ·»åŠ å¼•ç”¨ä¸éœ€è¦é‡Šæ”¾
 	int sourceWidth = obs_source_get_base_width(selectedSource);
 	int sourceHeight = obs_source_get_base_height(selectedSource);
 	float sourceRatio = float(sourceWidth) / sourceHeight;
 
-	//»ñÈ¡Õû¸öÊä³öÄÚÈİµÄ¸ß¿í£¬¼ÆËã±ÈÀı
+	//è·å–æ•´ä¸ªè¾“å‡ºå†…å®¹çš„é«˜å®½ï¼Œè®¡ç®—æ¯”ä¾‹
 	int outputWidth = obs_source_get_base_width(currentSceneSource);
 	int outputHeight = obs_source_get_base_height(currentSceneSource);
 	float outputRatio = float(outputWidth) / outputHeight;
 
-	//¼ÆËã¾ÓÖĞ²¢·Åµ½×î´óÊ±µÄ¸ß¿í¡¢Ëõ·Å±ÈÀıºÍËù´¦Î»ÖÃ
+	//è®¡ç®—å±…ä¸­å¹¶æ”¾åˆ°æœ€å¤§æ—¶çš„é«˜å®½ã€ç¼©æ”¾æ¯”ä¾‹å’Œæ‰€å¤„ä½ç½®
 	float destWidth;
 	float destHeight;
 	float destX;
@@ -1039,7 +1039,7 @@ void BiliSceneListWidgetOperator::sceneEditMenuFullScreenSizeImpl(obs_sceneitem_
 		scale = destWidth / sourceWidth;
 	}
 
-	//½øĞĞËõ·Å
+	//è¿›è¡Œç¼©æ”¾
 	obs_transform_info itemInfo;
 	obs_sceneitem_get_info(sceneItem, &itemInfo);
 
@@ -1115,13 +1115,13 @@ void BiliSceneListWidgetOperator::sceneEditMenuRename()
 		{
 			QByteArray nameData = currentName.toUtf8();
 			obs_source_t* dupNameSrc = obs_get_source_by_name(nameData.data());
-			if (dupNameSrc) //ÖØÃû
+			if (dupNameSrc) //é‡å
 			{
 				obs_source_release(dupNameSrc);
 
 
 #if 0
-				//ÖØÃûÊ±ºòµÄ´¦Àí
+				//é‡åæ—¶å€™çš„å¤„ç†
 				QMessageBox errMsg(mainWnd);
 				errMsg.setWindowTitle(tr("Error"));
 				errMsg.setText(tr("Duplicated name!"));
@@ -1139,7 +1139,7 @@ void BiliSceneListWidgetOperator::sceneEditMenuRename()
 #endif
 				return;
 			}
-			else //²»ÖØÃû
+			else //ä¸é‡å
 			{
 				obs_source_set_name(selectedSource, currentName.toUtf8().data());
 			}
@@ -1163,7 +1163,7 @@ void BiliSceneListWidgetOperator::NotifyCurrentSceneChanged()
 	currentSceneSource = scenesrc;
 	currentScene = scene;
 
-	//¸üĞÂlist
+	//æ›´æ–°list
 	mSceneItemList->clear();
 	obsSceneItemsMap.clear();
 	customItemsMap.clear();
@@ -1171,6 +1171,6 @@ void BiliSceneListWidgetOperator::NotifyCurrentSceneChanged()
 	for (OBSSceneItem& x : OBSEnumSceneItems(scene))
 		on_signal_sceneitem_add_impl(scene, x);
 
-	//±êÇ©Ãû
+	//æ ‡ç­¾å
 	mTabWidget->tabBar()->setTabText(0, obs_source_get_name(currentSceneSource));
 }

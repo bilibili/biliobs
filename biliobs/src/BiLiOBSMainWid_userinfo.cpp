@@ -17,7 +17,7 @@
 
 void BiLiOBSMainWid::on_UserInfoBtn_clicked()
 {
-	//´Ë¹¦ÄÜÖ»ÓĞÔÚÓĞÖ±²¥¼äµÄÊ±ºòÄÜÓÃ
+	//æ­¤åŠŸèƒ½åªæœ‰åœ¨æœ‰ç›´æ’­é—´çš„æ—¶å€™èƒ½ç”¨
 	if (onBroadcastRoomRequested(0) == false)
 	{
 		return;

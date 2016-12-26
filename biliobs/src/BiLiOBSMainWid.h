@@ -134,7 +134,7 @@ private:
 	//QWidget *mUserInfoWidShadow;
 	BiLiUserInfoWid *mBiLiUserInfoWid;
 
-	//More Menu 
+	//More Menu
 	QMenu *mMoreMenu;
 	QVector<QAction *> mMoreMenuActV;
 	QAction *mLiveCommentingAct;
@@ -145,7 +145,7 @@ private:
 	void mCreateRightMenu();
 	void mShowRightMenu(QPoint pos);
 
-	//Monitor And Window Menu 
+	//Monitor And Window Menu
 	QMenu *monitorAndWinMenu_;
 
 	//DanmakuHime Setting
@@ -211,7 +211,7 @@ private:
 	void OnDanmakuButtonClicked();
 	void OnWinAndMonitorSourceButtonClicked();
 
-#if WebSwitchRoom	
+#if WebSwitchRoom
 	void sltSwitchRoom_(int roomId);
 #endif
 
@@ -219,7 +219,7 @@ protected:
 	bool isRoomIdGot;
 
 private:
-	//OBS Operator 
+	//OBS Operator
 	std::unique_ptr<BiliSceneListWidgetOperator> sceneListWidgetOperator;
 	std::unique_ptr<BiliBroadcastButtonOperator> broadcastButtonOperator;
 	std::unique_ptr<BiliRecordButtonOperator> recordButtonOperator;
@@ -277,7 +277,7 @@ private:
 	void mSltUpdateCheckAct();
 	void mSltLogoutAct();
 	void mSltQuitAct();
-	//Source Add 
+	//Source Add
 	void mSltAddSourceButtonClicked();
 	void mSltAddSourceActionTriggered(bool checked);
 
@@ -295,7 +295,7 @@ private:
 	void mSltStreamingStart();
 	void mSltStreamingStop(int errorcode);
 
-	public slots: //Â¼ÖÆ°´Å¥ËùĞèµÄ²Û
+	public slots: //å½•åˆ¶æŒ‰é’®æ‰€éœ€çš„æ§½
 	void mSltOnRecordClicked();
 	void mSltOnRecordStartingClicked();
 	void mSltOnRecordingClicked();
@@ -311,7 +311,7 @@ private:
 
 	void mRequestReconnect();
 
-protected: //OutputSignalMonitorµÄĞéº¯Êı
+protected: //OutputSignalMonitorçš„è™šå‡½æ•°
 	bili::recursive_mutex outputSignalMonitorMutex;
 	OutputSignalMonitor*  outputSignalMonitor;
 
@@ -325,20 +325,20 @@ protected: //OutputSignalMonitorµÄĞéº¯Êı
 	OutputSignalMonitor* StreamingStop(int errorcode) override;
 
 	public slots:
-	void onSettingUpdated();        //ÉèÖÃ¸Ä±äµÄÊ±ºò¸üĞÂ½çÃæ£¬ÀıÈç£ºÓÃÁË×Ô¶¨ÒåÍÆÁ÷£¬»ñÈ¡²»µ½Ö±²¥¼äĞÅÏ¢Ò²ÄÜÍÆ
-	//bool onBroadcastRoomRequested();   //ĞèÒªÖ±²¥¼äµÄµØ·½µ÷ÓÃÕâ¸ö£¬Èç¹ûÃ»Ö±²¥¼äÔòÌáÊ¾ÓÃ»§²¢·µ»Øfalse
+	void onSettingUpdated();        //è®¾ç½®æ”¹å˜çš„æ—¶å€™æ›´æ–°ç•Œé¢ï¼Œä¾‹å¦‚ï¼šç”¨äº†è‡ªå®šä¹‰æ¨æµï¼Œè·å–ä¸åˆ°ç›´æ’­é—´ä¿¡æ¯ä¹Ÿèƒ½æ¨
+	//bool onBroadcastRoomRequested();   //éœ€è¦ç›´æ’­é—´çš„åœ°æ–¹è°ƒç”¨è¿™ä¸ªï¼Œå¦‚æœæ²¡ç›´æ’­é—´åˆ™æç¤ºç”¨æˆ·å¹¶è¿”å›false
 	//bool onBroadcastRoomRequested(QString noRoomMsg);
     /*
       code:
-        0 ¡ª¡ª ¿ª²¥Ê§°Ü
-        1 ¡ª¡ª ÉĞÎ´¿ªÍ¨Ö±²¥¼ä
+        0 â€”â€” å¼€æ’­å¤±è´¥
+        1 â€”â€” å°šæœªå¼€é€šç›´æ’­é—´
      */
 	bool onBroadcastRoomRequested(int code);
 
 public:								//Source Add
 	void mOnSourceAdded_DoAdjust(obs_sceneitem_t* newSceneItem, bool isTimeOut);
 
-public slots: //¿ªÊ¼Ö±²¥°´Å¥ËùĞèµÄ²Û
+public slots: //å¼€å§‹ç›´æ’­æŒ‰é’®æ‰€éœ€çš„æ§½
 	void OnRetryButtonClicked();
 	void OnStartBroadcastButtonClicked();
 	void OnStopBroadcastButtonClicked();
@@ -353,19 +353,19 @@ public slots: //¿ªÊ¼Ö±²¥°´Å¥ËùĞèµÄ²Û
 	//stream state infomation
 	void mSltUpdateStreamStateInfo();
 
-protected: //¿ªÊ¼Ö±²¥Í£Ö¹Ö±²¥¿ªÊ¼Â¼ÖÆÍ£Ö¹Â¼ÖÆµÄ¿ì½İ¼ü
+protected: //å¼€å§‹ç›´æ’­åœæ­¢ç›´æ’­å¼€å§‹å½•åˆ¶åœæ­¢å½•åˆ¶çš„å¿«æ·é”®
 	void OnBroadcastHotkey(bool isPressed);
 	void OnRecordHotkey(bool isPressed);
 
-public slots: //µ¯Ä»¼§¿ØÖÆµÄ²Û
+public slots: //å¼¹å¹•æœºæ§åˆ¶çš„æ§½
 	void mSltDanmakuSetting();
 	void sltAutoStartDanmaku();
 
-private: //µ¯Ä»À´µÄ»Øµ÷
+private: //å¼¹å¹•æ¥çš„å›è°ƒ
 	void OnDanmakuAudienceCount(int audienceCount);
 	void OnDanmakuMessage(const BiliJsonPtr& jsonPtr);
 
-private slots: //µ¯Ä»·şÎñÆ÷À´µÄ¸÷ÖÖÏûÏ¢
+private slots: //å¼¹å¹•æœåŠ¡å™¨æ¥çš„å„ç§æ¶ˆæ¯
 	void* DanmakuShowCutoffMessageBoxTask();
 	void DanmakuMessageBox(const QString title, const QString text);
 

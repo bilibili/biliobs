@@ -39,13 +39,13 @@ const char *get_module_extension(void)
 static const char *module_bin[] = {
 	//"plugins/" BIT_STRING,
 	//"../../obs-plugins/" BIT_STRING,
-	"plugins/",   //模块搜索路径修改为plugin
+	"plugins/",   //妯″潡鎼滅储璺緞淇敼涓簆lugin
 };
 
 static const char *module_data[] = {
 	//"data/%module%",
 	//"../../data/obs-plugins/%module%",
-	"data/%module%", //plugin数据搜索路径修改为data/%module%
+	"data/%module%", //plugin鏁版嵁鎼滅储璺緞淇敼涓篸ata/%module%
 };
 
 static const int module_patterns_size =
@@ -79,7 +79,7 @@ char *find_libobs_data_file(const char *file)
 	struct dstr path;
 	dstr_init(&path);
 
-	//libobs数据搜索路径修改为data/libobs/
+	//libobs鏁版嵁鎼滅储璺緞淇敼涓篸ata/libobs/
 	if (biliobs_check_root_path(file, "data/libobs/", &path))
 		return path.array;
 

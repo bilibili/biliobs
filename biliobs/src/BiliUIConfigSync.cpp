@@ -31,7 +31,7 @@ extern "C"
 };
 
 //=======================================================
-//                 ²»Í¬ÅäÖÃÀàĞÍµÄ¶¨Òå
+//                 ä¸åŒé…ç½®ç±»å‹çš„å®šä¹‰
 //=======================================================
 template<typename ConfigTypeId>
 struct ConfigType;
@@ -115,7 +115,7 @@ template<> struct ConfigType < BILI_PROP_LIST_DOUBLE >
 };
 
 //=======================================================
-//                 ¶ÁĞ´ÅäÖÃÎÄ¼şµÄÄ£°å
+//                 è¯»å†™é…ç½®æ–‡ä»¶çš„æ¨¡æ¿
 //=======================================================
 template<typename ConfigTypeId>
 struct ConfigOp;
@@ -209,7 +209,7 @@ struct ConfigOpPropBase
 };
 
 //=======================================================
-//ÎªÔ­ÓĞÅäÖÃÎÄ¼ş¶ÁĞ´º¯Êı°ü×°Ò»²ã£¬Ê¹ÆäÖ§³Östd::stringºÍ¼ÓÃÜ×Ö´®
+//ä¸ºåŸæœ‰é…ç½®æ–‡ä»¶è¯»å†™å‡½æ•°åŒ…è£…ä¸€å±‚ï¼Œä½¿å…¶æ”¯æŒstd::stringå’ŒåŠ å¯†å­—ä¸²
 //=======================================================
 
 std::string config_get_stdstring(const config_t* config, const char* section, const char* key)
@@ -276,7 +276,7 @@ void obs_data_set_stdstring(obs_data_t* data, const char* name, std::string val)
 }
 
 
-//¶Ô×ÖÌåµÄÖ§³Ö
+//å¯¹å­—ä½“çš„æ”¯æŒ
 QFont obs_data_get_qfont(obs_data_t *data, const char *name){
 
 	obs_data_t  *font_obj = obs_data_get_obj(data, name);
@@ -364,7 +364,7 @@ std::vector <std::pair<std::string, int64_t>> obs_properties_get_intlist(obs_pro
 }
 
 //=======================================================
-//                 Ã¿¸öÀàĞÍ¶ÁĞ´µÄÄ£°å
+//                 æ¯ä¸ªç±»å‹è¯»å†™çš„æ¨¡æ¿
 //=======================================================
 template<> struct ConfigOp<BILI_CONFIG_BOOL> : public ConfigOpBase < BILI_CONFIG_BOOL, &config_get_bool, &config_get_default_bool, &config_set_bool > {};
 template<> struct ConfigOp<BILI_CONFIG_INT> : public ConfigOpBase < BILI_CONFIG_INT, &config_get_int, &config_get_default_int, &config_set_int >{};
@@ -383,7 +383,7 @@ template<> struct ConfigOp<BILI_PROP_LIST_STRING> : public ConfigOpPropBase < BI
 template<> struct ConfigOp<BILI_PROP_LIST_INT> : public ConfigOpPropBase < BILI_PROP_LIST_INT, obs_properties_get_intlist > {};
 
 //=======================================================
-//                 ¸÷¿Ø¼şµÄ²Ù×÷º¯Êı
+//                 å„æ§ä»¶çš„æ“ä½œå‡½æ•°
 //=======================================================
 template<typename QTWIDGET>
 struct WidgetOperator;
@@ -471,7 +471,7 @@ template<>
 struct WidgetOperator<QComboBox>
 {
 
-    //==============begin ¶ÁÈ¡ÊôĞÔÓÃµÄ============
+    //==============begin è¯»å–å±æ€§ç”¨çš„============
     template<class SupportedType>
     struct TypeConverter
     {
@@ -503,7 +503,7 @@ struct WidgetOperator<QComboBox>
 
         return true;
     }
-    //==============end ¶ÁÈ¡ÊôĞÔÓÃµÄ============
+    //==============end è¯»å–å±æ€§ç”¨çš„============
 
 
     static bool Get(QComboBox* cb, uint64_t* val)
@@ -781,7 +781,7 @@ struct WidgetOperator<QButtonGroup>
 				rb->setChecked(false);
 		}
 
-		//Èç¹ûÃ»ÕÒµ½¾ÍÄ¬ÈÏ¹´Ñ¡µÚÒ»¸ö
+		//å¦‚æœæ²¡æ‰¾åˆ°å°±é»˜è®¤å‹¾é€‰ç¬¬ä¸€ä¸ª
 		if (hasChecked)
 			return true;
 		else
@@ -801,7 +801,7 @@ struct WidgetOperator<QButtonGroup>
 };
 
 //=======================================================
-//          ²Ù×÷º¯ÊıÄ£°å
+//          æ“ä½œå‡½æ•°æ¨¡æ¿
 //=======================================================
 template<class QTWidgetT, class DataSetTypeT, class DataTypeT>
 bool WidgetToData(DataTypeT reserved, QTWidgetT* widget, DataSetTypeT* data, const char* index)
@@ -827,7 +827,7 @@ bool DataToWidget(DataTypeT reserved, QTWidgetT* widget, DataSetTypeT* data, con
 }
 
 //=======================================================
-//          Ç¿ÖÆÊµÀı»¯ËùÓĞ¿ÉÄÜÓÃµ½µÄ²Ù×÷º¯Êı
+//          å¼ºåˆ¶å®ä¾‹åŒ–æ‰€æœ‰å¯èƒ½ç”¨åˆ°çš„æ“ä½œå‡½æ•°
 //=======================================================
 template bool WidgetToData<QLineEdit, config_t, BILI_CONFIG_STRING>(BILI_CONFIG_STRING, QLineEdit*, config_t*, const char*);
 template bool DataToWidget<QLineEdit, config_t, BILI_CONFIG_STRING>(BILI_CONFIG_STRING, QLineEdit*, config_t*, const char*);
@@ -905,7 +905,7 @@ template bool DataToWidget<QComboBox, obs_properties_t, BILI_PROP_LIST_INT>(BILI
 
 
 //=======================================================
-//            ×Ö·û´®ºÍ¶ş½øÖÆÊı¾İ»¥Ïà×ª»»
+//            å­—ç¬¦ä¸²å’ŒäºŒè¿›åˆ¶æ•°æ®äº’ç›¸è½¬æ¢
 //=======================================================
 std::vector<char> BiliStrToBin(const std::string& str)
 {

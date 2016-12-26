@@ -215,14 +215,14 @@ void DanmakuOpt::receiveDMInfo_(const BiliJsonPtr &jsonPtr){
 		if (jsonPtr->TryGetVal<JSON_INTEGER>(&vip, { "data", "svip" })) {
 			if (vip == 1){
 				QString vipName = QString::fromStdString(jsonPtr->GetVal<JSON_STRING>({ "data", "uname" }));
-				dm = QString("%1|:|%2 %3 %4").arg("WELCOME").arg(QString::fromLocal8Bit("年费老爷")).arg(vipName).arg(QString::fromLocal8Bit("进入房间"));
+				dm = QString("%1|:|%2 %3 %4").arg("WELCOME").arg(QString::fromLocal8Bit("骞磋垂鑰佺埛")).arg(vipName).arg(QString::fromLocal8Bit("杩涘叆鎴块棿"));
 				emit sglReceiveDM(dm);
 			}
 		}
 		else if (jsonPtr->TryGetVal<JSON_INTEGER>(&vip, { "data", "vip" })) {
 			if (vip == 1){
 				QString vipName = QString::fromStdString(jsonPtr->GetVal<JSON_STRING>({ "data", "uname" }));
-				dm = QString("%1|:|%2 %3 %4").arg("WELCOME").arg(QString::fromLocal8Bit("月费老爷")).arg(vipName).arg(QString::fromLocal8Bit("进入房间"));
+				dm = QString("%1|:|%2 %3 %4").arg("WELCOME").arg(QString::fromLocal8Bit("鏈堣垂鑰佺埛")).arg(vipName).arg(QString::fromLocal8Bit("杩涘叆鎴块棿"));
 				emit sglReceiveDM(dm);
 			}
 		}

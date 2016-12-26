@@ -4,7 +4,7 @@
 
 #include <qobject.h>
 
-/*the header file is nessary, don't omit this: the size of class-member-function-pointer may be 4°¢8 or 16 bytes*/
+/*the header file is nessary, don't omit this: the size of class-member-function-pointer may be 4„ÄÅ8 or 16 bytes*/
 #include "barrage_history_db_control.h"
 
 class RawDataManagerInterface;

@@ -59,7 +59,7 @@ LONG AppCrashHandleCallback(EXCEPTION_POINTERS *pE){
 	CreateDumpFile(filePath, pE);
 
 	wchar_t tip[MAX_PATH] = { 0 };
-	//QStringLiteral("ÇëÁªÏµÎÒÃÇ£¬²¢½«´íÎó±¨¸æÎÄ¼ş '%1' ·¢ËÍ¸øÎÒÃÇ£¬Ğ»Ğ»!").arg(fileName).toWCharArray(tip);
+	//QStringLiteral("è¯·è”ç³»æˆ‘ä»¬ï¼Œå¹¶å°†é”™è¯¯æŠ¥å‘Šæ–‡ä»¶ '%1' å‘é€ç»™æˆ‘ä»¬ï¼Œè°¢è°¢!").arg(fileName).toWCharArray(tip);
     QString("\350\257\267\350\201\224\347\263\273\346\210\221\344\273\254,"
             "\345\271\266\345\260\206\351\224\231\350\257\257\346\212\245\345\221\212\346\226\207\344\273\266 "
             "'%1' \345\217\221\351\200\201\347\273\231\346\210\221\344\273\254,\350\260\242\350\260\242!").arg(fileName).toWCharArray(tip);
@@ -78,7 +78,7 @@ LONG AppCrashHandleCallback(EXCEPTION_POINTERS *pE){
 	arg.append(pure_path);
 
 	ShellExecuteW(NULL, L"open", L"explorer.exe", arg.toStdWString().c_str(), NULL, SW_SHOWNORMAL);
-	/*sleepÓÃÓÚÊ¹ĞÂÆô½ø³ÌÄÜ¹»raiseµ½´°¿ÚÉÏ²ã*/
+	/*sleepç”¨äºä½¿æ–°å¯è¿›ç¨‹èƒ½å¤Ÿraiseåˆ°çª—å£ä¸Šå±‚*/
 	Sleep(1000);
 
 	return EXCEPTION_EXECUTE_HANDLER;
@@ -198,7 +198,7 @@ int main(int argc, char *argv[]) {
 
 	if (bIsShouldRestart){
 		RestartWithoutAutoLogin();
-		/*sleepÓÃÓÚÊ¹ĞÂÆô½ø³ÌÄÜ¹»raiseµ½´°¿ÚÉÏ²ã*/
+		/*sleepç”¨äºä½¿æ–°å¯è¿›ç¨‹èƒ½å¤Ÿraiseåˆ°çª—å£ä¸Šå±‚*/
 		Sleep(1000);
 	}
 	return r;

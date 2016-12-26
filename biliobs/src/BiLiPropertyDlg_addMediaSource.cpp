@@ -12,8 +12,8 @@ END_IMPL_PROPDLG(BiLiMediaSourcePropertyDlg, "ffmpeg_source");
 BiLiMediaSourcePropertyDlg::~BiLiMediaSourcePropertyDlg() {}
 
 void BiLiMediaSourcePropertyDlg::setupSourcePropertiesUI() {
-	//×¢Òâ£ºÌí¼Ó¿Ø¼şÊ±£¬¼ÇµÃ¸ù¾İĞèÒªÔÚ×îºóÌí¼Ó¿Ø¼şµÄ±ä¶¯Í¨Öª¼àÊÓ£¡
-	//·ñÔò¿ÉÄÜµ¼ÖÂµãÁËÈ·¶¨Ö®ºóÉèÖÃÃ»ÓĞ±£´æ½øÈ¥
+	//æ³¨æ„ï¼šæ·»åŠ æ§ä»¶æ—¶ï¼Œè®°å¾—æ ¹æ®éœ€è¦åœ¨æœ€åæ·»åŠ æ§ä»¶çš„å˜åŠ¨é€šçŸ¥ç›‘è§†ï¼
+	//å¦åˆ™å¯èƒ½å¯¼è‡´ç‚¹äº†ç¡®å®šä¹‹åè®¾ç½®æ²¡æœ‰ä¿å­˜è¿›å»
 
 	ui.PropertyNameLab->setText(tr("Media Property"));
 
@@ -36,7 +36,7 @@ void BiLiMediaSourcePropertyDlg::setupSourcePropertiesUI() {
 
 
 	/** begin
-	 * ÌáÊ¾¿ò
+	 * æç¤ºæ¡†
 	 */
 	QGroupBox *PropertyTipGroupBox = new QGroupBox();
 	PropertyTipGroupBox->setObjectName(QStringLiteral("PropertyTipGroupBox"));
@@ -73,7 +73,7 @@ void BiLiMediaSourcePropertyDlg::setupSourcePropertiesUI() {
 	mFileNameEdit = MediaNameLineEdit;
 
 	/** end
-	* ÌáÊ¾¿ò
+	* æç¤ºæ¡†
 	*/
 
 	auto MainVLayout = new QVBoxLayout(ui.PropertyWid);
@@ -107,7 +107,7 @@ void BiLiMediaSourcePropertyDlg::setupSourcePropertiesUI() {
 		DataToWidget(BILI_DATA_STRING(), mFileNameEdit, settings, "input");
 	obs_data_release(settings);
 
-	//Ìí¼Ó¼àÌı¿Ø¼ş±ä¶¯
+	//æ·»åŠ ç›‘å¬æ§ä»¶å˜åŠ¨
 	mChangeEvnetFilter->Watch({ MediaNameLineEdit });
 }
 
@@ -117,7 +117,7 @@ int BiLiMediaSourcePropertyDlg::acceptSourceProperties() {
 	if (filePath.isEmpty())
 		return QDialog::Rejected;
 
-	//ÅĞ¶ÏÊÇ·ñĞèÒª»Ø¸´Ô­±ÈÀıºÍ¸üĞÂ
+	//åˆ¤æ–­æ˜¯å¦éœ€è¦å›å¤åŸæ¯”ä¾‹å’Œæ›´æ–°
 	std::string oldFileName = obs_data_get_string(mBackupSettings, "local_file");
 	if (filePath != oldFileName.c_str())
 	{

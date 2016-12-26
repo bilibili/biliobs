@@ -91,8 +91,8 @@ static std::string removeKakko(const std::string& x)
 }
 
 void BiLiDShowSourcePropertyDlg::setupSourcePropertiesUI() {
-	//×¢Òâ£ºÌí¼Ó¿Ø¼şÊ±£¬¼ÇµÃ¸ù¾İĞèÒªÔÚ×îºóÌí¼Ó¿Ø¼şµÄ±ä¶¯Í¨Öª¼àÊÓ£¡
-	//·ñÔò¿ÉÄÜµ¼ÖÂµãÁËÈ·¶¨Ö®ºóÉèÖÃÃ»ÓĞ±£´æ½øÈ¥
+	//æ³¨æ„ï¼šæ·»åŠ æ§ä»¶æ—¶ï¼Œè®°å¾—æ ¹æ®éœ€è¦åœ¨æœ€åæ·»åŠ æ§ä»¶çš„å˜åŠ¨é€šçŸ¥ç›‘è§†ï¼
+	//å¦åˆ™å¯èƒ½å¯¼è‡´ç‚¹äº†ç¡®å®šä¹‹åè®¾ç½®æ²¡æœ‰ä¿å­˜è¿›å»
 
 	ui.PropertyNameLab->setText(tr("Camera Property")); 
 	QStyledItemDelegate* itemDelegate = new QStyledItemDelegate();
@@ -165,7 +165,7 @@ void BiLiDShowSourcePropertyDlg::setupSourcePropertiesUI() {
 	MainVLayout->setContentsMargins(13, 18, 13, 30);
     MainVLayout->setSpacing(0);
 
-	//ÃÀÑÕÉèÖÃµÄ¿ò£¬×ó±ßÊÇÃÀÑÕµÄÎÄ×Ö±êÇ©£¬ÓÒ±ßÊÇÒ»¸ö×éºÏµÄwidget
+	//ç¾é¢œè®¾ç½®çš„æ¡†ï¼Œå·¦è¾¹æ˜¯ç¾é¢œçš„æ–‡å­—æ ‡ç­¾ï¼Œå³è¾¹æ˜¯ä¸€ä¸ªç»„åˆçš„widget
 	QHBoxLayout* beautySettingLayout = new QHBoxLayout(ui.PropertyWid);
 	beautySettingLayout->setContentsMargins(0, 0, 0, 0);
 	beautySettingLayout->setSpacing(0);
@@ -173,7 +173,7 @@ void BiLiDShowSourcePropertyDlg::setupSourcePropertiesUI() {
 	beautyLabel->setFixedSize(62, 30);
 	beautyLabel->setText(tr("Beauty Level:"));
 	QWidget* beautySliderContainer = new QWidget(ui.PropertyWid);
-	beautySliderContainer->setFixedSize(252, 28); //¸ß¶ÈÊÇÕû¸ösliderÍâ¼ÓlabelµÄ´óĞ¡£¬ÏÂÃæ0~5µÄlabel»á¿¿ÏÂ¶ÔÆë
+	beautySliderContainer->setFixedSize(252, 28); //é«˜åº¦æ˜¯æ•´ä¸ªsliderå¤–åŠ labelçš„å¤§å°ï¼Œä¸‹é¢0~5çš„labelä¼šé ä¸‹å¯¹é½
 	beautySlider = new CircleSliderSlider(beautySliderContainer);
 	beautySlider->setRange(0, 4, 0);
 	beautySlider->setFixedHeight(16);
@@ -281,7 +281,7 @@ void BiLiDShowSourcePropertyDlg::setupSourcePropertiesUI() {
 	DataToWidget(BILI_PROP_LIST_STRING(), DevNameComboBox, props, "video_device_id");
 	obs_properties_destroy(props);
 
-	//¿ªÊ¼-¼ÓÔØÉèÖÃ
+	//å¼€å§‹-åŠ è½½è®¾ç½®
 	obs_data_t* settings = obs_source_get_settings(mSrc);
 	DataToWidget(BILI_DATA_STRING(), DevNameComboBox, settings, "video_device_id");
 	DataToWidget(BILI_DATA_BOOL(), VCamCheckBox, settings, "flip_vertically");
@@ -295,7 +295,7 @@ void BiLiDShowSourcePropertyDlg::setupSourcePropertiesUI() {
 		}
 	}
 
-	//¶ÔË®Æ½·­×ªÌØÊâ´¦Àí
+	//å¯¹æ°´å¹³ç¿»è½¬ç‰¹æ®Šå¤„ç†
 	vec2 itemScale;
 	obs_sceneitem_get_scale(mSceneItem, &itemScale);
 	if (itemScale.x >= 0.0f)
@@ -306,7 +306,7 @@ void BiLiDShowSourcePropertyDlg::setupSourcePropertiesUI() {
 	{
 		HCamCheckBox->setChecked(true);
 	}
-	//¸ñÊ½
+	//æ ¼å¼
 	int isCustomFormat = obs_data_get_int(settings, "res_type");
 	if (isCustomFormat == 0)
 	{
@@ -320,9 +320,9 @@ void BiLiDShowSourcePropertyDlg::setupSourcePropertiesUI() {
 
 	FilterDataToWidget(BILI_DATA_INT(), beautySlider, mSrc, beauty_filter_id, "beauty_level");
 
-	//½áÊø-¼ÓÔØÉèÖÃ
+	//ç»“æŸ-åŠ è½½è®¾ç½®
 
-	//Ìí¼Ó¼àÌı¿Ø¼ş±ä¶¯
+	//æ·»åŠ ç›‘å¬æ§ä»¶å˜åŠ¨
 	mChangeEvnetFilter->Watch({VCamCheckBox, HCamCheckBox, DevNameComboBox, beautySlider, formatComboBox, chromaKeyCheckBox_});
 	connect(mChangeEvnetFilter.get(), SIGNAL(OnChangedSignal()), this, SLOT(mSltOnSettingChanged()));
 
@@ -421,7 +421,7 @@ int BiLiDShowSourcePropertyDlg::acceptSourceProperties() {
 		}
 	}
 
-	//¶ÔË®Æ½·­×ªÌØÊâ´¦Àí
+	//å¯¹æ°´å¹³ç¿»è½¬ç‰¹æ®Šå¤„ç†
 	vec2 itemScale;
 	obs_sceneitem_get_scale(mSceneItem, &itemScale);
 	if ((itemScale.x < 0 && HCamCheckBox->isChecked() == false)
@@ -455,7 +455,7 @@ int BiLiDShowSourcePropertyDlg::acceptSourceProperties() {
 	//if (beautyComboBox->currentData().toInt() == 0)
 	if (beautySlider->value() == 0)
 	{
-		//É¾³ıÃÀÑÕfilter
+		//åˆ é™¤ç¾é¢œfilter
 		obs_source_t* beautyFilter = obs_source_get_filter_by_name(mSrc, beauty_filter_id);
 		if (beautyFilter)
 		{
@@ -465,7 +465,7 @@ int BiLiDShowSourcePropertyDlg::acceptSourceProperties() {
 	}
 	else
 	{
-		//Ìí¼ÓÃÀÑÕfilter
+		//æ·»åŠ ç¾é¢œfilter
 		obs_source_t* beautyFilter = obs_source_get_filter_by_name(mSrc, beauty_filter_id);
 		if (!beautyFilter)
 		{

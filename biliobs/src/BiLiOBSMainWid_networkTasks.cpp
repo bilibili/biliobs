@@ -20,7 +20,7 @@ void* BiLiOBSMainWid::mGetUserFacePixmapTask()
 
 		QMetaObject::invokeMethod(this, "OnUserInfoGot", Q_ARG(QString, gBili_userName.c_str()), Q_ARG(QPixmap, userFace));
 
-		//´æ×îºóµÇÂ¼ĞÅÏ¢
+		//å­˜æœ€åç™»å½•ä¿¡æ¯
 		ConfigFile cf;
 		if (cf.Open(BiliConfigFile::GetLoginConfigPath().c_str(), CONFIG_OPEN_ALWAYS) == CONFIG_SUCCESS)
 		{
@@ -37,13 +37,13 @@ void* BiLiOBSMainWid::mGetUserFacePixmapTask()
 	catch (CUrlNetworkException&)
 	{
 		SaveHttpLogToFile(biliApi->GetLastUrl(), "Network error.");
-		//ÍøÂç´íÎó
+		//ç½‘ç»œé”™è¯¯
 	}
 	catch (JsonDataError&)
 	{
 		SaveHttpLogToFile(biliApi->GetLastUrl(), biliApi->GetLastContent());
 
-		//·şÎñÆ÷ÄÚ²¿´íÎó
+		//æœåŠ¡å™¨å†…éƒ¨é”™è¯¯
 	}
 
 	return 0;

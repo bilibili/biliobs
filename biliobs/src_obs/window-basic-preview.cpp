@@ -372,17 +372,17 @@ void OBSBasicPreview::mousePressEvent(QMouseEvent *event)
 	mouseOverItems = SelectedAtPos(startPos);
 	vec2_zero(&lastMoveOffset);
 
-	obs_source_t* source = obs_sceneitem_get_source(stretchItem); //²»ĞèÒªÊÍ·Å
+	obs_source_t* source = obs_sceneitem_get_source(stretchItem); //ä¸éœ€è¦é‡Šæ”¾
 	if (source)
 	{
 		cropFilter = obs_source_get_filter_by_name(source, "cropFilter");
 		if (static_cast<obs_source_t*>(cropFilter) != 0)
-			obs_source_release(cropFilter); //cropfilterÊÇÖÇÄÜÖ¸Õë£¬ÕâÀïÒªÊÍ·ÅµÖÏûgetµÄ·µ»Ø
+			obs_source_release(cropFilter); //cropfilteræ˜¯æ™ºèƒ½æŒ‡é’ˆï¼Œè¿™é‡Œè¦é‡Šæ”¾æŠµæ¶ˆgetçš„è¿”å›
 
-		//±¸·İ¿ªÊ¼²Ù×÷Ç°µÄÊı¾İ
+		//å¤‡ä»½å¼€å§‹æ“ä½œå‰çš„æ•°æ®
 		obs_data_t* settings = obs_source_get_settings(cropFilter);
 		cropSettingsOnStart = obs_data_create();
-		obs_data_release(cropSettingsOnStart); //ÉÏÃæÄÇ¸öÊÇÖÇÄÜÖ¸Õë£¬ÕâÀïÒªÊÍ·ÅµÖÏûdata_createµÄ·µ»Ø
+		obs_data_release(cropSettingsOnStart); //ä¸Šé¢é‚£ä¸ªæ˜¯æ™ºèƒ½æŒ‡é’ˆï¼Œè¿™é‡Œè¦é‡Šæ”¾æŠµæ¶ˆdata_createçš„è¿”å›
 		obs_data_apply(cropSettingsOnStart, settings);
 		obs_data_release(settings);
 
@@ -662,12 +662,12 @@ void OBSBasicPreview::StretchItem(const vec2 &pos)
 		float(obs_source_get_width(source)),
 		float(obs_source_get_height(source)));
 
-	//¶ÔÓÚÍÏ¶¯²»Í¬µÄ¿ØÖÆµãÓĞ²»Í¬µÄĞĞÎª
-	//ÍÏ¶¯ËÄ¸ö½Ç£ºÄÜ¹»°´ÕÕ±ÈÀıËõ·Å
-	//ÍÏ¶¯ÉÏÏÂ×óÓÒµÄµã£ºÄÜ¹»²»°´ÕÕ±ÈÀıËõ·Å
+	//å¯¹äºæ‹–åŠ¨ä¸åŒçš„æ§åˆ¶ç‚¹æœ‰ä¸åŒçš„è¡Œä¸º
+	//æ‹–åŠ¨å››ä¸ªè§’ï¼šèƒ½å¤ŸæŒ‰ç…§æ¯”ä¾‹ç¼©æ”¾
+	//æ‹–åŠ¨ä¸Šä¸‹å·¦å³çš„ç‚¹ï¼šèƒ½å¤Ÿä¸æŒ‰ç…§æ¯”ä¾‹ç¼©æ”¾
 	switch (stretchFlags)
 	{
-	//ÍÏ¶¯ÉÏÏÂ×óÓÒËÄ¸öµãµÄÇé¿ö
+	//æ‹–åŠ¨ä¸Šä¸‹å·¦å³å››ä¸ªç‚¹çš„æƒ…å†µ
 	case ITEM_LEFT:
 		tl.x = pos3.x;
 		break;
@@ -684,7 +684,7 @@ void OBSBasicPreview::StretchItem(const vec2 &pos)
 		br.y = pos3.y;
 		break;
 
-	//ÍÏ¶¯ËÄ¸ö½ÇµÄµãµÄÇé¿ö
+	//æ‹–åŠ¨å››ä¸ªè§’çš„ç‚¹çš„æƒ…å†µ
 	default: {
 		auto computeNewSize = [](int cx, int cy, int dx, int dy, int* newCX, int* newCY)->void
 		{
@@ -698,35 +698,35 @@ void OBSBasicPreview::StretchItem(const vec2 &pos)
 		int newCX, newCY;
 		if (stretchFlags == (ITEM_LEFT | ITEM_TOP))
 		{
-			//Íù×óÀ­±ä´ó£¬ÍùÉÏÀ­±ä´ó
+			//å¾€å·¦æ‹‰å˜å¤§ï¼Œå¾€ä¸Šæ‹‰å˜å¤§
 			computeNewSize(stretchItemSize.x, stretchItemSize.y, tl.x - pos3.x, tl.y - pos3.y, &newCX, &newCY);
 			tl.x = br.x - newCX;
 			tl.y = br.y - newCY;
 		}
 		else if (stretchFlags == (ITEM_LEFT | ITEM_BOTTOM))
 		{
-			//Íù×óÀ­±ä´ó£¬ÍùÏÂÀ­±ä´ó
+			//å¾€å·¦æ‹‰å˜å¤§ï¼Œå¾€ä¸‹æ‹‰å˜å¤§
 			computeNewSize(stretchItemSize.x, stretchItemSize.y, tl.x - pos3.x, pos3.y - br.y, &newCX, &newCY);
 			tl.x = br.x - newCX;
 			br.y = tl.y + newCY;
 		}
 		else if (stretchFlags == (ITEM_RIGHT | ITEM_TOP))
 		{
-			//ÍùÓÒÀ­±ä´ó£¬ÍùÉÏÀ­±ä´ó
+			//å¾€å³æ‹‰å˜å¤§ï¼Œå¾€ä¸Šæ‹‰å˜å¤§
 			computeNewSize(stretchItemSize.x, stretchItemSize.y, pos3.x - br.x, tl.y - pos3.y, &newCX, &newCY);
 			br.x = tl.x + newCX;
 			tl.y = br.y - newCY;
 		}
 		else if (stretchFlags == (ITEM_RIGHT | ITEM_BOTTOM))
 		{
-			//ÍùÓÒÀ­±ä´ó£¬ÍùÏÂÀ­±ä´ó
+			//å¾€å³æ‹‰å˜å¤§ï¼Œå¾€ä¸‹æ‹‰å˜å¤§
 			computeNewSize(stretchItemSize.x, stretchItemSize.y, pos3.x - br.x, pos3.y - br.y, &newCX, &newCY);
 			br.x = tl.x + newCX;
 			br.y = tl.y + newCY;
 		}
 		else
 		{
-			//£¿£¡
+			//ï¼Ÿï¼
 			assert(0);
 		}
 		break;
@@ -775,7 +775,7 @@ void OBSBasicPreview::CropItem(const vec2& pos)
 			return;
 
 		if (strcmp(obs_source_get_id(selectedSource), "text_ft2_source") == 0)
-			return; //ÎÄ±¾²»¸ø²Ù×÷
+			return; //æ–‡æœ¬ä¸ç»™æ“ä½œ
 
 		BiLiOBSMainWid* main = App()->mGetMainWindow();
 
@@ -837,7 +837,7 @@ void OBSBasicPreview::CropItem(const vec2& pos)
 			startBottom -= yOffset / itemScale.y;
 		}
 
-		//Ğ£ÕıÊı¾İ
+		//æ ¡æ­£æ•°æ®
 		if (startLeft < 0) startLeft = 0, itemNewPos.x = itemPosOnStart.x;
 		if (startTop < 0) startTop = 0, itemNewPos.y = itemPosOnStart.y;
 		if (startRight < 0) startRight = 0;
@@ -845,13 +845,13 @@ void OBSBasicPreview::CropItem(const vec2& pos)
 
 		if (startLeft + startRight > sourceWidth - 1)
 		{
-			//×ó±ßÍùÓÒÍÏÍÏ¹ıÍ·ÁË
+			//å·¦è¾¹å¾€å³æ‹–æ‹–è¿‡å¤´äº†
 			if ((uint32_t)stretchHandle & ITEM_LEFT)
 			{
 				startLeft = sourceWidth - startRight - 1;
 				itemNewPos.x = itemPosOnStart.x + sourceWidth * itemScale.x;
 			}
-			//ÓÒ±ßÍù×óÍÏÍÏ¹ıÍ·ÁË
+			//å³è¾¹å¾€å·¦æ‹–æ‹–è¿‡å¤´äº†
 			else if ((uint32_t)stretchHandle & ITEM_RIGHT)
 			{
 				startRight = sourceWidth - startLeft - 1;
@@ -859,13 +859,13 @@ void OBSBasicPreview::CropItem(const vec2& pos)
 		}
 		if (startTop + startBottom > sourceHeight - 1)
 		{
-			//ÉÏÃæÍùÏÂÍÏÍÏ¹ıÍ·ÁË
+			//ä¸Šé¢å¾€ä¸‹æ‹–æ‹–è¿‡å¤´äº†
 			if ((uint32_t)stretchHandle & ITEM_TOP)
 			{
 				startTop = sourceHeight - startBottom - 1;
 				itemNewPos.y = itemPosOnStart.y + sourceHeight * itemScale.x;
 			}
-			//ÏÂÃæÍùÉÏÍÏÍÏ¹ıÍ·ÁË
+			//ä¸‹é¢å¾€ä¸Šæ‹–æ‹–è¿‡å¤´äº†
 			else if (((uint32_t)stretchHandle & ITEM_BOTTOM))
 			{
 				startBottom = sourceHeight - startTop - 1;

@@ -89,7 +89,7 @@ static void* stopSignalWrapper(void* s)
 
 bool BiliThreadWorker::Stop()
 {
-	//Ã»ËøÃ»ÎÊÌâÂğ¡­¡­
+	//æ²¡é”æ²¡é—®é¢˜å—â€¦â€¦
 	if (isThreadRunning == false)
 		return true;
 

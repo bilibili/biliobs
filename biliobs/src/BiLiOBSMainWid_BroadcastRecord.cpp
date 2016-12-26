@@ -125,9 +125,9 @@ public:
 
 	OutputSignalMonitor* StreamingStop(int errorcode) override
 	{
-		//Èç¹û²»ÊÇÔÚÕıÔÚ¶Ï¿ªµÄÊ±ºò½øÁËÕâÀï£¬ÄÇÃ´¾ÍÊÇÍÆÁ÷Ê§°ÜÁË¡­¡­
-		//¾ÍÏàµ±ÓÚ±¾À´Ó¦¸Ã½øStreamingStartÏÖÔÚ½øÁËÕâÀï
-		//ÄÇÃ´Ò²µ±×÷²Ù×÷Íê³É£¬½»¸øÔ­À´µÄÂß¼­È¥ÏÔÊ¾´íÎóĞÅÏ¢¼´¿É
+		//å¦‚æœä¸æ˜¯åœ¨æ­£åœ¨æ–­å¼€çš„æ—¶å€™è¿›äº†è¿™é‡Œï¼Œé‚£ä¹ˆå°±æ˜¯æ¨æµå¤±è´¥äº†â€¦â€¦
+		//å°±ç›¸å½“äºæœ¬æ¥åº”è¯¥è¿›StreamingStartç°åœ¨è¿›äº†è¿™é‡Œ
+		//é‚£ä¹ˆä¹Ÿå½“ä½œæ“ä½œå®Œæˆï¼Œäº¤ç»™åŸæ¥çš„é€»è¾‘å»æ˜¾ç¤ºé”™è¯¯ä¿¡æ¯å³å¯
 		if (isDisconnecting)
 		{
 			broadcastBtnOp_->SetWorkingInProgress();
@@ -247,7 +247,7 @@ public:
 
 void BiLiOBSMainWid::OnStartBroadcastButtonClicked()
 {
-	//Èç¹ûÃ»ÓĞÊ¹ÓÃ×Ô¶¨ÒåÍÆÁ÷£¬ÔòÒªÇóÓĞÖ±²¥¼ä
+	//å¦‚æœæ²¡æœ‰ä½¿ç”¨è‡ªå®šä¹‰æ¨æµï¼Œåˆ™è¦æ±‚æœ‰ç›´æ’­é—´
 	if (CheckUseCustomPushStream(mBasicConfig) == false)
 	{
 		if (onBroadcastRoomRequested(0) == false)
@@ -270,15 +270,15 @@ void* BiLiOBSMainWid::mTurnOnRoomAndGetRTMPAddrTask()
 
 		std::string pushStreamServer;
 		std::string pushStreamPath;
-		//¸ù¾İÓĞÃ»ÓĞ×Ô¶¨ÒåÍÆÁ÷ÉèÖÃ£¬¾ö¶¨ÊÇ·şÎñÆ÷ÉÏ»ñÈ¡ÍÆÁ÷µØÖ·»¹ÊÇÖ±½ÓÓÃÉèÖÃÀïµÄÍÆÁ÷µØÖ·
+		//æ ¹æ®æœ‰æ²¡æœ‰è‡ªå®šä¹‰æ¨æµè®¾ç½®ï¼Œå†³å®šæ˜¯æœåŠ¡å™¨ä¸Šè·å–æ¨æµåœ°å€è¿˜æ˜¯ç›´æ¥ç”¨è®¾ç½®é‡Œçš„æ¨æµåœ°å€
 		if (CheckUseCustomPushStream(this->mBasicConfig, &pushStreamServer, &pushStreamPath) == false)
 		{
-			//¿ØÖÆÍÆÁ÷×´Ì¬
+			//æ§åˆ¶æ¨æµçŠ¶æ€
 			BiliJsonPtr statusMngResult = biliApi->LiveStatusMng(gBili_roomId, true);
 
 			if (statusMngResult->GetVal<JSON_INTEGER>({ "code" }) < 0)
 			{
-				//»ñÈ¡ÍÆÁ÷ĞÅÏ¢Ê§°Ü
+				//è·å–æ¨æµä¿¡æ¯å¤±è´¥
 				throw BiliCustomException(statusMngResult->GetVal<JSON_STRING>({ "msg" }));
 			}
 
@@ -307,7 +307,7 @@ void* BiLiOBSMainWid::mTurnOnRoomAndGetRTMPAddrTask()
 	{
 		SaveHttpLogToFile(biliApi->GetLastUrl(), "Network error.");
 
-		//ÍøÂç´íÎó
+		//ç½‘ç»œé”™è¯¯
 		QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, tr("Network error.")));
 		QMetaObject::invokeMethod(broadcastButtonOperator.get(), "SetNotRetrived");
 	}
@@ -315,7 +315,7 @@ void* BiLiOBSMainWid::mTurnOnRoomAndGetRTMPAddrTask()
 	{
 		SaveHttpLogToFile(biliApi->GetLastUrl(), biliApi->GetLastContent());
 
-		//·şÎñÆ÷ÄÚ²¿´íÎó
+		//æœåŠ¡å™¨å†…éƒ¨é”™è¯¯
 		QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, tr("Server error.")));
 		QMetaObject::invokeMethod(broadcastButtonOperator.get(), "SetNotRetrived");
 	}
@@ -327,13 +327,13 @@ void BiLiOBSMainWid::onSettingUpdated()
 {
 	if (CheckUseCustomPushStream(mBasicConfig))
 	{
-		//Ê¹ÓÃÁË×Ô¶¨ÒåÍÆÁ÷
+		//ä½¿ç”¨äº†è‡ªå®šä¹‰æ¨æµ
 		if (isRoomIdGot == false && broadcastButtonOperator->GetStatus() == BiliBroadcastButtonOperator::NO_PUSHSERVER)
 			broadcastButtonOperator->SetNormalIdle();
 	}
 	else
 	{
-		//Ã»ÓĞÊ¹ÓÃ×Ô¶¨ÒåÍÆÁ÷
+		//æ²¡æœ‰ä½¿ç”¨è‡ªå®šä¹‰æ¨æµ
 		if (isRoomIdGot == false)
 			broadcastButtonOperator->SetNotRetrived();
 	}
@@ -410,12 +410,12 @@ void* BiLiOBSMainWid::mTurnOffRoomTask(BiliCounterTrigger* counterTrigger)
 	{
 		if (CheckUseCustomPushStream(this->mBasicConfig) == false && gBili_roomId > 0)
 		{
-			//¿ØÖÆÍÆÁ÷×´Ì¬
+			//æ§åˆ¶æ¨æµçŠ¶æ€
 			BiliJsonPtr statusMngResult = biliApi->LiveStatusMng(gBili_roomId, false);
 
 			if (statusMngResult->GetVal<JSON_INTEGER>({ "code" }) < 0)
 			{
-				//¿ØÖÆ·¿¼ä×´Ì¬Ê§°Ü
+				//æ§åˆ¶æˆ¿é—´çŠ¶æ€å¤±è´¥
 				throw BiliCustomException(statusMngResult->GetVal<JSON_STRING>({ "msg" }));
 			}
 		}
@@ -429,13 +429,13 @@ void* BiLiOBSMainWid::mTurnOffRoomTask(BiliCounterTrigger* counterTrigger)
 	}
 	catch (CUrlNetworkException&)
 	{
-		//ÍøÂç´íÎó
+		//ç½‘ç»œé”™è¯¯
 		QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, tr("Network error.")));
 		QMetaObject::invokeMethod(broadcastButtonOperator.get(), "SetNotRetrived");
 	}
 	catch (JsonDataError&)
 	{
-		//·şÎñÆ÷ÄÚ²¿´íÎó
+		//æœåŠ¡å™¨å†…éƒ¨é”™è¯¯
 		QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, tr("Server error.")));
 		QMetaObject::invokeMethod(broadcastButtonOperator.get(), "SetNotRetrived");
 	}
@@ -455,23 +455,23 @@ void* BiLiOBSMainWid::mRetriveUserInfo()
 	bool succeed = false;
 	try
 	{
-		//»ñÈ¡·¿¼äĞÅÏ¢
+		//è·å–æˆ¿é—´ä¿¡æ¯
 		BiliJsonPtr roomInfoResult = biliApi->GetRoomInfo(lexical_cast<int>(gBili_mid));
 
 		int code = roomInfoResult->GetVal<JSON_INTEGER>({ "code" });
 		if (code < 0)
 		{
-			//»ñÈ¡·¿¼äĞÅÏ¢Ê§°Ü
+			//è·å–æˆ¿é—´ä¿¡æ¯å¤±è´¥
 			throw BiliCustomException(code, roomInfoResult->GetVal<JSON_STRING>({ "msg" }));
 		}
 
 		succeed = true;
 
-		//ÌîĞ´ÓÃ»§ÃûºÍ·¿¼äĞÅÏ¢
+		//å¡«å†™ç”¨æˆ·åå’Œæˆ¿é—´ä¿¡æ¯
 		//biliUi->usernameButton->setText(roomInfoResult->GetVal<JSON_STRING>({ "data", "uname" }).c_str());
 		gBili_roomId = roomInfoResult->GetVal<JSON_INTEGER>({ "data", "roomId" });
 
-		//»ñÈ¡µ¯Ä»·şÎñÆ÷µØÖ·
+		//è·å–å¼¹å¹•æœåŠ¡å™¨åœ°å€
 		BiliJsonPtr apiRoomInfoResult = biliApi->GetAPIRoomInfo(gBili_roomId);
 		gBili_danmakuServer = apiRoomInfoResult->GetVal<JSON_STRING>({ "data", "cmt" });
 
@@ -481,7 +481,7 @@ void* BiLiOBSMainWid::mRetriveUserInfo()
 	{
 		switch (customException.code())
 		{
-		case -700: //ÓÃ»§Î´¿ªÍ¨Ö±²¥¼äÊ±ºòµÄ´íÎóÂë
+		case -700: //ç”¨æˆ·æœªå¼€é€šç›´æ’­é—´æ—¶å€™çš„é”™è¯¯ç 
 			succeed = false;
 			isRoomIdGot = false;
 			gBili_roomId = -1;
@@ -497,7 +497,7 @@ void* BiLiOBSMainWid::mRetriveUserInfo()
 	}
 	catch (CUrlNetworkException&)
 	{
-		//»ñÈ¡ÍÆÁ÷ĞÅÏ¢Ê§°Ü£¬ÍøÂç´íÎó
+		//è·å–æ¨æµä¿¡æ¯å¤±è´¥ï¼Œç½‘ç»œé”™è¯¯
 		QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, QString(tr("Fail to retrieve pushstream information. Network error."))));
 		QMetaObject::invokeMethod(broadcastButtonOperator.get(), "SetNotRetrived");
 		return 0;
@@ -506,7 +506,7 @@ void* BiLiOBSMainWid::mRetriveUserInfo()
 	{
 		SaveHttpLogToFile(biliApi->GetLastUrl(), biliApi->GetLastContent());
 
-		//»ñÈ¡ÍÆÁ÷ĞÅÏ¢Ê§°Ü£¬·şÎñÆ÷´íÎó
+		//è·å–æ¨æµä¿¡æ¯å¤±è´¥ï¼ŒæœåŠ¡å™¨é”™è¯¯
 		QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, QString(tr("Fail to retrieve pushstream information. Server error."))));
 		QMetaObject::invokeMethod(broadcastButtonOperator.get(), "SetNotRetrived");
 	}
@@ -614,7 +614,7 @@ OutputSignalMonitor* BiLiOBSMainWid::StreamingStart()
 
 	broadcastButtonOperator->SetBroadcasting();
 
-	//¼ì²éÍ¬²½Â¼ÖÆ
+	//æ£€æŸ¥åŒæ­¥å½•åˆ¶
 	if (config_get_bool(mBasicConfig, "SimpleOutput", "SyncRec"))
 	{
 		if (recordButtonOperator->GetStatus() == BiliRecordButtonOperator::IDLE)
@@ -696,7 +696,7 @@ void BiLiOBSMainWid::mActivateStatusInfo() {
 
 	if (!mActive) {
 
-		/*ÍøÂç×´Ì¬´°*/
+		/*ç½‘ç»œçŠ¶æ€çª—*/
 		//if (dmOpt_->showLiveStatus_)
 			doOnBeginNetStateCatch();
 
@@ -735,7 +735,7 @@ void BiLiOBSMainWid::mSltUpdateStreamStateInfo() {
 
 	++colock_count_;
 	/**********************
-	 *×¢Òâ£º¸üĞÂµôÖ¡ÂÊºó²ÅÄÜ¸üĞÂÉÏ´«´ø¿í£¬ÒòÎªÍøÂç×´Ì¬ĞèÒª¾­¹ıÉÏ´«´ø¿íµÄ×îºó½ÃÕı
+	 *æ³¨æ„ï¼šæ›´æ–°æ‰å¸§ç‡åæ‰èƒ½æ›´æ–°ä¸Šä¼ å¸¦å®½ï¼Œå› ä¸ºç½‘ç»œçŠ¶æ€éœ€è¦ç»è¿‡ä¸Šä¼ å¸¦å®½çš„æœ€åçŸ«æ­£
 	 */
 	mUpdateDroppedFrames();
 	mUpdateBandwidth();
@@ -765,16 +765,16 @@ void *BiLiOBSMainWid::roomInfoRequestCb()
 
 	try
 	{
-		//»ñÈ¡·¿¼äĞÅÏ¢
+		//è·å–æˆ¿é—´ä¿¡æ¯
 		BiliJsonPtr roomInfoResult = biliApi->GetRoomInfo(lexical_cast<int>(gBili_mid));
 
 		if (roomInfoResult->GetVal<JSON_INTEGER>({ "code" }) < 0)
 		{
-			//»ñÈ¡·¿¼äĞÅÏ¢Ê§°Ü
+			//è·å–æˆ¿é—´ä¿¡æ¯å¤±è´¥
 			throw BiliCustomException(roomInfoResult->GetVal<JSON_STRING>({ "msg" }));
 		}
 
-		//ÌîĞ´ÓÃ»§ÃûºÍ·¿¼äĞÅÏ¢
+		//å¡«å†™ç”¨æˆ·åå’Œæˆ¿é—´ä¿¡æ¯
 		//biliUi->usernameButton->setText(roomInfoResult->GetVal<JSON_STRING>({ "data", "uname" }).c_str());
 		request_info_.fansNum = roomInfoResult->GetVal<JSON_INTEGER>({ "data", "fansNum" });
 
@@ -990,7 +990,7 @@ OutputSignalMonitor* BiLiOBSMainWid::RecordingStop()
 		obs_data_t* outFileConf = obs_output_get_settings(outputHandler->fileOutput);
 		if (outFileConf)
 		{
-			//»ñµÃ±£´æµÄÎÄ¼şµÄÎ»ÖÃÂ·¾¶
+			//è·å¾—ä¿å­˜çš„æ–‡ä»¶çš„ä½ç½®è·¯å¾„
 			const char* outFileUrl = obs_data_get_string(outFileConf, "url");
 			const char* outFilePath = obs_data_get_string(outFileConf, "path");
 			std::string displayFilePath;
@@ -1003,7 +1003,7 @@ OutputSignalMonitor* BiLiOBSMainWid::RecordingStop()
 
 			obs_data_release(outFileConf);
 
-			//ĞŞ¸ÄÂ·¾¶ÖĞĞ±¸ÜµÄÕı·´
+			//ä¿®æ”¹è·¯å¾„ä¸­æ–œæ çš„æ­£å
 			if (!displayFilePath.empty())
 			{
 				std::string tmp;
@@ -1011,14 +1011,14 @@ OutputSignalMonitor* BiLiOBSMainWid::RecordingStop()
 				displayFilePath = tmp;
 			}
 
-			//×é×°ÏÔÊ¾µÄĞÅÏ¢
+			//ç»„è£…æ˜¾ç¤ºçš„ä¿¡æ¯
 			if (!displayFilePath.empty())
 			{
 				savedMessage.append("\n");
 				savedMessage.append(displayFilePath.c_str());
 			}
 
-			//ÅĞ¶ÏÎÄ¼şÊÇ·ñ´æÔÚ£¬ÏÔÊ¾²»Í¬µÄĞÅÏ¢
+			//åˆ¤æ–­æ–‡ä»¶æ˜¯å¦å­˜åœ¨ï¼Œæ˜¾ç¤ºä¸åŒçš„ä¿¡æ¯
 			if (base::PathExists(base::FilePath::FromUTF8Unsafe(displayFilePath.c_str())))
 			{
 				QToolTip::showText(QCursor::pos(), savedMessage);
@@ -1100,10 +1100,10 @@ void BiLiOBSMainWid::mStopRecordTimer()
 void  BiLiOBSMainWid::onTestDmSignal() {
 
 	QVector<QString> dmV;
-	dmV.append(QString("%1|:|%2|:|%3").arg("DANMU_MSG").arg(QString("Bilibili")).arg(QString::fromLocal8Bit("²âÊÔµ¯Ä»...")));
-	dmV.append(QString("%1|:|%2|:|%3|:|%4").arg("SEND_GIFT").arg(QString("Bilibili")).arg(QString::fromLocal8Bit("B¿ÀÀ¬")).arg(100));
-	dmV.append(QString("%1|:|%2 %3 %4").arg("WELCOME").arg(QString::fromLocal8Bit("Äê·ÑÀÏÒ¯")).arg("Bilibili").arg(QString::fromLocal8Bit("½øÈë·¿¼ä")));
-	dmV.append(QString("%1|:|%2").arg("SYS_MSG").arg(QString::fromLocal8Bit("ÏµÍ³¹«¸æ")));
+	dmV.append(QString("%1|:|%2|:|%3").arg("DANMU_MSG").arg(QString("Bilibili")).arg(QString::fromLocal8Bit("æµ‹è¯•å¼¹å¹•...")));
+	dmV.append(QString("%1|:|%2|:|%3|:|%4").arg("SEND_GIFT").arg(QString("Bilibili")).arg(QString::fromLocal8Bit("Bå·åƒ")).arg(100));
+	dmV.append(QString("%1|:|%2 %3 %4").arg("WELCOME").arg(QString::fromLocal8Bit("å¹´è´¹è€çˆ·")).arg("Bilibili").arg(QString::fromLocal8Bit("è¿›å…¥æˆ¿é—´")));
+	dmV.append(QString("%1|:|%2").arg("SYS_MSG").arg(QString::fromLocal8Bit("ç³»ç»Ÿå…¬å‘Š")));
 
 	int a = qrand() % dmV.count();
 	QString dm = dmV[a];

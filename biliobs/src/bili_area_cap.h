@@ -19,8 +19,8 @@ public:
 	~bili_area_cap();
 
 	void mShow();
-	QRect mSelectedWidRect;			//Ïà¶ÔÓÚµ±Ç°ÏÔÊ¾Æ÷×óÉÏ½ÇµÄ×ø±ê
-	QPoint mSelectedWidRectOrgin;	//ÉÏÃæÄÇ¸ö¾ØĞÎµÄÔ­µãµÄ¾ø¶Ô×ø±ê
+	QRect mSelectedWidRect;			//ç›¸å¯¹äºå½“å‰æ˜¾ç¤ºå™¨å·¦ä¸Šè§’çš„åæ ‡
+	QPoint mSelectedWidRectOrgin;	//ä¸Šé¢é‚£ä¸ªçŸ©å½¢çš„åŸç‚¹çš„ç»å¯¹åæ ‡
 	
 	HWND mGuessSelectedWindow() const;
 
@@ -44,7 +44,7 @@ signals:
 private:
 	BiLiPropertyDlg* mBelongTo;
 
-	//Ã¿¸öÏÔÊ¾Æ÷Ò»¸ö£¬ËùÒÔÓĞ¶à¸ö
+	//æ¯ä¸ªæ˜¾ç¤ºå™¨ä¸€ä¸ªï¼Œæ‰€ä»¥æœ‰å¤šä¸ª
 	std::vector<QPixmap> mDesktopPixmaps;
 	std::vector<int> mWidths;
 	std::vector<int> mHeights;
@@ -52,13 +52,13 @@ private:
 	void update_current_screen();
 	int mCurrentScreen;
 
-	//¾ÍÊÇÉÏÃæÄÇ¸öÃ¿¸öÏÔÊ¾Æ÷Ò»¸öµÄ£¬·µ»ØµÄÊÇµ±Ç°ÏÔÊ¾Æ÷µÄ
+	//å°±æ˜¯ä¸Šé¢é‚£ä¸ªæ¯ä¸ªæ˜¾ç¤ºå™¨ä¸€ä¸ªçš„ï¼Œè¿”å›çš„æ˜¯å½“å‰æ˜¾ç¤ºå™¨çš„
 	const QPixmap& mDesktopPixmap() const;
 	int mWidth() const;
 	int mHeight() const;
 
 	bool mHasSelected;
-													//×Ô¶¯Ñ¡ÔñÊ±µÄ×´Ì¬
+													//è‡ªåŠ¨é€‰æ‹©æ—¶çš„çŠ¶æ€
 	enum MouseState {
 		Default = 1<<0,
 		Pressed = 1<<1,
@@ -70,34 +70,34 @@ private:
 
 	int mMouseState = MouseState::Default;
 
-	//ÕâÈı¸ö×ø±ê¶¼ÊÇÏà¶Ôµ±Ç°ÆÁÄ»×óÉÏ½ÇµÄ
+	//è¿™ä¸‰ä¸ªåæ ‡éƒ½æ˜¯ç›¸å¯¹å½“å‰å±å¹•å·¦ä¸Šè§’çš„
 	QPoint mPosLeftTop;
 	QPoint mPressStartPos;
 	QPoint mPosRightBottom;
     QPoint screen_pos_;
-													//×Ô¶¨ÒåÑ¡ÔñÊ±µÄ×´Ì¬
+													//è‡ªå®šä¹‰é€‰æ‹©æ—¶çš„çŠ¶æ€
 	bool mIsPressSelected;
-	QPoint mPosPressSelected;						//Ïà¶Ôµ±Ç°ÏÔÊ¾Æ÷×óÉÏ½ÇµÄ×ø±ê
+	QPoint mPosPressSelected;						//ç›¸å¯¹å½“å‰æ˜¾ç¤ºå™¨å·¦ä¸Šè§’çš„åæ ‡
 	int mMouseShape;
 
-	//²ÎÊıÊÇÏà¶ÔÆÁÄ»×óÉÏ½ÇµÄ×ø±ê
+	//å‚æ•°æ˜¯ç›¸å¯¹å±å¹•å·¦ä¸Šè§’çš„åæ ‡
 	Qt::CursorShape mGetCurPosCursorShape(QPoint pos);
 
-													//±ä»»ÒÑ¾­Ñ¡ÔñµÄÇøÓò
+													//å˜æ¢å·²ç»é€‰æ‹©çš„åŒºåŸŸ
 	void mMoveSelectRect(QPoint pos);
 	void mZoomSelectRect(QPoint pos);
 
-	//²ÎÊıÊÇÏà¶ÔÆÁÄ»×óÉÏ½ÇµÄ×ø±ê
+	//å‚æ•°æ˜¯ç›¸å¯¹å±å¹•å·¦ä¸Šè§’çš„åæ ‡
 	QPoint mGetDragBottomRight(QPoint pos);
 
 	QShortcut *mShortCut;
 
-	//È·¶¨ºÍÈ¡Ïû°´Å¥
+	//ç¡®å®šå’Œå–æ¶ˆæŒ‰é’®
 	bili_area_tool *mAreaTool;
 	void mMoveAreaTool();
 	void mSetupUI();
 
-	//·Å´ó¾µ²¿·Ö
+	//æ”¾å¤§é•œéƒ¨åˆ†
 	bili_area_zoom *mAreaZoom;
 };
 

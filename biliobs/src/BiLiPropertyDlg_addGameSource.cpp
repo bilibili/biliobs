@@ -24,8 +24,8 @@ std::shared_ptr<bool> isDlgClosed;
 END_IMPL_PROPDLG(BiLiGameSourcePropertyDlg, "game_capture");
 
 void BiLiGameSourcePropertyDlg::setupSourcePropertiesUI() {
-	//×¢Òâ£ºÌí¼Ó¿Ø¼şÊ±£¬¼ÇµÃ¸ù¾İĞèÒªÔÚ×îºóÌí¼Ó¿Ø¼şµÄ±ä¶¯Í¨Öª¼àÊÓ£¡
-	//·ñÔò¿ÉÄÜµ¼ÖÂµãÁËÈ·¶¨Ö®ºóÉèÖÃÃ»ÓĞ±£´æ½øÈ¥
+	//æ³¨æ„ï¼šæ·»åŠ æ§ä»¶æ—¶ï¼Œè®°å¾—æ ¹æ®éœ€è¦åœ¨æœ€åæ·»åŠ æ§ä»¶çš„å˜åŠ¨é€šçŸ¥ç›‘è§†ï¼
+	//å¦åˆ™å¯èƒ½å¯¼è‡´ç‚¹äº†ç¡®å®šä¹‹åè®¾ç½®æ²¡æœ‰ä¿å­˜è¿›å»
 	isDlgClosed.reset(new bool(false));
 
 	ui.PropertyNameLab->setText(tr("Game Property"));
@@ -125,7 +125,7 @@ void BiLiGameSourcePropertyDlg::setupSourcePropertiesUI() {
 	obs_source_update(mSrc, setCaptureAnyFullscreen);
 	obs_data_release(setCaptureAnyFullscreen);
 
-	//Ìí¼Ó¼àÌı¿Ø¼ş±ä¶¯
+	//æ·»åŠ ç›‘å¬æ§ä»¶å˜åŠ¨
 	mChangeEvnetFilter->Watch({ GameNameComboBox, antiCheatCheckBox });
 	connect(mChangeEvnetFilter.get(), SIGNAL(OnChangedSignal()), this, SLOT(mSltOnSettingChanged()));
 }
@@ -153,11 +153,11 @@ void BiLiGameSourcePropertyDlg::mSltRefreshGameListAsync(std::function<void()>&&
 	GameNameComboBox->clear();
 	GameNameComboBox->addItem(tr("Refresing..."));
 
-	//ÔÚ¶Ô»°¿ò±»Îö¹¹Ö®ºó£¬ÕâĞ©Ò²¶¼Ã»ÁË
+	//åœ¨å¯¹è¯æ¡†è¢«ææ„ä¹‹åï¼Œè¿™äº›ä¹Ÿéƒ½æ²¡äº†
 	std::shared_ptr<bool> refIsDlgClosed = isDlgClosed;
 	obs_source_addref(mSrc);
 	obs_source_t* refSrc = mSrc;
-	//ËùÒÔÒªÁôÒ»·İ
+	//æ‰€ä»¥è¦ç•™ä¸€ä»½
 
 	App()->mGetMainWindow()->mPostTask([this, refSrc, refIsDlgClosed, onCompleted]()->void*{
 		obs_properties_t* props = obs_source_properties(refSrc);

@@ -236,10 +236,10 @@ obs_data_t* BiliSceneConfig::Get()
 
 	result = obs_data_create();
 
-	//±£´æËùÓĞÀ´Ô´£¬°üÀ¨³¡¾°ºÍ³¡¾°ÔªËØ
+	//ä¿å­˜æ‰€æœ‰æ¥æºï¼ŒåŒ…æ‹¬åœºæ™¯å’Œåœºæ™¯å…ƒç´ 
 	sourceArray = obs_save_sources();
 
-	//µ±Ç°³¡¾°ºÍµ±Ç°³¡¾°Ãû
+	//å½“å‰åœºæ™¯å’Œå½“å‰åœºæ™¯å
 	currentScene = obs_get_output_source(0);
 	currentSceneName = obs_source_get_name(currentScene);
 
@@ -262,7 +262,7 @@ void BiliSceneConfig::Set(obs_data_t* data)
 
 	obs_load_sources(sourceArray);
 
-	//»Ö¸´¡°µ±Ç°scene¡±
+	//æ¢å¤â€œå½“å‰sceneâ€
 	for (OBSSource& src : OBSEnumSources())
 	{
 		const char* sourceName = obs_source_get_name(src);
@@ -355,7 +355,7 @@ void BiliAudioDeviceConfig::Set(obs_data_t* data)
 					goto SKIP;
 			}
 
-			if (isNewSource) //²»´æÔÚ£¬´´½¨
+			if (isNewSource) //ä¸å­˜åœ¨ï¼Œåˆ›å»º
 			{
 				obs_source_t* savedSource = obs_load_source(savedData);
 				if (savedSource)
@@ -364,7 +364,7 @@ void BiliAudioDeviceConfig::Set(obs_data_t* data)
 					obs_source_release(savedSource);
 				}
 			}
-			else //´æÔÚ£¬Ö»¸üĞÂ
+			else //å­˜åœ¨ï¼Œåªæ›´æ–°
 			{
 				obs_data_t* settings = obs_data_get_obj(savedData, "settings");
 				if (settings)
@@ -391,7 +391,7 @@ SKIP:
 
 		obs_source_release(outputSrc);
 
-		//Ìí¼Ó¿ì½İ¼üÖ§³Ö
+		//æ·»åŠ å¿«æ·é”®æ”¯æŒ
 		if (isNewSource)
 		{
 			outputSrc = obs_get_output_source(audioDeviceList[i].deviceChannel);

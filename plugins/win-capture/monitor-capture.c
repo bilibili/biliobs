@@ -76,7 +76,7 @@ static void update_monitor(struct monitor_capture *capture,
 	{
 		if (capture->is_limit_rect)
 		{
-			//¼ÆËãrectToCaptureºÍlimit_rectµÄÏà½»²¿·Ö
+			//è®¡ç®—rectToCaptureå’Œlimit_rectçš„ç›¸äº¤éƒ¨åˆ†
 			int left = max(capture->limit_rect.left, rectToCapture.left);
 			int right = min(capture->limit_rect.right, rectToCapture.right);
 			int top = max(capture->limit_rect.top, rectToCapture.top);

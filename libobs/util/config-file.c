@@ -407,7 +407,7 @@ int config_save_json(config_t *config)
 	json_t* sectionArray;
 	json_t* itemArray;
 
-	//json¸ù½Úµã
+	//jsonæ ¹èŠ‚ç‚¹
 	sectionArray = json_object();
 
 	if (!config)
@@ -415,7 +415,7 @@ int config_save_json(config_t *config)
 	if (!config->file)
 		return CONFIG_ERROR;
 
-	//jsonÃ¿¸ösection
+	//jsonæ¯ä¸ªsection
 	for (i = 0; i < config->sections.num; ++i)
 	{
 		itemArray = json_object();
@@ -424,7 +424,7 @@ int config_save_json(config_t *config)
 			&config->sections,
 			i);
 
-		//jsonµÄÃ¿¸ösectionÀïµÄitem
+		//jsonçš„æ¯ä¸ªsectioné‡Œçš„item
 		for (j = 0; j < section->items.num; ++j)
 		{
 			struct config_item* item = darray_item(
@@ -861,4 +861,3 @@ bool config_has_default_value(const config_t *config, const char *section,
 {
 	return config_find_item(&config->defaults, section, name) != NULL;
 }
-

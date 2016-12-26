@@ -267,7 +267,7 @@ static int window_rating(HWND window,
 	if (dstr_cmpi(&cur_title, title) == 0)
 		total += title_val;
 
-	//如果要找的标题不是空但是这下找到的窗口标题是空，那么就扣掉一些rating
+	//濡傛灉瑕佹壘鐨勬爣棰樹笉鏄┖浣嗘槸杩欎笅鎵惧埌鐨勭獥鍙ｆ爣棰樻槸绌猴紝閭ｄ箞灏辨墸鎺変竴浜況ating
 	if ((cur_title.array == 0 || *cur_title.array == 0) && (title != 0 && *title != 0))
 		total -= 2;
 

@@ -202,7 +202,7 @@ Qt::CursorShape bili_area_cap::mGetCurPosCursorShape(QPoint pos){
 
 void bili_area_cap::mousePressEvent(QMouseEvent *e) {
 
-	QPoint mouseRePos = e->pos(); //Ïà¶ÔÓÚµ±Ç°ÏÔÊ¾Æ÷ÆÁÄ»×óÉÏ½ÇµÄ×ø±ê£¨ÒòÎªÊÇfull screen£©
+	QPoint mouseRePos = e->pos(); //ç›¸å¯¹äºŽå½“å‰æ˜¾ç¤ºå™¨å±å¹•å·¦ä¸Šè§’çš„åæ ‡ï¼ˆå› ä¸ºæ˜¯full screenï¼‰
 
 	if (e->button() != Qt::LeftButton)
 		return QWidget::mousePressEvent(e);
@@ -242,7 +242,7 @@ void bili_area_cap::mouseMoveEvent(QMouseEvent *e) {
     else
         mouseRePos = mouseAbPos - screen_pos_;
 
-	//ÒÆ¶¯·Å´ó¾µ´°¿Ú
+	//ç§»åŠ¨æ”¾å¤§é•œçª—å£
 	mAreaZoom->mMove(mouseRePos, mWidth(), mHeight());
 	mAreaZoom->mSetZoomPos(mouseRePos);
 
@@ -270,7 +270,7 @@ void bili_area_cap::mouseMoveEvent(QMouseEvent *e) {
 			if (mMouseState == MouseState::Move) {
 				for (int i = 0; i < WidsRectV.size(); i++){
 					if (WidsRectV[i].contains(mouseAbPos.x(), mouseAbPos.y())){
-						//»ñµÃ´°¿Ú¾ø¶Ô×ø±êºó£¬¼ÆËã´°¿Ú¾ØÐÎÏà¶ÔÓÚËùÊôÏÔÊ¾Æ÷×óÉÏ½ÇµÄ×ø±ê
+						//èŽ·å¾—çª—å£ç»å¯¹åæ ‡åŽï¼Œè®¡ç®—çª—å£çŸ©å½¢ç›¸å¯¹äºŽæ‰€å±žæ˜¾ç¤ºå™¨å·¦ä¸Šè§’çš„åæ ‡
 						QRect monitorRect = QApplication::desktop()->screenGeometry(mouseAbPos);
 						mSelectedWidRect = WidsRectV[i];
 						mSelectedWidRectOrgin = monitorRect.topLeft();
@@ -437,16 +437,16 @@ void bili_area_cap::mMoveSelectRect(QPoint pos){
 
 void bili_area_cap::leaveEvent(QEvent* e)
 {
-	//ÄÃµ½Êó±êÎ»ÖÃ
-	//¸ù¾ÝÊó±êÎ»ÖÃµÃÖªÏÖÔÚÔÚÄÄ¸öÆÁÄ»ÉÏ
-	//ÒÆ¶¯²¶×½´°¿Úµ½ÐÂÆÁÄ»
+	//æ‹¿åˆ°é¼ æ ‡ä½ç½®
+	//æ ¹æ®é¼ æ ‡ä½ç½®å¾—çŸ¥çŽ°åœ¨åœ¨å“ªä¸ªå±å¹•ä¸Š
+	//ç§»åŠ¨æ•æ‰çª—å£åˆ°æ–°å±å¹•
 	if (mMouseState & MouseState::Selected)
 	{
 		QWidget::leaveEvent(e);
 		return;
 	}
 
-    /*µ±Êó±êµã°´widgetÀë¿ªÊ±£¬ leaveÏÈÓÚrelease·¢Éú*/
+    /*å½“é¼ æ ‡ç‚¹æŒ‰widgetç¦»å¼€æ—¶ï¼Œ leaveå…ˆäºŽreleaseå‘ç”Ÿ*/
     if (MouseState::Move == mMouseState || MouseState::Default == mMouseState || (MouseState::Move | MouseState::Optional) == mMouseState) {
         QPoint mouseAbPos = QCursor::pos();
         QRect currentScreenRect = QApplication::desktop()->screenGeometry(mouseAbPos);
@@ -541,10 +541,10 @@ HWND bili_area_cap::mGuessSelectedWindow() const
 
 			for (int i = 0; i < windowCount; ++i)
 			{
-				//ËäÈ»widrectvÀïÃæ¼ÈÓÐÖ÷´°¿ÚÓÖÓÐ×Ó´°¿Ú
-				//µ«ÊÇÒòÎªÖ÷´°¿Ú×ÜÊÇÔÚ×Ó´°¿ÚÇ°Ãæ
-				//ÓÖÒòÎª»áÂäÔÚ×Ó´°¿ÚÉÏµÄµãÊÇ»áÂäÔÚÖ÷´°¿ÚÉÏµÄ
-				//ËùÒÔ²»´æÔÚÄÜÔÚÑ­»·ÖÐÍ¨¹ýÖ÷´°¿ÚÄÇÒ»´ÎÅÐ¶Ï¶øËÀÔÚ×Ó´°¿ÚÄÇÒ»´ÎÅÐ¶ÏµÄÇé¿ö
+				//è™½ç„¶widrectvé‡Œé¢æ—¢æœ‰ä¸»çª—å£åˆæœ‰å­çª—å£
+				//ä½†æ˜¯å› ä¸ºä¸»çª—å£æ€»æ˜¯åœ¨å­çª—å£å‰é¢
+				//åˆå› ä¸ºä¼šè½åœ¨å­çª—å£ä¸Šçš„ç‚¹æ˜¯ä¼šè½åœ¨ä¸»çª—å£ä¸Šçš„
+				//æ‰€ä»¥ä¸å­˜åœ¨èƒ½åœ¨å¾ªçŽ¯ä¸­é€šè¿‡ä¸»çª—å£é‚£ä¸€æ¬¡åˆ¤æ–­è€Œæ­»åœ¨å­çª—å£é‚£ä¸€æ¬¡åˆ¤æ–­çš„æƒ…å†µ
 				if (WidsRectV[i].contains(dot))
 				{
 					++dotCount[i];
@@ -554,7 +554,7 @@ HWND bili_area_cap::mGuessSelectedWindow() const
 		}
 	}
 
-	//ÕÒµãÊý×î¶àµÄ
+	//æ‰¾ç‚¹æ•°æœ€å¤šçš„
 	if (windowCount > 0)
 	{
 		int i;

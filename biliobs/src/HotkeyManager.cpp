@@ -98,7 +98,7 @@ static bool MatchHotkeyKeyName(void *data, obs_hotkey_id id, obs_hotkey_t *key)
 
 bool HotkeyManager::Unregister(const char* hotkeyName)
 {
-	//½â³ı¿ì½İ¼ü×¢²á
+	//è§£é™¤å¿«æ·é”®æ³¨å†Œ
 	MatchHotkeyUserDataHelper param;
 	param.hotkeyName = hotkeyName;
 	obs_enum_hotkeys(MatchHotkeyKeyName, &param);
@@ -106,7 +106,7 @@ bool HotkeyManager::Unregister(const char* hotkeyName)
 	for (obs_hotkey_id& x : param.result)
 		obs_hotkey_unregister(x);
 
-	//ÒÆ³ı¶ÔÓ¦±íÀïµÄ
+	//ç§»é™¤å¯¹åº”è¡¨é‡Œçš„
 	HotkeyMap::iterator r = callbacks_.find(hotkeyName);
 	callbacks_.erase(r);
 	return r != callbacks_.end();

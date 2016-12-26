@@ -100,8 +100,8 @@ public:
 
 private:
     enum DataSourceType {
-        DB_SOURCE = 0,  /*�����ݿ��ȡ����,������һҳ*/
-        RAM_SOURCE  /*���ڴ��ȡ����*/
+        DB_SOURCE = 0,  /*从数据库读取数据,针对最后一页*/
+        RAM_SOURCE  /*从内存读取数据*/
     } source_type_;
 
 

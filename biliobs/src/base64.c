@@ -33,7 +33,7 @@
  * /usr/src/crypto/dist/heimdal/lib/roken/base64.c
  *
  * Original:
- * Copyright (c) 1995-2001 Kungliga Tekniska Högskolan
+ * Copyright (c) 1995-2001 Kungliga Tekniska Hé°ƒskolan
  * (Royal Institute of Technology, Stockholm, Sweden).
  * All rights reserved.
  *

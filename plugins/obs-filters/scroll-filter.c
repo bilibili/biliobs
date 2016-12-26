@@ -16,11 +16,11 @@ struct scroll_filter_data {
 
 	struct vec2                    size_i;
 	struct vec2                    offset;
-	
-	//Èç¹û¹ö¶¯ËÙ¶ÈÊÇ0£¬ÄÇÃ´Òª²»Òª·ÀÖ¹ËüÑ­»·¶à´ÎÏÔÊ¾ÒÔÌîÂúÕû¸ö·¶Î§
-	//±ÈÈç£ºÎÄ×Ö
-	//ÏÔÊ¾Îª
-	//ÎÄ×ÖÎÄ×ÖÎÄ×ÖÎÄ×ÖÎÄ×ÖÎÄ
+
+	//å¦‚æžœæ»šåŠ¨é€Ÿåº¦æ˜¯0ï¼Œé‚£ä¹ˆè¦ä¸è¦é˜²æ­¢å®ƒå¾ªçŽ¯å¤šæ¬¡æ˜¾ç¤ºä»¥å¡«æ»¡æ•´ä¸ªèŒƒå›´
+	//æ¯”å¦‚ï¼šæ–‡å­—
+	//æ˜¾ç¤ºä¸º
+	//æ–‡å­—æ–‡å­—æ–‡å­—æ–‡å­—æ–‡å­—æ–‡
 	bool                           disable_repeat_if_no_speed;
 };
 
@@ -174,7 +174,7 @@ static void scroll_filter_render(void *data, gs_effect_t *effect)
 	cx = filter->limit_cx ? filter->cx : base_cx;
 	cy = filter->limit_cy ? filter->cy : base_cy;
 
-	//¼ì²éËÙ¶ÈÊÇ²»ÊÇ0¡¢ÊÇ²»ÊÇÒªÏÞÖÆÏÔÊ¾·¶Î§·ÀÖ¹³öÏÖÖØ¸´
+	//æ£€æŸ¥é€Ÿåº¦æ˜¯ä¸æ˜¯0ã€æ˜¯ä¸æ˜¯è¦é™åˆ¶æ˜¾ç¤ºèŒƒå›´é˜²æ­¢å‡ºçŽ°é‡å¤
 	if (filter->disable_repeat_if_no_speed)
 	{
 		if (filter->scroll_speed.x == 0)

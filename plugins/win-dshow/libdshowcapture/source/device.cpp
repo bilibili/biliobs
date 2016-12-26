@@ -140,8 +140,8 @@ void HDevice::Receive(bool isVideo, IMediaSample *sample)
 
 	if (!hasTime)
 	{
-		//��ȡ����ʱ���ʱ����ݵ�ǰϵͳʱ��ǿ�и�һ������
-		//Ϊ�˸����ȶ���ÿ�λ������һ֡��Ԥ��һ��ʱ��
+		//获取不到时间的时候根据当前系统时间强行给一个……
+		//为了更加稳定，每次会根据上一帧来预测一个时间
 		long long currentTime = GetTickCount64() * 100;
 		hasTime = true;
 

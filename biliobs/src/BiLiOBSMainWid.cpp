@@ -328,12 +328,12 @@ void BiLiOBSMainWid::mOBSInit() {
 
 	connect(ui->preview, &OBSQTDisplay::DisplayCreated, addDisplay);
 #endif
-	//´´½¨ÍÆÁ÷·şÎñ
+	//åˆ›å»ºæ¨æµæœåŠ¡
 	mService = obs_service_create("rtmp_custom", "default_service", NULL, NULL);
-	//ÒÑ¾­±»ÖÇÄÜÖ¸Õë½Ó¹Ü£¬ËùÒÔÒªÊÍ·ÅÒ»ÏÂ
+	//å·²ç»è¢«æ™ºèƒ½æŒ‡é’ˆæ¥ç®¡ï¼Œæ‰€ä»¥è¦é‡Šæ”¾ä¸€ä¸‹
 	obs_service_release(mService);
 
-	//´´½¨ÍÆÁ÷¶ÔÏó
+	//åˆ›å»ºæ¨æµå¯¹è±¡
 	this->outputHandler.reset();
 	this->outputHandler.reset(
 		CreateSimpleOutputHandler(this)
@@ -343,16 +343,16 @@ void BiLiOBSMainWid::mOBSInit() {
 	os_inhibit_sleep_set_active(mSleepInhibitor, true);
 	//show();
 
-	//»ñÈ¡·¿¼äĞÅÏ¢¡¢ÍÆÁ÷µØÖ·
+	//è·å–æˆ¿é—´ä¿¡æ¯ã€æ¨æµåœ°å€
 	emit OnRetryButtonClicked();
 
-	//¼ì²é¸üĞÂ
+	//æ£€æŸ¥æ›´æ–°
 	worker.AddTask(std::bind(&BiLiOBSMainWid::mCheckNewVersion, this, nullptr));
 
-	//»ñÈ¡Í·Ïñ
+	//è·å–å¤´åƒ
 	worker.AddTask(std::bind(&BiLiOBSMainWid::mGetUserFacePixmapTaskWrapper, weak_ref_, &BiLiOBSMainWid::mGetUserFacePixmapTask));
 
-	//»ñÈ¡·¿¼äÀñÎïÊı
+	//è·å–æˆ¿é—´ç¤¼ç‰©æ•°
 	worker.AddTask(std::bind(&BiLiOBSMainWid::mUpdateRoomPresentCountTaskWrapper, weak_ref_, &BiLiOBSMainWid::mUpdateRoomPresentCountTask));
 
 	loadDanmakuHistoryConfig();
@@ -455,13 +455,13 @@ void BiLiOBSMainWid::mSetupUI(){
 	ui.DropFramesLab->setHidden(true);
 	ui.KBPSLab->setHidden(true);
 
-	//ÇĞ»»³¡¾°µÄ°´Å¥
+	//åˆ‡æ¢åœºæ™¯çš„æŒ‰é’®
 	QPushButton* sceneListButton = new QPushButton();
 	sceneListButton->setObjectName("SceneListBtn");
 	sceneListButton->setFixedSize(30, 30);
 	ui.RightSceneTabWid->tabBar()->setTabButton(0, QTabBar::ButtonPosition::RightSide, sceneListButton);
 
-	//Ìí¼ÓÀ´Ô´µÄ°´Å¥
+	//æ·»åŠ æ¥æºçš„æŒ‰é’®
 	mFuncBtnList << ui.SrcCamBtn << ui.SrcGameBtn << ui.SrcMonitorBtn
 		<< ui.SrcWinBtn << ui.SrcVideoBtn << ui.SrcTxtBtn << ui.SrcPicBtn;
 
@@ -522,7 +522,7 @@ void BiLiOBSMainWid::mSetupUI(){
 #endif
 	QObject::connect(dmOpt_, &DanmakuOpt::sglSettingsDM, this, &BiLiOBSMainWid::mSltDanmakuSetting);
 
-	//±êÌâ
+	//æ ‡é¢˜
 	setWindowTitle(tr("Bilibili Broadcaster"));
 }
 
@@ -558,18 +558,18 @@ void BiLiOBSMainWid::mSetupConnection(){
 	ui.DanmakuBtn->setHidden(true);
 	ui.DanmakuLab->setHidden(true);
 
-	//Ö÷½çÃæÓÒ±ßÀ¸¿ª¹Ø
+	//ä¸»ç•Œé¢å³è¾¹æ å¼€å…³
 	connect(ui.ZoomBtn, SIGNAL(clicked()), SLOT(mSltZoomBtnClicked()));
 	ui.ZoomBtn->setMask(QPixmap(QString::fromUtf8(":/FucBtn/ZoomMask")).createHeuristicMask());
 
-	//Ìí¼ÓÀ´Ô´µÄ°´Å¥
+	//æ·»åŠ æ¥æºçš„æŒ‰é’®
 	for (int i = 0; i < mFuncBtnList.size(); i++){
 		connect(mFuncBtnList.at(i), SIGNAL(clicked()), this, SLOT(mSltAddSourceButtonClicked()));
 	}
 
 	connect(ui.ValumeSettingBtn, SIGNAL(clicked()), this, SLOT(mSltValumeSettingBtn()));
 
-	//²Ù×÷Æ÷µÄĞÅºÅ
+	//æ“ä½œå™¨çš„ä¿¡å·
 	QObject::connect(broadcastButtonOperator.get(), SIGNAL(StartBroadcastButtonClickedSignal()), this, SLOT(OnStartBroadcastButtonClicked()));
 	QObject::connect(broadcastButtonOperator.get(), SIGNAL(StopBroadcastButtonClickedSignal()), this, SLOT(OnStopBroadcastButtonClicked()));
 	QObject::connect(broadcastButtonOperator.get(), SIGNAL(ReconnectingClickedSignal()), this, SLOT(OnStopBroadcastButtonClicked()));
@@ -584,17 +584,17 @@ void BiLiOBSMainWid::mSetupConnection(){
 	QObject::connect(recordButtonOperator.get(), SIGNAL(StoppingClickedSignal()), this, SLOT(mSltOnRecordStoppingClicked()));
 	QObject::connect(recordButtonOperator.get(), SIGNAL(FailedClickedSignal()), this, SLOT(mSltOnRecordFailClicked()));
 
-	//ÉèÖÃ°´Å¥
+	//è®¾ç½®æŒ‰é’®
 	QObject::connect(ui.SettingBtn, SIGNAL(clicked()), this, SLOT(mSltSettingBtn()));
 
-	//¼ÆÊ±
+	//è®¡æ—¶
 	QObject::connect(&mBroadcastTickTimer, SIGNAL(timeout()), this, SLOT(OnBroadcastTimerTick()));
 	QObject::connect(&mRecordTickTimer, SIGNAL(timeout()), this, SLOT(OnRecordTimerTick()));
 
-	//µ¯Ä»ÀúÊ·
+	//å¼¹å¹•å†å²
 	connect(dmOpt_, &DanmakuOpt::netData, this, &BiLiOBSMainWid::onNetDialog);
 
-	//Èç¹ûÒş²Ø£¬»áÔì³ÉÏÂÃæµÄ°´Å¥ÉÏÒÆ£¬×îÖÕµ¼ÖÂµãÁË°´Å¥³öÁËÊ±¼ä°´Å¥Î»ÖÃ±äÁË
+	//å¦‚æœéšè—ï¼Œä¼šé€ æˆä¸‹é¢çš„æŒ‰é’®ä¸Šç§»ï¼Œæœ€ç»ˆå¯¼è‡´ç‚¹äº†æŒ‰é’®å‡ºäº†æ—¶é—´æŒ‰é’®ä½ç½®å˜äº†
 	ui.TimeLab->setText(" ");
 	ui.RecTimeLab->setText(" ");
 
@@ -1121,7 +1121,7 @@ bool BiLiOBSMainWid::onBroadcastRoomRequested(int code)
 
 		if (dlg_ret == QDialog::Accepted)
 		{
-			//´ò¿ªÉêÇëÖ±²¥¼äÒ³Ãæ
+			//æ‰“å¼€ç”³è¯·ç›´æ’­é—´é¡µé¢
 			std::string url = biliApi->GetRoomAdminUrl("open");
 			QDesktopServices::openUrl(QUrl(url.c_str()));
 		}
