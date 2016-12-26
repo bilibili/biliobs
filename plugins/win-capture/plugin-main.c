@@ -31,7 +31,7 @@ bool obs_module_load(void)
 
 	obs_enter_graphics();
 
-	//¼àÊÓÆ÷¾Ö²¿½ØÍ¼, ÔİÊ±²»¿¼ÂÇwin8ÒÔÉÏÊ¹ÓÃdx
+	//ç›‘è§†å™¨å±€éƒ¨æˆªå›¾, æš‚æ—¶ä¸è€ƒè™‘win8ä»¥ä¸Šä½¿ç”¨dx
 	//if (win8_or_above && gs_get_device_type() == GS_DEVICE_DIRECT3D_11)
 	//	obs_register_source(&duplicator_capture_info);
 	//else

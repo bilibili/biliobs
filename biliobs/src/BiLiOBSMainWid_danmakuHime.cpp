@@ -71,12 +71,12 @@ void* BiLiOBSMainWid::DanmakuShowCutoffMessageBoxTask()
 	catch (CUrlNetworkException&)
 	{
 		SaveHttpLogToFile(biliApi->GetLastUrl(), "Network error.");
-		//网络错误
+		//缃戠粶閿欒
 	}
 	catch (JsonDataError&)
 	{
 		SaveHttpLogToFile(biliApi->GetLastUrl(), biliApi->GetLastContent());
-		//服务器内部错
+		//鏈嶅姟鍣ㄥ唴閮ㄩ敊
 	}
 
 	DanmakuMessageBox(tr("System Notification"), tr("Broadcast is cut off by administrator."));
@@ -105,7 +105,7 @@ void BiLiOBSMainWid::DanmakuMessageBox(const QString title, const QString text)
 
 void BiLiOBSMainWid::sltAutoStartDanmaku() {
 	
-	//必须要有直播间才可以使用
+	//蹇呴』瑕佹湁鐩存挱闂存墠鍙互浣跨敤
 	if (onBroadcastRoomRequested(1)) {
 		if (!dmOpt_->startAndShowDM_()){
 			SystemRetInfoDlg dlg;

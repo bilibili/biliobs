@@ -10,7 +10,7 @@
 
 static bool AddAudioChannelByName(int channel, const char* sourceName, QComboBox* comboBox)
 {
-	//Ìî³äÁĞ±í
+	//å¡«å……åˆ—è¡¨
 	obs_properties_t* props = obs_get_source_properties(OBS_SOURCE_TYPE_INPUT, sourceName);
 	if (!props)
 		return false;
@@ -18,7 +18,7 @@ static bool AddAudioChannelByName(int channel, const char* sourceName, QComboBox
 	DataToWidget(BILI_PROP_LIST_STRING(), comboBox, props, "device_id");
 	obs_properties_destroy(props);
 
-	//¼ÓÔØÅäÖÃ
+	//åŠ è½½é…ç½®
 	obs_source_t* source = obs_get_output_source(channel);
 	if (!source)
 		return false;
@@ -40,7 +40,7 @@ static bool AddAudioChannelByName(int channel, const char* sourceName, QComboBox
 
 static bool SaveAudioChannelSettings(int channel, QComboBox* comboBox)
 {
-	//±£´æÅäÖÃ
+	//ä¿å­˜é…ç½®
 	obs_source_t* source = obs_get_output_source(channel);
 	if (!source)
 		return false;

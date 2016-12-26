@@ -92,7 +92,7 @@ void BiLiMsgDlg::mSetMsgTxtAndBtn(QString msgTxt, bool hasCancelBtn)
 
 void BiLiMsgDlg::mSetTitle(QString titleStr)
 {
-	QDialog::setWindowTitle(titleStr); //跳过设置窗口标题
+	QDialog::setWindowTitle(titleStr); //璺宠繃璁剧疆绐楀彛鏍囬
 	BiLiIconMsgDlg::SetSubTitle(titleStr);
 }
 

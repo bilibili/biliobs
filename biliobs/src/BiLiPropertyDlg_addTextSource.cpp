@@ -61,8 +61,8 @@ static inline long long color_to_int(QColor color) {
 }
 
 void BiLiTextSourcePropertyDlg::setupSourcePropertiesUI() {
-	//×¢Òâ£ºÌí¼Ó¿Ø¼þÊ±£¬¼ÇµÃ¸ù¾ÝÐèÒªÔÚ×îºóÌí¼Ó¿Ø¼þµÄ±ä¶¯Í¨Öª¼àÊÓ£¡
-	//·ñÔò¿ÉÄÜµ¼ÖÂµãÁËÈ·¶¨Ö®ºóÉèÖÃÃ»ÓÐ±£´æ½øÈ¥
+	//æ³¨æ„ï¼šæ·»åŠ æŽ§ä»¶æ—¶ï¼Œè®°å¾—æ ¹æ®éœ€è¦åœ¨æœ€åŽæ·»åŠ æŽ§ä»¶çš„å˜åŠ¨é€šçŸ¥ç›‘è§†ï¼
+	//å¦åˆ™å¯èƒ½å¯¼è‡´ç‚¹äº†ç¡®å®šä¹‹åŽè®¾ç½®æ²¡æœ‰ä¿å­˜è¿›åŽ»
 
 	ui.PropertyNameLab->setText(tr("Text Property")); 
 
@@ -303,7 +303,7 @@ void BiLiTextSourcePropertyDlg::setupSourcePropertiesUI() {
 	DataToWidget(BILI_DATA_BOOL(), FromFileCheckBox, settings, "from_file");
 	obs_data_release(settings);
 
-	//ÎªÎÄ×ÖÔ´´´½¨filter
+	//ä¸ºæ–‡å­—æºåˆ›å»ºfilter
 	scrollFilter = obs_source_get_filter_by_name(mSrc, scroll_filter_id);
 	if (!scrollFilter)
 	{
@@ -319,9 +319,9 @@ void BiLiTextSourcePropertyDlg::setupSourcePropertiesUI() {
 
 	QObject::connect(OpacitySlider, &CircleSliderSlider::valueChanged, this, &BiLiTextSourcePropertyDlg::OnOpacitySliderChanged);
 
-	//¶ÁÈ¡filterÉèÖÃ
+	//è¯»å–filterè®¾ç½®
 	FilterDataToWidget(BILI_DATA_DOUBLE(), ScrollSpeedSlider, mSrc, scroll_filter_id, "speed_x");
-	//¶ÁÈ¡Í¸Ã÷¶ÈÉèÖÃ
+	//è¯»å–é€æ˜Žåº¦è®¾ç½®
 	settings = obs_source_get_settings(mSrc);
 	int64_t color1 = obs_data_get_int(settings, "color1");
 	obs_data_release(settings);
@@ -331,7 +331,7 @@ void BiLiTextSourcePropertyDlg::setupSourcePropertiesUI() {
 	ScrollSpeedValLabel->setText(QString("%1%").arg(ScrollSpeedSlider->value()));
 	OpacityValLabel->setText(QString("%1%").arg(OpacitySlider->value() * 100 / 255));
 
-	//Ìí¼Ó¼àÌý¿Ø¼þ±ä¶¯
+	//æ·»åŠ ç›‘å¬æŽ§ä»¶å˜åŠ¨
 	mChangeEvnetFilter->Watch({ PlainTextEdit, FontComboBox, /*ColorChangeBtn, */BoldStyleCheckBox, ItalicCheckBox, OpacitySlider, ScrollSpeedSlider, FromFileCheckBox, FilePathEdit  });
 	connect(mChangeEvnetFilter.get(), SIGNAL(OnChangedSignal()), this, SLOT(mSltOnSettingChanged()));
 }
@@ -378,7 +378,7 @@ void BiLiTextSourcePropertyDlg::mSltColorChangeBtn() {
 
 
 	colorVal = color_to_int(color1Color);
-	//set alpha = 255£¬Ç¿ÖÆÈ¥³ýÍ¸Ã÷
+	//set alpha = 255ï¼Œå¼ºåˆ¶åŽ»é™¤é€æ˜Ž
 	//color1Val |= 0xff000000;
 	btn->setProperty("color1ColorInt64", colorVal);
 	SetPushButtonBackgroundColor(btn, colorVal);

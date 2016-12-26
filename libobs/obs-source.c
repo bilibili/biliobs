@@ -2202,20 +2202,20 @@ static bool ready_async_frame(obs_source_t *source, uint64_t sys_time)
 #if DEBUG_ASYNC_FRAMES
 			blog(LOG_DEBUG, "timing jump");
 #endif
-			//ÉÏÃæµÄifÊÇ£º
-			//ÒòÎª frame_time = next_frame->timestamp£¬Ö®ºóframe = next_frame;  next_frame = next_frame->nextÁË
-			//ËùÒÔÊµ¼ÊÉÏÊÇ next_frame_time - frame_time > MAX_TS_VAR
+			//ä¸Šé¢çš„ifæ˜¯ï¼š
+			//å› ä¸º frame_time = next_frame->timestampï¼Œä¹‹åframe = next_frame;  next_frame = next_frame->nextäº†
+			//æ‰€ä»¥å®é™…ä¸Šæ˜¯ next_frame_time - frame_time > MAX_TS_VAR
 
 			//puts("skip frame~ 2 !");
 
-			//next_frameµÄtimestamp¿ÉÄÜĞ¡ÓÚframe_offset
-			//äÖÈ¾Ö¡£º -     -     -     -     -     -
-			//À´Ô´Ö¡£º -     | -       -       -       -
+			//next_frameçš„timestampå¯èƒ½å°äºframe_offset
+			//æ¸²æŸ“å¸§ï¼š -     -     -     -     -     -
+			//æ¥æºå¸§ï¼š -     | -       -       -       -
 			//               | |       |
 			//               | |   next_frame_ts
 			//               | frame_time
 			//           last_frame_ts
-			//È»ºóÉÏÃæÁ½¸öµÄ²î¾ÍÊÇ frame_offset
+			//ç„¶åä¸Šé¢ä¸¤ä¸ªçš„å·®å°±æ˜¯ frame_offset
 			source->last_frame_ts = next_frame->timestamp - frame_offset;
 		}
 
@@ -2892,7 +2892,7 @@ float obs_source_get_target_volume(obs_source_t *source, obs_source_t *target)
 	return info.vol;
 }
 
-/* ´òÊä³öflagÓÃµÄº¯Êı */
+/* æ‰“è¾“å‡ºflagç”¨çš„å‡½æ•° */
 static void obs_mark_filter_outref_flag_callback(obs_source_t* source, obs_source_t* filter, void* userData)
 {
 	if (userData)
@@ -2928,7 +2928,7 @@ void obs_mark_output_sources(bool always_mark_async_source)
 {
 	pthread_mutex_t sourceMutex = obs->data.sources_mutex;
 	pthread_mutex_lock(&sourceMutex);
-	//Çå³ıËùÓĞflag
+	//æ¸…é™¤æ‰€æœ‰flag
 	{
 		obs_source_t* source = obs->data.first_source;
 		while (source) {
@@ -2941,7 +2941,7 @@ void obs_mark_output_sources(bool always_mark_async_source)
 	}
 	pthread_mutex_unlock(&sourceMutex);
 
-	//ËùÓĞÒıÓÃµÄ´òflag
+	//æ‰€æœ‰å¼•ç”¨çš„æ‰“flag
 	int channel;
 	for (channel = 0; channel < MAX_CHANNELS; ++channel)
 	{

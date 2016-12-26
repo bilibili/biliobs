@@ -33,8 +33,8 @@ END_IMPL_PROPDLG(BiLiWindowSourcePropertyDlg, "window_capture");
 BiLiWindowSourcePropertyDlg::~BiLiWindowSourcePropertyDlg() {}
 
 void BiLiWindowSourcePropertyDlg::setupSourcePropertiesUI() {
-	//×¢Òâ£ºÌí¼Ó¿Ø¼şÊ±£¬¼ÇµÃ¸ù¾İĞèÒªÔÚ×îºóÌí¼Ó¿Ø¼şµÄ±ä¶¯Í¨Öª¼àÊÓ£¡
-	//·ñÔò¿ÉÄÜµ¼ÖÂµãÁËÈ·¶¨Ö®ºóÉèÖÃÃ»ÓĞ±£´æ½øÈ¥
+	//æ³¨æ„ï¼šæ·»åŠ æ§ä»¶æ—¶ï¼Œè®°å¾—æ ¹æ®éœ€è¦åœ¨æœ€åæ·»åŠ æ§ä»¶çš„å˜åŠ¨é€šçŸ¥ç›‘è§†ï¼
+	//å¦åˆ™å¯èƒ½å¯¼è‡´ç‚¹äº†ç¡®å®šä¹‹åè®¾ç½®æ²¡æœ‰ä¿å­˜è¿›å»
 
 	ui.PropertyNameLab->setText(tr("Window Property")); 
 
@@ -160,7 +160,7 @@ void BiLiWindowSourcePropertyDlg::setupSourcePropertiesUI() {
 	DataToWidget(BILI_DATA_BOOL(), ScreenShotCheckBox, settings, "is_limit_rect");
 	obs_data_release(settings);
 
-	//Ìí¼Ó¼àÌı¿Ø¼ş±ä¶¯
+	//æ·»åŠ ç›‘å¬æ§ä»¶å˜åŠ¨
 	mChangeEvnetFilter->Watch({ WindowNameComboBox, MouseCapCheckBox, ScreenShotCheckBox });
 	connect(mChangeEvnetFilter.get(), SIGNAL(OnChangedSignal()), this, SLOT(mSltOnSettingChanged()));
 }
@@ -200,7 +200,7 @@ void BiLiWindowSourcePropertyDlg::mOnScreenShotCheckBoxChanged(int state)
 
 	if (state == Qt::Checked)
 	{
-		//×Ô¶¯Ñ¡Ôñ´°¿Ú
+		//è‡ªåŠ¨é€‰æ‹©çª—å£
 		QObject::connect(App()->mGetMainWindow()->mAreaCap, &bili_area_cap::mSglSelectComplite, this, &BiLiWindowSourcePropertyDlg::mOnScreenShotComplete);
 	}
 }
@@ -221,7 +221,7 @@ void BiLiWindowSourcePropertyDlg::mOnScreenShotComplete(bool hasSelect)
 		window_priority priority = (window_priority)obs_data_get_int(srcSettings, "priority");
 		obs_data_release(srcSettings);
 
-		//Æ¥Åä´°¿ÚÁĞ±í
+		//åŒ¹é…çª—å£åˆ—è¡¨
 		bool exitLoopFlag = false;
 		for (int i = 0; i < wndCnt && exitLoopFlag == false; ++i)
 		{

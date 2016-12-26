@@ -12,8 +12,8 @@ OperTipDlg::OperTipDlg(QWidget *parent) :
     not_tip_checkBox_(0)
 {
     ui->setupUi(this);
-    //setWindowTitle(QStringLiteral("操作提示"));
-    setWindowTitle("\346\223\215\344\275\234\346\217\220\347\244\272"); /*操作提示*/
+    //setWindowTitle(QStringLiteral("鎿嶄綔鎻愮ず"));
+    setWindowTitle("\346\223\215\344\275\234\346\217\220\347\244\272"); /*鎿嶄綔鎻愮ず*/
     setWindowFlags(windowFlags() | Qt::FramelessWindowHint);
     setAttribute(Qt::WA_TranslucentBackground, true);
 

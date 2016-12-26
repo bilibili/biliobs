@@ -227,7 +227,7 @@ FILE_BAD:
 
     //query_->exec(g_begin);
 
-    /*Ê±¼ä*/
+    /*æ—¶é—´*/
 
     if (!query_->exec(QString("CREATE TABLE HEAD_TIME (timetamp TEXT)")))
         goto ERROR_RELEASE;

@@ -32,19 +32,19 @@ namespace wcs {
             volatile T *ref;
             pthread_mutex_t ref_lock_;
 
-            /*¼ÇÂ¼¶àÉÙ¸ö¶ÔÏó¶Ô´Ëref½øÐÐÒýÓÃ*/
+            /*è®°å½•å¤šå°‘ä¸ªå¯¹è±¡å¯¹æ­¤refè¿›è¡Œå¼•ç”¨*/
             volatile int ref_count_;
             pthread_mutex_t count_lock_;
         };
     private:
-        /*±£Ö¤ÈÎºÎ´æÔÚµÄÊµÀýÖÐ£¬ref²»Îª0*/
+        /*ä¿è¯ä»»ä½•å­˜åœ¨çš„å®žä¾‹ä¸­ï¼Œrefä¸ä¸º0*/
         Ref *ref;
 
     public:
         explicit WeakRef() : ref(0) {}
         bool init(T *r)
         {
-            /*¶ÔÓÚ ÎÞ²Î¹¹ÔìµÄ½øÐÐ³õÊ¼»¯,Ö®Ç°²»ÄÜ¿çÏß³ÌÊ¹ÓÃ*/
+            /*å¯¹äºŽ æ— å‚æž„é€ çš„è¿›è¡Œåˆå§‹åŒ–,ä¹‹å‰ä¸èƒ½è·¨çº¿ç¨‹ä½¿ç”¨*/
             ref = new Ref();
             if (pthread_mutex_init(&ref->count_lock_, 0)) {
                 delete ref;

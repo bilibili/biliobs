@@ -13,13 +13,13 @@ __declspec(selectany) std::wstring gBili_fileVersion;
 __declspec(selectany) std::string gBili_mid;
 __declspec(selectany) uint64_t gBili_expires;
 
-__declspec(selectany) uint64_t gBili_roomId; //´ËÊı¾İÖ»ÓĞÔÚOnRetryButtonClickedÖ´ĞĞÍê³ÉÖ®ºó²Å¿ÉÒÔÊ¹ÓÃ
-__declspec(selectany) std::string gBili_userLoginName; //µÇÂ¼¿òÀïÃæÊäÈëµÄ
-__declspec(selectany) std::string gBili_userName; //´ËÊı¾İÖ»ÓĞÔÚÖ÷´°¿Ú¹¹ÔìÀïÃæOnUserInfoGotµÚÒ»´Îµ÷ÓÃ¼°Ö®ºó²ÅÄÜÊ¹ÓÃ
-__declspec(selectany) std::string gBili_userFace; //´ËÊı¾İÖ»ÓĞÔÚÖ÷´°¿Ú¹¹ÔìÀïÃæOnUserInfoGotµÚÒ»´Îµ÷ÓÃ¼°Ö®ºó²ÅÄÜÊ¹ÓÃ
-__declspec(selectany) std::string gBili_pushServer; //´ËÊı¾İÔİÊ±Ã»ÔÚÓÃ
-__declspec(selectany) std::string gBili_pushPath; //´ËÊı¾İÔİÊ±Ã»ÔÚÓÃ
-__declspec(selectany) std::string gBili_danmakuServer; //µ¯Ä»·şÎñÆ÷µØÖ·
+__declspec(selectany) uint64_t gBili_roomId; //æ­¤æ•°æ®åªæœ‰åœ¨OnRetryButtonClickedæ‰§è¡Œå®Œæˆä¹‹åæ‰å¯ä»¥ä½¿ç”¨
+__declspec(selectany) std::string gBili_userLoginName; //ç™»å½•æ¡†é‡Œé¢è¾“å…¥çš„
+__declspec(selectany) std::string gBili_userName; //æ­¤æ•°æ®åªæœ‰åœ¨ä¸»çª—å£æ„é€ é‡Œé¢OnUserInfoGotç¬¬ä¸€æ¬¡è°ƒç”¨åŠä¹‹åæ‰èƒ½ä½¿ç”¨
+__declspec(selectany) std::string gBili_userFace; //æ­¤æ•°æ®åªæœ‰åœ¨ä¸»çª—å£æ„é€ é‡Œé¢OnUserInfoGotç¬¬ä¸€æ¬¡è°ƒç”¨åŠä¹‹åæ‰èƒ½ä½¿ç”¨
+__declspec(selectany) std::string gBili_pushServer; //æ­¤æ•°æ®æš‚æ—¶æ²¡åœ¨ç”¨
+__declspec(selectany) std::string gBili_pushPath; //æ­¤æ•°æ®æš‚æ—¶æ²¡åœ¨ç”¨
+__declspec(selectany) std::string gBili_danmakuServer; //å¼¹å¹•æœåŠ¡å™¨åœ°å€
 
 __declspec(selectany) std::string gBili_faceUrl;
 

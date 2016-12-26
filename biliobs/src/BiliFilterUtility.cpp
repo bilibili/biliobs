@@ -98,14 +98,14 @@ public:
 	{
 		std::unordered_set<std::string> existFiltersBefore;
 
-		//×¢£ºÏÖÔÚ»¹²»»á»Ö¸´Ë³Ğò£¡
+		//æ³¨ï¼šç°åœ¨è¿˜ä¸ä¼šæ¢å¤é¡ºåºï¼
 		for (PFilterBackupData& x : filtersBackupData)
 		{
 			x->RestoreToSource(source);
 			existFiltersBefore.insert(x->GetFilterName());
 		}
 
-		//É¾³ı¶à³öÀ´µÄfilter
+		//åˆ é™¤å¤šå‡ºæ¥çš„filter
 		std::unordered_set<std::string> existFiltersAfter;
 		for (OBSSource& filter : OBSEnumFilters(source))
 		{
@@ -114,7 +114,7 @@ public:
 
 		for (const std::string& filterName : existFiltersAfter)
 		{
-			//Èç¹û±£´æµÄÊ±ºòÃ»µÄÏÖÔÚÓĞÁË£¬¾ÍÉ¾µô
+			//å¦‚æœä¿å­˜çš„æ—¶å€™æ²¡çš„ç°åœ¨æœ‰äº†ï¼Œå°±åˆ æ‰
 			if (existFiltersBefore.find(filterName) == existFiltersBefore.end())
 			{
 				obs_source_t* filter = obs_source_get_filter_by_name(source, filterName.c_str());

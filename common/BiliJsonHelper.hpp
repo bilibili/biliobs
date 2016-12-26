@@ -10,14 +10,14 @@
 #include "../third_party/jansson/include/jansson.h"
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#pragma region(JSON²Ù×÷Ïà¹Ø)
+#pragma region(JSONæ“ä½œç›¸å…³)
 
 
 struct ThrowOnJsonError{};
 struct NoThrowOnJsonError{};
 
 //=======================================================
-//                 JSONÖ¸ÕëÊÍ·Å¹¤¾ßÀà
+//                 JSONæŒ‡é’ˆé‡Šæ”¾å·¥å…·ç±»
 //=======================================================
 struct JsonFreeT
 {
@@ -35,7 +35,7 @@ typedef std::unique_ptr<json_t, JsonFreeT> JsonPtr;
 
 
 //=======================================================
-//                 JSON·ÃÎÊÒì³£
+//                 JSONè®¿é—®å¼‚å¸¸
 //=======================================================
 class JsonDataError {};
 class JsonNoPath : public JsonDataError {};
@@ -60,7 +60,7 @@ public:
 };
 
 //=======================================================
-//                 JSONÂ·¾¶²éÕÒ
+//                 JSONè·¯å¾„æŸ¥æ‰¾
 //=======================================================
 inline json_t* GetPathNode(json_t* rootNode, const std::initializer_list<const char*>& args)
 {
@@ -78,7 +78,7 @@ inline json_t* GetPathNode(json_t* rootNode, const std::initializer_list<const c
 }
 
 //=======================================================
-//                 JSON²»Í¬ÀàĞÍÊı¾İ»ñÈ¡
+//                 JSONä¸åŒç±»å‹æ•°æ®è·å–
 //=======================================================
 
 template<int T>
@@ -184,8 +184,8 @@ public:
 
 	JsonArray(json_t* obj) : arrayNode(obj)
 	{
-		//ÒòÎªÒªÓÃÖÇÄÜÖ¸Õë´æÒ»·İÔÚ×Ô¼ºÕâ±ß
-		//¶øÕâÖÖÖÇÄÜÖ¸ÕëÔÚ¹¹ÔìµÄÊ±ºò²¢²»»áÌí¼ÓÒıÓÃ
+		//å› ä¸ºè¦ç”¨æ™ºèƒ½æŒ‡é’ˆå­˜ä¸€ä»½åœ¨è‡ªå·±è¿™è¾¹
+		//è€Œè¿™ç§æ™ºèƒ½æŒ‡é’ˆåœ¨æ„é€ çš„æ—¶å€™å¹¶ä¸ä¼šæ·»åŠ å¼•ç”¨
 		json_incref(obj);
 	}
 };
@@ -206,7 +206,7 @@ struct JsonValueType<JSON_ARRAY> : public JsonValueTypeBase<JSON_ARRAY>
 };
 
 //=======================================================
-//                 JSONÖ÷Àà
+//                 JSONä¸»ç±»
 //=======================================================
 struct BiliJson
 {
@@ -235,7 +235,7 @@ public:
 		json.reset(jsonObj);
 	}
 
-	//»ñÈ¡Ö¸¶¨Â·¾¶ÉÏµÄÖµ
+	//è·å–æŒ‡å®šè·¯å¾„ä¸Šçš„å€¼
 	template<int T>
 	typename JsonValueType<T>::T GetVal(const std::initializer_list<const char*>& args)
 	{
@@ -245,7 +245,7 @@ public:
 		return JsonValueType<T>().Get(node.get());
 	}
 
-	//»ñÈ¡Ö¸¶¨Â·¾¶µÄ½Úµã
+	//è·å–æŒ‡å®šè·¯å¾„çš„èŠ‚ç‚¹
 	JsonPtr GetNode(const std::initializer_list<const char*>& args)
 	{
 		json_t* node = GetPathNode(json.get(), args);
@@ -258,7 +258,7 @@ public:
 		}
 	}
 
-	//»ñÈ¡Ö¸¶¨Â·¾¶ÉÏµÄÖµ£¬²»»áÅ×Òì³£µÄ°æ±¾
+	//è·å–æŒ‡å®šè·¯å¾„ä¸Šçš„å€¼ï¼Œä¸ä¼šæŠ›å¼‚å¸¸çš„ç‰ˆæœ¬
 	template<int T>
 	bool TryGetVal(typename JsonValueType<T>::T* val, const std::initializer_list<const char*>& args)
 	{

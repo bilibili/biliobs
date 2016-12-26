@@ -26,8 +26,8 @@ BiLiImageSourcePropertyDlg::~BiLiImageSourcePropertyDlg() {}
 static const char* chromeKeyFilterId = "chroma_key_filter";
 
 void BiLiImageSourcePropertyDlg::setupSourcePropertiesUI() {
-	//×¢Òâ£ºÌí¼Ó¿Ø¼şÊ±£¬¼ÇµÃ¸ù¾İĞèÒªÔÚ×îºóÌí¼Ó¿Ø¼şµÄ±ä¶¯Í¨Öª¼àÊÓ£¡
-	//·ñÔò¿ÉÄÜµ¼ÖÂµãÁËÈ·¶¨Ö®ºóÉèÖÃÃ»ÓĞ±£´æ½øÈ¥
+	//æ³¨æ„ï¼šæ·»åŠ æ§ä»¶æ—¶ï¼Œè®°å¾—æ ¹æ®éœ€è¦åœ¨æœ€åæ·»åŠ æ§ä»¶çš„å˜åŠ¨é€šçŸ¥ç›‘è§†ï¼
+	//å¦åˆ™å¯èƒ½å¯¼è‡´ç‚¹äº†ç¡®å®šä¹‹åè®¾ç½®æ²¡æœ‰ä¿å­˜è¿›å»
 
 	ui.PropertyNameLab->setText(tr("Image Property"));
 
@@ -78,7 +78,7 @@ void BiLiImageSourcePropertyDlg::setupSourcePropertiesUI() {
     OpacitySliderHLayout->setContentsMargins(0, 20, 0, 0);
 
 
-	//Ìí¼ÓÂË¾µ
+	//æ·»åŠ æ»¤é•œ
 	chromaKeyFilter = obs_source_get_filter_by_name(mSrc, chromeKeyFilterId);
 	if (!chromaKeyFilter)
 	{
@@ -95,7 +95,7 @@ void BiLiImageSourcePropertyDlg::setupSourcePropertiesUI() {
 		obs_data_release(filterSettings);
 	}
 
-	//ÉèÖÃ»¬¶¯ÌõÏŞÖÆ
+	//è®¾ç½®æ»‘åŠ¨æ¡é™åˆ¶
 	obs_properties_t* props = obs_source_properties(mSrc);
 	if (props)
 	{
@@ -131,7 +131,7 @@ void BiLiImageSourcePropertyDlg::setupSourcePropertiesUI() {
 
 	OpacityValLabel->setText(QString("%1%").arg(OpacitySlider->value()));
 
-	//Ìí¼Ó¼àÌı¿Ø¼ş±ä¶¯
+	//æ·»åŠ ç›‘å¬æ§ä»¶å˜åŠ¨
 	mChangeEvnetFilter->Watch({ ImageNameLineEdit, OpacitySlider });
 }
 
@@ -148,7 +148,7 @@ int BiLiImageSourcePropertyDlg::acceptSourceProperties() {
 	obs_source_update(mSrc, settings);
 	obs_data_release(settings);
 
-	//Í¼Æ¬Èç¹û¶¯ÁË£¬ÒòÎªÍ¼Æ¬ÊÇÔÊĞí²»°´ÕÕ±ÈÀıËõ·ÅµÄ£¬ËùÒÔ¾ÍÖ±½Ó»Ö¸´³ÉºÍÀ´Ô´Ò»ÑùµÄ´óĞ¡
+	//å›¾ç‰‡å¦‚æœåŠ¨äº†ï¼Œå› ä¸ºå›¾ç‰‡æ˜¯å…è®¸ä¸æŒ‰ç…§æ¯”ä¾‹ç¼©æ”¾çš„ï¼Œæ‰€ä»¥å°±ç›´æ¥æ¢å¤æˆå’Œæ¥æºä¸€æ ·çš„å¤§å°
 	std::string oldFileName = obs_data_get_string(mBackupSettings, "file");
 	if (filePath != oldFileName.c_str()) {
 		vec2 oneScale;
@@ -173,7 +173,7 @@ void BiLiImageSourcePropertyDlg::mAddGifToMedia(QString gifPathStr)
 	obs_source_t *sceneSource = obs_get_output_source(0);
 	if (!sceneSource)
 		return;
-	obs_scene_t *scene = obs_scene_from_source(sceneSource); //²»»áÌí¼Óscene»òÕßsceneSourceµÄÒıÓÃ
+	obs_scene_t *scene = obs_scene_from_source(sceneSource); //ä¸ä¼šæ·»åŠ sceneæˆ–è€…sceneSourceçš„å¼•ç”¨
 	if (!scene)
 		return;
 
@@ -195,7 +195,7 @@ void BiLiImageSourcePropertyDlg::mAddGifToMedia(QString gifPathStr)
 	obs_data_release(settings);
 
 	obs_source_release(newSource);
-	obs_source_release(sceneSource); //ÔÚobs_scene_releaseÀïÃæ»á°Ñsource¸øÊÍ·Å
+	obs_source_release(sceneSource); //åœ¨obs_scene_releaseé‡Œé¢ä¼šæŠŠsourceç»™é‡Šæ”¾
 }
 
 void BiLiImageSourcePropertyDlg::OnOpacitySliderChanged(int val)

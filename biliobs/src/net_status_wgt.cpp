@@ -262,7 +262,7 @@ void NetStatusWgt::paintEvent(QPaintEvent *e)
 
 	return;
 
-	/*ÒÔÏÂÎªÌí¼ÓÔ²½Ç*/
+	/*ä»¥ä¸‹ä¸ºæ·»åŠ åœ†è§’*/
 
 	painter.setCompositionMode(QPainter::CompositionMode_Clear);
 	/*left top*/

@@ -217,7 +217,7 @@ static void wc_tick(void *data, float seconds)
 		RECT rectToCapture = rect;
 		if (wc->is_limit_rect)
 		{
-			//¼ÆËãrectToCaptureºÍlimit_rectµÄÏà½»²¿·Ö
+			//è®¡ç®—rectToCaptureå’Œlimit_rectçš„ç›¸äº¤éƒ¨åˆ†
 			int left = max(wc->limit_rect.left, rectToCapture.left);
 			int right = min(wc->limit_rect.right, rectToCapture.right);
 			int top = max(wc->limit_rect.top, rectToCapture.top);

@@ -31,7 +31,7 @@ private:
 	void initVolControl();
 	void destoryControl();
 
-	//ÒôÁ¿¿ØÖÆ
+	//éŸ³é‡æ§åˆ¶
 private slots:
 	/*0 ~ 100 * 10*/
 	void onVolSliderValChanged(int vol);

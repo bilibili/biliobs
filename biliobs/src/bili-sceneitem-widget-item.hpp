@@ -19,7 +19,7 @@ private:
 	QCheckBox* itemCheckBox;
 
 	/**
-	 * 限制label的内容长度， spacer为长度超过限制时的占位符 
+	 * 闄愬埗label鐨勫唴瀹归暱搴︼紝 spacer涓洪暱搴﹁秴杩囬檺鍒舵椂鐨勫崰浣嶇 
 	 */
 	void limitLabelContext(QLabel* label, const QString &ori_context, int context_len, const QString &spacer);
 	QLabel* itemLabel;

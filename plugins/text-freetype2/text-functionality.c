@@ -39,14 +39,14 @@ static FT_UInt FT_Get_Char_Index_Fallback(struct ft2_source* srcdata, FT_Face* f
 		if (face) *face = srcdata->font_face;
 		return r;
 	}
-	
+
 	r = FT_Get_Char_Index(srcdata->fallback_face, charcode);
 	if (r != 0)
 	{
 		if (face) *face = srcdata->fallback_face;
 		return r;
 	}
-	
+
 	if(face) *face = 0;
 	return 0;
 }
@@ -530,7 +530,7 @@ uint32_t get_ft2_text_width(wchar_t *text, struct ft2_source *srcdata)
 
 	len = wcslen(text);
 	for (size_t i = 0; i < len; i++) {
-		//遇到换行，重置当前行宽度
+		//閬囧埌鎹㈣锛岄噸缃綋鍓嶈瀹藉害
 		if (text[i] == L'\n')
 		{
 			w = 0;
@@ -549,7 +549,7 @@ uint32_t get_ft2_text_width(wchar_t *text, struct ft2_source *srcdata)
 			FT_Outline_EmboldenXY(&slot->outline, 0x80, 0x40);
 
 		w += slot->advance.x >> 6;
-		if (w > max_w) 
+		if (w > max_w)
 			max_w = w;
 	}
 

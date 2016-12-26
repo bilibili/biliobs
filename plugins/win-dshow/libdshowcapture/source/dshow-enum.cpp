@@ -187,8 +187,8 @@ static bool ClosestVideoMTCallback(ClosestVideoData &data,
 {
 	VideoInfo info;
 
-	//看起来当前的代码对MJPEG格式的支持有问题，故不对摄像头使用MJPEG格式
-	//注：如果遇上只支持MJPEG的摄像头，那么一定会因此出现黑屏
+	//鐪嬭捣鏉ュ綋鍓嶇殑浠ｇ爜瀵筂JPEG鏍煎紡鐨勬敮鎸佹湁闂锛屾晠涓嶅鎽勫儚澶翠娇鐢∕JPEG鏍煎紡
+	//娉細濡傛灉閬囦笂鍙敮鎸丮JPEG鐨勬憚鍍忓ご锛岄偅涔堜竴瀹氫細鍥犳鍑虹幇榛戝睆
 	if (mt.subtype == MEDIASUBTYPE_MJPG)
 		return true;
 

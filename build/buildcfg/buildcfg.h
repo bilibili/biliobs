@@ -3,23 +3,23 @@
 
 /*
 
-1   ´ò¿ª±¾¹¤³ÌµÄÖ÷×ÊÔ´ÎÄ¼ş£¬É¾³ıÔ­ÓĞµÄ°æ±¾ĞÅÏ¢£¬½«version.rcÌí¼Óµ½¹¤³Ì
+1   æ‰“å¼€æœ¬å·¥ç¨‹çš„ä¸»èµ„æºæ–‡ä»¶ï¼Œåˆ é™¤åŸæœ‰çš„ç‰ˆæœ¬ä¿¡æ¯ï¼Œå°†version.rcæ·»åŠ åˆ°å·¥ç¨‹
 
-2   ´ò¿ª build/buildcfg Ä¿Â¼ÏÂ¶ÔÓ¦µÄbuildcfg.hÎÄ¼ş
-	ÕÒµ½¸Ã¹¤³ÌËùÔÚÎ»ÖÃ£¬ÇëÓÃÓ¢Óï¶¨ÒåÒÔÏÂÈı¸öºê£¬Èç£º	
+2   æ‰“å¼€ build/buildcfg ç›®å½•ä¸‹å¯¹åº”çš„buildcfg.hæ–‡ä»¶
+	æ‰¾åˆ°è¯¥å·¥ç¨‹æ‰€åœ¨ä½ç½®ï¼Œè¯·ç”¨è‹±è¯­å®šä¹‰ä»¥ä¸‹ä¸‰ä¸ªå®ï¼Œå¦‚ï¼š	
 
 #ifdef BUILD_ETDBE // size : 20000
 	#pragma comment(linker, "/base:0x4DA00000")   
 	#pragma message("\t    ETDBE")
-	#define VI_FILEDESCRIPTION	"Data Import"	//ÎÄ¼şÃèÊö
-	#define VI_INTERNALNAME		"dbe"			//ÄÚ²¿Ãû³Æ
-	#define VI_ORIGINALFILENAME	"etdbe.dll"		//Ô­Ê¼DLLÎÄ¼şÃû
+	#define VI_FILEDESCRIPTION	"Data Import"	//æ–‡ä»¶æè¿°
+	#define VI_INTERNALNAME		"dbe"			//å†…éƒ¨åç§°
+	#define VI_ORIGINALFILENAME	"etdbe.dll"		//åŸå§‹DLLæ–‡ä»¶å
 #endif
 
-3.  ÔÚ ETDBE ¹¤³ÌÉèÖÃµÄ Resources Ò³µÄ"Preprocessor definitions"ÖĞÌí¼Ó±¾¹¤³Ì¶ÔÓ¦µÄºê£¬Èç BUILD_ETDBE
-	Çë×¢ÒâËùÓĞÅäÖÃ(Debug/Release/...)¶¼Òª¼ÓÉÏ
-	ÔÚ"Additionalresource include directories"ÖĞ¼ÓÉÏCoding/includeÄ¿Â¼µÄÏà¶ÔÎ»ÖÃ
-	Èç "../../builder/buildcfg"
+3.  åœ¨ ETDBE å·¥ç¨‹è®¾ç½®çš„ Resources é¡µçš„"Preprocessor definitions"ä¸­æ·»åŠ æœ¬å·¥ç¨‹å¯¹åº”çš„å®ï¼Œå¦‚ BUILD_ETDBE
+	è¯·æ³¨æ„æ‰€æœ‰é…ç½®(Debug/Release/...)éƒ½è¦åŠ ä¸Š
+	åœ¨"Additionalresource include directories"ä¸­åŠ ä¸ŠCoding/includeç›®å½•çš„ç›¸å¯¹ä½ç½®
+	å¦‚ "../../builder/buildcfg"
 	
  */
 
@@ -31,7 +31,7 @@
 
 #ifdef BUILD_BILIOBS_EXE
 #pragma message("\t    BILIOBS_EXE")
-#define VI_FILEDESCRIPTION	"Biliobs Ö÷Ä£¿é"
+#define VI_FILEDESCRIPTION	"Biliobs ä¸»æ¨¡å—"
 #define VI_INTERNALNAME		"biliobs.exe"
 #define VI_ORIGINALFILENAME	"biliobs.exe"
 #endif

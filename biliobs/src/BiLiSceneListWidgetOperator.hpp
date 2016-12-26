@@ -137,11 +137,11 @@ private:
 	};
 	typedef std::unique_ptr<SceneSignal> SceneSignalPtr;
 
-	//È«¾ÖĞÅºÅ¡¢³¡¾°ºÍ³¡¾°ÔªËØµÄĞÅºÅ¶ÔÏó
+	//å…¨å±€ä¿¡å·ã€åœºæ™¯å’Œåœºæ™¯å…ƒç´ çš„ä¿¡å·å¯¹è±¡
 	std::vector<OBSSignalPtr> globalSignals;
 	std::vector<SceneSignalPtr> sceneSignals;
 
-	//list itemºÍ×Ô¶¨ÒåitemµÄ¶ÔÓ¦¹ØÏµ
+	//list itemå’Œè‡ªå®šä¹‰itemçš„å¯¹åº”å…³ç³»
 	std::unordered_map<QListWidgetItem*, BiliSceneWidgetItem*> customItemsMap;
 	std::unordered_map<obs_sceneitem_t*, QListWidgetItem*> obsSceneItemsMap;
 

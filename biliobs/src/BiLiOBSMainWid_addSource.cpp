@@ -45,9 +45,9 @@ namespace {
 			obs_source_set_enabled(source, true);
 			obs_sceneitem_set_visible(newSceneItem, true);
 
-			int countDown = (1000 / 10) * 10; //µÈ´ı10Ãë£¬Èç¹û»¹Ã»³öÀ´Ôò·ÅÆú
+			int countDown = (1000 / 10) * 10; //ç­‰å¾…10ç§’ï¼Œå¦‚æœè¿˜æ²¡å‡ºæ¥åˆ™æ”¾å¼ƒ
 
-			//¶ÔasyncÀàĞÍ£¬ÏÈµÈ´ı³öÖ¡
+			//å¯¹asyncç±»å‹ï¼Œå…ˆç­‰å¾…å‡ºå¸§
 			if ((obs_source_get_output_flags(newSource) & OBS_SOURCE_ASYNC_VIDEO) == OBS_SOURCE_ASYNC_VIDEO)
 			{
 				struct obs_source_frame* frame;
@@ -64,7 +64,7 @@ namespace {
 				}
 			}
 
-			//µÈ¸ß¿í²»ÊÇ0ÒÔºó¼ÌĞøÏÂÒ»²½²Ù×÷
+			//ç­‰é«˜å®½ä¸æ˜¯0ä»¥åç»§ç»­ä¸‹ä¸€æ­¥æ“ä½œ
 			while (countDown-- > 0)
 			{
 				CHECK_IF_REMOVED;
@@ -75,7 +75,7 @@ namespace {
 
 			CHECK_IF_REMOVED;
 
-			//Èç¹ûÓĞ»¹Ã»Ö´ĞĞµÄupdate
+			//å¦‚æœæœ‰è¿˜æ²¡æ‰§è¡Œçš„update
 			while (countDown-- > 0)
 			{
 				CHECK_IF_REMOVED;
@@ -84,11 +84,11 @@ namespace {
 				os_sleep_ms(10);
 			}
 
-			//ÏÂÃæÕâ¶Î´úÂë·Åµ½Ö÷Ïß³ÌÔËĞĞ
-			//Èç¹ûÔÚÖ´ĞĞÕâ¶Î´úÂëµÄÊ±ºò£¬ÓÃ»§É¾³ıÁËÕâ¸ösceneitem
-			//ÄÇÃ´¸ã±ß¿òµÄÊ±ºò£¬¾ÍÏàµ±ÓÚµ÷ÕûÁËÒ»¸öÃ»ÓĞsceneµÄsceneitem
-			//Ëü¾Í»µÁË
-			//·Åµ½Ö÷Ïß³ÌÔËĞĞµÄ»°£¬ÓÃ»§¾ÍÃ»ÓĞ»ú»áÔÚÕâ¸öË²¼äÈ¥É¾
+			//ä¸‹é¢è¿™æ®µä»£ç æ”¾åˆ°ä¸»çº¿ç¨‹è¿è¡Œ
+			//å¦‚æœåœ¨æ‰§è¡Œè¿™æ®µä»£ç çš„æ—¶å€™ï¼Œç”¨æˆ·åˆ é™¤äº†è¿™ä¸ªsceneitem
+			//é‚£ä¹ˆæè¾¹æ¡†çš„æ—¶å€™ï¼Œå°±ç›¸å½“äºè°ƒæ•´äº†ä¸€ä¸ªæ²¡æœ‰sceneçš„sceneitem
+			//å®ƒå°±åäº†
+			//æ”¾åˆ°ä¸»çº¿ç¨‹è¿è¡Œçš„è¯ï¼Œç”¨æˆ·å°±æ²¡æœ‰æœºä¼šåœ¨è¿™ä¸ªç¬é—´å»åˆ 
 			InvokeDoAdjustType doAdjustTask;
 			doAdjustTask.isTimeOut = countDown <= 0;
 			doAdjustTask.mainWid = mainWid;
@@ -133,7 +133,7 @@ namespace {
 			}
 
 			obs_source_release(newSource);
-			obs_source_release(sceneSource); //ÔÚobs_scene_releaseÀïÃæ»á°Ñsource¸øÊÍ·Å
+			obs_source_release(sceneSource); //åœ¨obs_scene_releaseé‡Œé¢ä¼šæŠŠsourceç»™é‡Šæ”¾
 
 			return 0;
 		}
@@ -160,16 +160,16 @@ void BiLiOBSMainWid::mSltAddSourceButtonClicked()
 		const char* sourceId;
 		QString defaultName;
 	} defaultNameTable[] = {
-		"dshow_input", tr("Camera"),		//ÉãÏñÍ·
-		"game_capture", tr("Game"),			//ÓÎÏ·
-		"monitor_capture", tr("Monitor"),	//ÏÔÊ¾Æ÷
-		"window_capture", tr("Window"),		//´°¿Ú
-		"ffmpeg_source", tr("Media"),		//¶àÃ½Ìå
-		"text_ft2_source", tr("Text"),		//ÎÄ×Ö
-		"image_source", tr("Picture"),		//Í¼Æ¬
+		"dshow_input", tr("Camera"),		//æ‘„åƒå¤´
+		"game_capture", tr("Game"),			//æ¸¸æˆ
+		"monitor_capture", tr("Monitor"),	//æ˜¾ç¤ºå™¨
+		"window_capture", tr("Window"),		//çª—å£
+		"ffmpeg_source", tr("Media"),		//å¤šåª’ä½“
+		"text_ft2_source", tr("Text"),		//æ–‡å­—
+		"image_source", tr("Picture"),		//å›¾ç‰‡
 	};
 
-	//»ñÈ¡Ä¬ÈÏÃû
+	//è·å–é»˜è®¤å
 	int count = sizeof(defaultNameTable) / sizeof(*defaultNameTable);
 	int i;
 	for (i = 0; i < count; ++i)
@@ -183,14 +183,14 @@ void BiLiOBSMainWid::mSltAddSourceButtonClicked()
 		return;
 	}
 
-	//»ñÈ¡Ä¬ÈÏÃû×Ö
+	//è·å–é»˜è®¤åå­—
 	QString name(defaultNameTable[i].defaultName);
 	std::list<int> numberList;
 
-	//ÒªÆ¥ÅäµÄpattern
+	//è¦åŒ¹é…çš„pattern
 	std::string pattern = name.toStdString() + "%d%c";
 
-	//±éÀúËùÓĞsource»ñÈ¡ÀàËÆÃû×ÖµÄ
+	//éå†æ‰€æœ‰sourceè·å–ç±»ä¼¼åå­—çš„
 	for (OBSSource& source : OBSEnumSources())
 	{
 		const char* sourceName = obs_source_get_name(source);
@@ -202,9 +202,9 @@ void BiLiOBSMainWid::mSltAddSourceButtonClicked()
 		}
 	}
 
-	//ÅÅĞò
+	//æ’åº
 	numberList.sort();
-	//ÕÒÊı×Ö×îĞ¡µÄ
+	//æ‰¾æ•°å­—æœ€å°çš„
 	int nextNum = 1;
 	for (int x : numberList)
 		if (nextNum == x)
@@ -212,19 +212,19 @@ void BiLiOBSMainWid::mSltAddSourceButtonClicked()
 		else
 			break;
 
-	//×éºÏÃû×Ö
+	//ç»„åˆåå­—
 	name += lexical_cast<std::string>(nextNum).c_str();
-	obs_source_t* sceneSource = obs_get_output_source(0); //ÄÚ²¿»áÔö¼ÓsourceµÄÒıÓÃ£¬ËùÒÔĞèÒªÊÍ·Å
+	obs_source_t* sceneSource = obs_get_output_source(0); //å†…éƒ¨ä¼šå¢åŠ sourceçš„å¼•ç”¨ï¼Œæ‰€ä»¥éœ€è¦é‡Šæ”¾
 	if (!sceneSource)
 		return;
 
-	obs_scene_t* scene = obs_scene_from_source(sceneSource); //²»»áÌí¼Óscene»òÕßsceneSourceµÄÒıÓÃ£¬ËùÒÔ²»ĞèÒªÊÍ·Å
+	obs_scene_t* scene = obs_scene_from_source(sceneSource); //ä¸ä¼šæ·»åŠ sceneæˆ–è€…sceneSourceçš„å¼•ç”¨ï¼Œæ‰€ä»¥ä¸éœ€è¦é‡Šæ”¾
 	if (!scene)
 		return;
 
 	obs_data_t* presetParam = NULL;
 
-	//ÎÄ×ÖÀ´Ô´Ä¬ÈÏÉèÖÃ
+	//æ–‡å­—æ¥æºé»˜è®¤è®¾ç½®
 	if (strSourceId == "text_ft2_source")
 	{
 		presetParam = obs_data_create();
@@ -242,12 +242,12 @@ void BiLiOBSMainWid::mSltAddSourceButtonClicked()
 	if (presetParam)
 		obs_data_release(presetParam);
 
-	//obs_load_sourcesµÄÂß¼­£º
-	//1¡¢¼ÓÔØËùÓĞsource
-	//2¡¢¼ÓÔØºóobs_add_source£¬È»ºóÊÍ·Å
-	//3¡¢µ÷ÓÃsourceµÄload·½·¨£¬Êµ¼ÊÉÏÊÇ°ÑsceneºÍsource¹ØÁªÆğÀ´£¬ÓÃscene_add
-	//4¡¢scene_addµ÷ÓÃÖ®ºóÊÍ·Åsource
-	//½ö¹©²Î¿¼£¬Õâ±ßÒ²ÓÃÀàËÆµÄ·½·¨Ìí¼Ó
+	//obs_load_sourcesçš„é€»è¾‘ï¼š
+	//1ã€åŠ è½½æ‰€æœ‰source
+	//2ã€åŠ è½½åobs_add_sourceï¼Œç„¶åé‡Šæ”¾
+	//3ã€è°ƒç”¨sourceçš„loadæ–¹æ³•ï¼Œå®é™…ä¸Šæ˜¯æŠŠsceneå’Œsourceå…³è”èµ·æ¥ï¼Œç”¨scene_add
+	//4ã€scene_addè°ƒç”¨ä¹‹åé‡Šæ”¾source
+	//ä»…ä¾›å‚è€ƒï¼Œè¿™è¾¹ä¹Ÿç”¨ç±»ä¼¼çš„æ–¹æ³•æ·»åŠ 
 	obs_add_source(newSource);
 	obs_source_set_enabled(newSource, false);
 	obs_sceneitem_t *newSceneItem = obs_scene_add(scene, newSource);
@@ -258,11 +258,11 @@ void BiLiOBSMainWid::mSltAddSourceButtonClicked()
 	BiLiPropertyDlg *pDlg = dlgFactory->Create(name, newSceneItem, true, this);
 	pDlg->setAttribute(Qt::WA_DeleteOnClose);
 
-	//Ìí¼ÓÒıÓÃÈ»ºóËÍµ½Ïß³ÌÀï
+	//æ·»åŠ å¼•ç”¨ç„¶åé€åˆ°çº¿ç¨‹é‡Œ
 	obs_source_addref(newSource);
 	obs_sceneitem_addref(newSceneItem);
 
-	//¶Ô»°¿ò¹Ø±ÕÊ±ºòÔËĞĞµÄ
+	//å¯¹è¯æ¡†å…³é—­æ—¶å€™è¿è¡Œçš„
 	OnPropDlgFinishedType onDlgFinished;
 	onDlgFinished.newSource = newSource;
 	onDlgFinished.newSceneItem = newSceneItem;
@@ -282,7 +282,7 @@ void BiLiOBSMainWid::mOnSourceAdded_DoAdjust(obs_sceneitem_t* newSceneItem, bool
 
 	obs_source_t* newSource = obs_sceneitem_get_source(newSceneItem);
 
-	//Èç¹ûÀ´Ô´³¬¹ıÔ¤ÀÀ´óĞ¡Ôò×Ô¶¯Ëõ·Å
+	//å¦‚æœæ¥æºè¶…è¿‡é¢„è§ˆå¤§å°åˆ™è‡ªåŠ¨ç¼©æ”¾
 	if (!isTimeOut)
 	{
 		int baseCX = config_get_uint(mBasicConfig, "Video", "BaseCX");
@@ -301,7 +301,7 @@ void BiLiOBSMainWid::mOnSourceAdded_DoAdjust(obs_sceneitem_t* newSceneItem, bool
 	bound.y = obs_source_get_base_height(newSource);
 	obs_sceneitem_set_bounds(newSceneItem, &bound);
 
-	//¶ÔÎÄ×ÖÔÊĞí²»°´±ÈÀıÍÏ±ß¿ò£¬µ«ÊÇÊµ¼ÊÄÚÈİ²»±äĞÎ
+	//å¯¹æ–‡å­—å…è®¸ä¸æŒ‰æ¯”ä¾‹æ‹–è¾¹æ¡†ï¼Œä½†æ˜¯å®é™…å†…å®¹ä¸å˜å½¢
 	if (!isTimeOut && obs_source_get_id(newSource) == std::string("text_ft2_source"))
 	{
 		obs_data_t *settings = obs_source_get_settings(newSource);

@@ -1249,7 +1249,7 @@ static inline bool capture_valid(struct game_capture *gc)
 {
 	if (!gc->dwm_capture && !IsWindow(gc->window))
 	       return false;
-	
+
 	return !object_signalled(gc->target_process);
 }
 
@@ -1548,10 +1548,10 @@ static obs_properties_t *game_capture_properties(void *data)
 	obs_property_list_add_string(p, "", "");
 
 	/*
-	Ê¹ÓÃ¸¨Öú½ø³Ì¹ıÂËµôÈ·ÈÏ²»º¬ÓĞd3d»òÕßopenglÄ£¿éµÄ½ø³Ì
-	ÔÚ64Î»ÏµÍ³ÏÂ£¬32Î»µÄÖ±²¥¼§ÎŞ·¨»ñµÃ64Î»½ø³ÌÖĞµÄÄ£¿éÁĞ±íµÈĞÅÏ¢
-	ËùÒÔÒªÓÃ×¨ÃÅµÄ64Î»³ÌĞòÀ´»ñÈ¡
-	»ñÈ¡µ½µÄ½á¹ûÍ¨¹ıÄäÃû¹ÜµÀ´«»ØÀ´
+	ä½¿ç”¨è¾…åŠ©è¿›ç¨‹è¿‡æ»¤æ‰ç¡®è®¤ä¸å«æœ‰d3dæˆ–è€…openglæ¨¡å—çš„è¿›ç¨‹
+	åœ¨64ä½ç³»ç»Ÿä¸‹ï¼Œ32ä½çš„ç›´æ’­æœºæ— æ³•è·å¾—64ä½è¿›ç¨‹ä¸­çš„æ¨¡å—åˆ—è¡¨ç­‰ä¿¡æ¯
+	æ‰€ä»¥è¦ç”¨ä¸“é—¨çš„64ä½ç¨‹åºæ¥è·å–
+	è·å–åˆ°çš„ç»“æœé€šè¿‡åŒ¿åç®¡é“ä¼ å›æ¥
 	*/
 	const int pidCountLimit = 4096;
 	DWORD* pids;
@@ -1587,7 +1587,7 @@ static obs_properties_t *game_capture_properties(void *data)
 				CloseHandle(hPipeWrite);
 
 				/*
-				¶ÁÈ¡½ø³ÌidÁĞ±í£¬Èô¸É¸öDWORDÖµ
+				è¯»å–è¿›ç¨‹idåˆ—è¡¨ï¼Œè‹¥å¹²ä¸ªDWORDå€¼
 				*/
 				while (pidCount < pidCountLimit)
 				{

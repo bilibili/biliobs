@@ -118,14 +118,14 @@ obs_data_array_t *BiLiOBSMainWid::mSaveSceneListOrder() {
 	obs_source_t* currentScene = obs_get_output_source(0);
 	std::list<std::string> tmpSceneOrder;
 
-	//»ñÈ¡ËùÓĞ³¡¾°
+	//è·å–æ‰€æœ‰åœºæ™¯
 	for (OBSSource& src : OBSEnumSources())
 	{
 		if (strcmp(obs_source_get_id(src), "scene") == 0)
 			tmpSceneOrder.push_back(obs_source_get_name(src));
 	}
 
-	//µ±Ç°³¡¾°·ÅÔÚµÚÒ»¸ö
+	//å½“å‰åœºæ™¯æ”¾åœ¨ç¬¬ä¸€ä¸ª
 	if (currentScene)
 	{
 		std::string currentSceneName = obs_source_get_name(currentScene);
@@ -135,7 +135,7 @@ obs_data_array_t *BiLiOBSMainWid::mSaveSceneListOrder() {
 		tmpSceneOrder.push_front(obs_source_get_name(currentScene));
 	}
 
-	//±£´æ³¡¾°Ë³Ğò
+	//ä¿å­˜åœºæ™¯é¡ºåº
 	for (auto& x : tmpSceneOrder) {
 		obs_data_t *data = obs_data_create();
 		obs_data_set_string(data, "name", x.c_str());
@@ -182,7 +182,7 @@ void BiLiOBSMainWid::SaveScene()
 
 	std::list<obs_scene_t*> scenes;
 
-	//ÒÆ³ıÎ´Ê¹ÓÃµÄsource
+	//ç§»é™¤æœªä½¿ç”¨çš„source
 	for (OBSSource& source : OBSEnumSources())
 	{
 		obs_scene_t* scene = obs_scene_from_source(source);
@@ -192,15 +192,15 @@ void BiLiOBSMainWid::SaveScene()
 
 	std::list<obs_source_t*> sourcesToRemove;
 
-	//±éÀúËùÓĞsource£¬ÕÒ³öÓĞÔÚ³¡¾°ÖĞ³öÏÖµÄ£¬ÆäËûÉ¾µô
+	//éå†æ‰€æœ‰sourceï¼Œæ‰¾å‡ºæœ‰åœ¨åœºæ™¯ä¸­å‡ºç°çš„ï¼Œå…¶ä»–åˆ æ‰
 	for (OBSSource& source : OBSEnumSources())
 	{
 		if (obs_scene_from_source(source) == 0)
 		{
-			//Èç¹ûÊÇ³¡¾°ÄÇÃ´¾Í²»Ö´ĞĞÕâÀïÃæµÄ´úÂë£¬Ö»¶Ô³¡¾°ÔªËØÖ´ĞĞÀïÃæµÄ´úÂë
+			//å¦‚æœæ˜¯åœºæ™¯é‚£ä¹ˆå°±ä¸æ‰§è¡Œè¿™é‡Œé¢çš„ä»£ç ï¼Œåªå¯¹åœºæ™¯å…ƒç´ æ‰§è¡Œé‡Œé¢çš„ä»£ç 
 			bool isReferred = false;
 
-			//±éÀúÃ¿¸ö³¡¾°ÀïµÄÈ«²¿source£¬¿´¿´ÓĞÃ»ÓĞµ±Ç°µÄ
+			//éå†æ¯ä¸ªåœºæ™¯é‡Œçš„å…¨éƒ¨sourceï¼Œçœ‹çœ‹æœ‰æ²¡æœ‰å½“å‰çš„
 			for (obs_scene_t* scene : scenes)
 			{
 				for (OBSSceneItem& sceneItem : OBSEnumSceneItems(scene))
@@ -208,29 +208,29 @@ void BiLiOBSMainWid::SaveScene()
 					obs_source_t* sceneItemSource = obs_sceneitem_get_source(sceneItem);
 					if (sceneItemSource == source)
 					{
-						//ÕÒµ½ÁË£¬±ê¼ÇÕÒµ½£¬²¢Í£Ö¹µ±Ç°²éÕÒ
+						//æ‰¾åˆ°äº†ï¼Œæ ‡è®°æ‰¾åˆ°ï¼Œå¹¶åœæ­¢å½“å‰æŸ¥æ‰¾
 						isReferred = true;
 						break;
 					}
 				}
 
-				//Èç¹ûÒÑ¾­ÕÒµ½£¬¾Í²»ĞèÒªÔÚÏÂÒ»¸ö³¡¾°ÖĞÕÒ
+				//å¦‚æœå·²ç»æ‰¾åˆ°ï¼Œå°±ä¸éœ€è¦åœ¨ä¸‹ä¸€ä¸ªåœºæ™¯ä¸­æ‰¾
 				if (isReferred)
 					break;
 			}
 
-			//Ã»±»ÒıÓÃµÄ·Åµ½´ıÉ¾³ıÀï
+			//æ²¡è¢«å¼•ç”¨çš„æ”¾åˆ°å¾…åˆ é™¤é‡Œ
 			if (isReferred == false)
 				sourcesToRemove.push_back(source);
 		}
 	}
 
-	//É¾
+	//åˆ 
 	for (auto x : sourcesToRemove)
 		obs_source_remove(x);
 
 
-	//±£´æ
+	//ä¿å­˜
 	sceneData = BiliSceneConfig::Get();
 	if (sceneData)
 	{
@@ -336,7 +336,7 @@ void BiLiOBSMainWid::mLoad(const char *file)
 
 void BiLiOBSMainWid::loadImgAtNoItems()
 {
-	/*»ñÈ¡·Ö±æÂÊ*/
+	/*è·å–åˆ†è¾¨ç‡*/
 	uint width = config_get_uint(mBasicConfig, "Video", "BaseCX");
 	uint height = config_get_uint(mBasicConfig, "Video", "BaseCY");
 
@@ -353,7 +353,7 @@ void BiLiOBSMainWid::LoadScene()
 		obs_data_release(sceneData);
 	}
 
-	//Èç¹û¼ÓÔØ½øÀ´µÄ³¡¾°²»¹»3¸ö£¬¾Í²¹µ½Èı¸ö
+	//å¦‚æœåŠ è½½è¿›æ¥çš„åœºæ™¯ä¸å¤Ÿ3ä¸ªï¼Œå°±è¡¥åˆ°ä¸‰ä¸ª
 	std::string firstAddedScene;
 	int sceneCount = 0;
 	for (OBSSource& src : OBSEnumSources())
@@ -407,7 +407,7 @@ void BiLiOBSMainWid::LoadScene()
 		obs_source_release(currentOutputSource);
 	}
 
-	//¸üĞÂÁĞ±í¿Ø¼ş
+	//æ›´æ–°åˆ—è¡¨æ§ä»¶
 	sceneListWidgetOperator->NotifyCurrentSceneChanged();
 }
 

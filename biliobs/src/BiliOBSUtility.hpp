@@ -25,7 +25,7 @@ public:
 class BiliSceneConfig
 {
 public:
-	//²»°üº¬order£¡
+	//ä¸åŒ…å«orderï¼
 	static obs_data_t* Get();
 	static void Set(obs_data_t* data);
 };

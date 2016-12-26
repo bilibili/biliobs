@@ -13,7 +13,7 @@
 #include <stdint.h>
 
 //=======================================================
-//          Ö§³ÖµÄÅäÖÃÊı¾İµÄÀàĞÍºÍ¿Ø¼şÀàĞÍ
+//          æ”¯æŒçš„é…ç½®æ•°æ®çš„ç±»å‹å’Œæ§ä»¶ç±»å‹
 //=======================================================
 struct BILI_CONFIG_INT {};
 struct BILI_CONFIG_UINT {};
@@ -43,14 +43,14 @@ std::string config_get_default_stdstring(const config_t* config, const char* sec
 void config_set_stdstring(config_t* config, const char* section, const char* key, std::string val);
 
 //=======================================================
-//              ×Ö·û´®ºÍ¶ş½øÖÆÊı¾İ»¥Ïà×ª»»
+//              å­—ç¬¦ä¸²å’ŒäºŒè¿›åˆ¶æ•°æ®äº’ç›¸è½¬æ¢
 //=======================================================
 std::vector<char> BiliStrToBin(const std::string& str);
 std::string BiliBinToStr(const std::vector<char>& data);
 
 
 //=======================================================
-//                  ×Ü²Ù×÷º¯Êı
+//                  æ€»æ“ä½œå‡½æ•°
 //=======================================================
 
 template<typename T> class qVPtr{

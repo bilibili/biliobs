@@ -38,7 +38,7 @@ BiliSceneWidgetItem::BiliSceneWidgetItem(const char* name, obs_scene_t* pScene, 
 	itemLayout->addWidget(itemLabel);
 
 	//itemLabel->setText(name);
-	limitLabelContext(itemLabel, itemLabelFullText, label_context_length_restriction, QStringLiteral("¡­"));
+	limitLabelContext(itemLabel, itemLabelFullText, label_context_length_restriction, QStringLiteral("â€¦"));
 
 	setLayout(itemLayout);
 
@@ -59,7 +59,7 @@ void BiliSceneWidgetItem::setName(const char* newName)
 {
 	//itemLabel->setText(newName);
 	itemLabelFullText = QString(newName);
-	limitLabelContext(itemLabel, itemLabelFullText, label_context_length_restriction, QStringLiteral("¡­"));
+	limitLabelContext(itemLabel, itemLabelFullText, label_context_length_restriction, QStringLiteral("â€¦"));
 }
 
 bool BiliSceneWidgetItem::getChecked()

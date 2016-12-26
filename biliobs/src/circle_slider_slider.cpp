@@ -86,7 +86,7 @@ void CircleSliderSlider::mousePressEvent(QMouseEvent *e)
         btn_pressed_ = true;
         QPoint pix_pos = btnPos();
         if (ps.x() < pix_pos.x() || ps.x() >= pix_pos.x() + btn_size_.width()) {
-            /*Î»ÓÚ Êó±êÎ»ÖÃÎª btn Ö®Íâ*/
+            /*ä½äº é¼ æ ‡ä½ç½®ä¸º btn ä¹‹å¤–*/
 
             if (ps.x() < btn_size_.width() / 2) {
                 pos_on_move_ = ps.x();

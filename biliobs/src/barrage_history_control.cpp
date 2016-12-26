@@ -72,14 +72,14 @@ void BarrageHistoryControl::parseMsg(const QDate &cur_date, const QString &msg, 
 
         if (list[3] == "s") {
             html.append("<font color=\"#ff99ff\" style=\"font-size:14px; font-family:Microsoft YaHei \">");
-            html.append(QStringLiteral("¡¾Ö÷¡¿"));
+            html.append(QStringLiteral("ã€ä¸»ã€‘"));
         }
         else {
             html.append("<font color=\"#4fc1e9\" style=\"font-size:14px; font-family:Microsoft YaHei \">");
             if (list[3] == "f")
-                html.append(QStringLiteral("¡¾·¿¡¿"));
+                html.append(QStringLiteral("ã€æˆ¿ã€‘"));
             else if (list[3] == "s")
-                html.append(QStringLiteral("¡¾Ò¯¡¿"));
+                html.append(QStringLiteral("ã€çˆ·ã€‘"));
         }
 
         html.append(' ');

@@ -60,10 +60,10 @@ struct IHotkeyPair
 
 	~IHotkeyPair() {}
 
-	std::string hotkeyName; //¶¼Òª£¬ÓÃÓÚÆ¥Åä¿ì½İ¼üÃû
-	obs_key_combination_t hotkey; //loadµÄÊ±ºòÊÇÊä³ö£¬saveµÄÊ±ºòÊÇÊäÈë
-	obs_hotkey_id hotkeyId; //loadµÄÊ±ºòÊÇÊä³ö£¬saveµÄÊ±ºòÃ»ÓÃµ½
-	bool isChanged; //±íÊ¾ÔÚsave»òÕßloadÀïÓĞÃ»ÓĞ²Ù×÷¹ı
+	std::string hotkeyName; //éƒ½è¦ï¼Œç”¨äºåŒ¹é…å¿«æ·é”®å
+	obs_key_combination_t hotkey; //loadçš„æ—¶å€™æ˜¯è¾“å‡ºï¼Œsaveçš„æ—¶å€™æ˜¯è¾“å…¥
+	obs_hotkey_id hotkeyId; //loadçš„æ—¶å€™æ˜¯è¾“å‡ºï¼Œsaveçš„æ—¶å€™æ²¡ç”¨åˆ°
+	bool isChanged; //è¡¨ç¤ºåœ¨saveæˆ–è€…loadé‡Œæœ‰æ²¡æœ‰æ“ä½œè¿‡
 
 	bool isLast;
 
@@ -179,7 +179,7 @@ struct SourceHotkeyPair : public FrontendHotkeyPair
 	{
 	}
 
-	obs_source_t* source; //¶¼Òª
+	obs_source_t* source; //éƒ½è¦
 
 	void* PrepareData(obs_hotkey_binding_t* binding) override
 	{
@@ -225,7 +225,7 @@ struct SourceHotkeyPair : public FrontendHotkeyPair
 		if (isChanged == false)
 		{
 			isChanged = true;
-			//ÓĞ¿ÉÄÜÊÇÒªÉ¾µôµÄ¡­¡­»á½øÕâÀï
+			//æœ‰å¯èƒ½æ˜¯è¦åˆ æ‰çš„â€¦â€¦ä¼šè¿›è¿™é‡Œ
 			HotkeyManager::GetInstance()->UnregisterSource(source, hotkeyName.c_str());
 
 			if (hotkey.key != OBS_KEY_NONE)
@@ -335,8 +335,8 @@ HotkeySettingWid::HotkeySettingWid(ConfigFile& config, QWidget *parent)
 		obs_source_release(systemAudioSource);
 	}
 
-	//³¡¾°ÇĞ»»²¿·Ö
-	//ÁĞ³öËùÓĞ³¡¾°Ô´²¢ÇÒ°´ÕÕÃû×ÖÅÅĞò
+	//åœºæ™¯åˆ‡æ¢éƒ¨åˆ†
+	//åˆ—å‡ºæ‰€æœ‰åœºæ™¯æºå¹¶ä¸”æŒ‰ç…§åå­—æ’åº
 	std::vector<OBSSource> scenes;
 	for (OBSSource source : OBSEnumSources())
 	{
@@ -345,7 +345,7 @@ HotkeySettingWid::HotkeySettingWid(ConfigFile& config, QWidget *parent)
 	}
 	std::sort(scenes.begin(), scenes.end(), SceneComaprer);
 
-	//Ìí¼Ó¿Ø¼şÁĞ±í
+	//æ·»åŠ æ§ä»¶åˆ—è¡¨
 	for (OBSSource source : scenes)
 	{
         if (scene_not_null) {
@@ -363,7 +363,7 @@ HotkeySettingWid::HotkeySettingWid(ConfigFile& config, QWidget *parent)
         scene_not_null = true;
 	}
 
-	//¿ª¹ØÖ±²¥ºÍÂ¼Ïñ
+	//å¼€å…³ç›´æ’­å’Œå½•åƒ
 	struct
 	{
 		const char* hotkeyName;
@@ -390,8 +390,8 @@ HotkeySettingWid::HotkeySettingWid(ConfigFile& config, QWidget *parent)
 		ui.broadcastHotkeyListLayout->addWidget(item);
 	}
 
-	//¶ÁÈ¡¸÷ÖÖÅäÖÃ
-	// index´ú±íµ±Ç°¶ÁÈ¡µÄÀàĞÍ£¬²»Í¬ÀàĞÍµÄ¿ì½İ¼ü·Ö±ğ¶ÁÈ¡
+	//è¯»å–å„ç§é…ç½®
+	// indexä»£è¡¨å½“å‰è¯»å–çš„ç±»å‹ï¼Œä¸åŒç±»å‹çš„å¿«æ·é”®åˆ†åˆ«è¯»å–
 	int index = 1;
 	bool exitFlag = false;
 
@@ -416,7 +416,7 @@ HotkeySettingWid::HotkeySettingWid(ConfigFile& config, QWidget *parent)
 			break;
 
 		case 2:
-			//Ç°¶Ë¿ì½İ¼üÅäÖÃ£¨¿ªÊ¼ºÍÍ£Ö¹Ö±²¥»òÂ¼ÖÆ£©
+			//å‰ç«¯å¿«æ·é”®é…ç½®ï¼ˆå¼€å§‹å’Œåœæ­¢ç›´æ’­æˆ–å½•åˆ¶ï¼‰
 			for (HotkeyItemWid* hotkeyItem : GetHotkeyItems({ SRCTYPE_FRONTEND }))
 			{
 				FrontendHotkeyPair* fhp = new FrontendHotkeyPair();
@@ -437,10 +437,10 @@ HotkeySettingWid::HotkeySettingWid(ConfigFile& config, QWidget *parent)
 
 		if (hotkeyPairs.size() > 0)
 		{
-			//¶ÁÈ¡ÅäÖÃ
+			//è¯»å–é…ç½®
 			obs_enum_hotkey_bindings(&LoadHotkeyCallback, &hotkeyPairs[0]);
 
-			//ÏÔÊ¾ÔÚ½çÃæ
+			//æ˜¾ç¤ºåœ¨ç•Œé¢
 			for (IHotkeyPair* hp : hotkeyPairs)
 			{
 				if (hp->userData != 0)
@@ -450,7 +450,7 @@ HotkeySettingWid::HotkeySettingWid(ConfigFile& config, QWidget *parent)
 				}
 			}
 		}
-		//ÊÍ·Å×ÊÔ´
+		//é‡Šæ”¾èµ„æº
 		for (IHotkeyPair* hp : hotkeyPairs)
 		{
 			delete hp;
@@ -512,7 +512,7 @@ std::vector<HotkeyItemWid*> HotkeySettingWid::GetHotkeyItems(std::initializer_li
 
 bool HotkeySettingWid::SaveConfig()
 {
-	//¼ì²éÄÚ²¿ÓĞÃ»ÓĞÖØ¸´
+	//æ£€æŸ¥å†…éƒ¨æœ‰æ²¡æœ‰é‡å¤
 	std::list<obs_key_combination_t> hotkeyCheckList;
 	for (HotkeyItemWid* hotkeyItem : GetHotkeyItems())
 	{
@@ -521,7 +521,7 @@ bool HotkeySettingWid::SaveConfig()
 		{
 			if (std::find(hotkeyCheckList.begin(), hotkeyCheckList.end(), hotkey) != hotkeyCheckList.end())
 			{
-				//´¦ÀíÖØ¸´
+				//å¤„ç†é‡å¤
 				//BiLiMsgDlg msgDlg;
 				//msgDlg.mSetMsgTxtAndBtn(tr("Duplicated hotkey detected."), false);
 				//msgDlg.mSetTitle(tr("Error"));
@@ -537,7 +537,7 @@ bool HotkeySettingWid::SaveConfig()
 		}
 	}
 
-	//¼ì²éºÍÏµÍ³ÓĞÃ»ÓĞÖØ¸´µÄ
+	//æ£€æŸ¥å’Œç³»ç»Ÿæœ‰æ²¡æœ‰é‡å¤çš„
 	static ATOM winHotkeyId = GlobalAddAtom(TEXT("for_hotkey_dup_chk_use"));
 	for (obs_key_combination_t& hotkey : hotkeyCheckList)
 	{
@@ -551,7 +551,7 @@ bool HotkeySettingWid::SaveConfig()
 
 		if (RegisterHotKey(NULL, winHotkeyId, winModifier, obs_key_to_virtual_key(hotkey.key)) == 0)
 		{
-			//´¦ÀíÖØ¸´µÄ
+			//å¤„ç†é‡å¤çš„
 			//BiLiMsgDlg msgDlg;
 			//msgDlg.mSetMsgTxtAndBtn(tr("Duplicated hotkey with other software."), false);
 			//msgDlg.mSetTitle(tr("Error"));
@@ -569,11 +569,11 @@ bool HotkeySettingWid::SaveConfig()
 		UnregisterHotKey(NULL, winHotkeyId);
 	}
 
-	//È¥µôÏûÏ¢¶ÓÁĞÖĞ¿ÉÄÜ³öÏÖµÄ¿ì½İ¼üÏûÏ¢
+	//å»æ‰æ¶ˆæ¯é˜Ÿåˆ—ä¸­å¯èƒ½å‡ºç°çš„å¿«æ·é”®æ¶ˆæ¯
 	MSG msg;
 	while (PeekMessage(&msg, 0, WM_HOTKEY, WM_HOTKEY, PM_REMOVE) > 0);
 
-	//±£´æ¿ì½İ¼ü£¨¸üĞÂ»òÌí¼Ó£©
+	//ä¿å­˜å¿«æ·é”®ï¼ˆæ›´æ–°æˆ–æ·»åŠ ï¼‰
 	std::vector<IHotkeyPair*> hotkeys;
 
 	for (HotkeyItemWid* hotkeyItem : GetHotkeyItems({ SRCTYPE_SCENE, SRCTYPE_MICROPHONE, SRCTYPE_SYSTEMAUDIO }))
@@ -603,7 +603,7 @@ bool HotkeySettingWid::SaveConfig()
 
 	obs_enum_hotkey_bindings(&SaveHotkeyCallback, &hotkeys[0]);
 
-	//Èç¹ûÑ°ÕÒ¹ı³ÌÖĞÈÔÈ»Ã»·¨¸üĞÂµÄ£¬¾Í³¢ÊÔ£¨Èç¹ûÓĞµÄ»°¾ÍÏÈÉ¾µôÈ»ºó£©Ìí¼Ó¡­¡­
+	//å¦‚æœå¯»æ‰¾è¿‡ç¨‹ä¸­ä»ç„¶æ²¡æ³•æ›´æ–°çš„ï¼Œå°±å°è¯•ï¼ˆå¦‚æœæœ‰çš„è¯å°±å…ˆåˆ æ‰ç„¶åï¼‰æ·»åŠ â€¦â€¦
 	for (IHotkeyPair* x : hotkeys)
 	{
 		if (x->isChanged == false)

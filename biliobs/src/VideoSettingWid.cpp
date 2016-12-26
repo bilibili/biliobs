@@ -210,7 +210,7 @@ void VideoSettingWid::LoadConfig() {
 	bool foundFlag = false;
 	outputX_ = config_get_uint(configData, "Video", "OutputCX");
 	outputY_ = config_get_uint(configData, "Video", "OutputCY");
-	//·Ö±æÂÊ
+	//åˆ†è¾¨ç‡
 	foundFlag = false;
 	for (auto x : resolutionPresets) {
 		if (x.baseX == outputX_ && x.baseY == outputY_) {
@@ -225,7 +225,7 @@ void VideoSettingWid::LoadConfig() {
 
 	viewX_ = config_get_uint(configData, "Video", "ViewX");
 	viewY_ = config_get_uint(configData, "Video", "ViewY");
-	//Ô¤ÀÀ´°¿Ú·Ö±æÂÊ
+	//é¢„è§ˆçª—å£åˆ†è¾¨ç‡
 	foundFlag = false;
 	for (auto x : previewResolutionPresets) {
 		if (x.baseX == viewX_  && x.baseY == viewY_ ) {

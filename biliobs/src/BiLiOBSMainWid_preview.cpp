@@ -250,7 +250,7 @@ void BiLiOBSMainWid::InitPreview()
 
 	QObject::connect(obsPreview, &OBSQTDisplay::DisplayCreated, std::bind(&OnDisplayCreatedCallback, std::placeholders::_1, &BiLiOBSMainWid::RenderPreview, this));
 
-	//Ô¤ÀÀ´°¿ÚµÄĞÅºÅ
+	//é¢„è§ˆçª—å£çš„ä¿¡å·
 	QObject::connect(obsPreview, SIGNAL(ContextMenuSignal(QPoint)), this, SLOT(OnPreviewContextMenu(QPoint)));
 }
 

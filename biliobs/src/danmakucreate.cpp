@@ -46,7 +46,7 @@ DanmakuCreate::DanmakuCreate(QObject *parent)
 		"<span style = \" font-size:%1px; color:#FF9DCB; \">%2< / span>"
 		"</p>");
 
-	//ÌáÇ°Ô¤Áô¿Õ¼ä???
+	//æå‰é¢„ç•™ç©ºé—´???
 	//dmTaskHs_.reserve(200000);
 	inst_ = this;
 	inst_->setObjectName("DanmakuCreate");

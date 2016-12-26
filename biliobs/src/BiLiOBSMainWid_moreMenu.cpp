@@ -56,7 +56,7 @@ void BiLiOBSMainWid::mShowRightMenu(QPoint pos){
 
     pos2.setX(pos2.x() - mMoreMenu->width() / 2);
 
-	pos2.setY(pos2.y() + 5); //ÎªÁËÄÜºÍuserinfo widget¶ÔÆë
+	pos2.setY(pos2.y() + 5); //ä¸ºäº†èƒ½å’Œuserinfo widgetå¯¹é½
 	mMoreMenu->exec(pos2);
 	//mMoreMenu->exec(pos);
 }
@@ -82,8 +82,8 @@ void BiLiOBSMainWid::mSltUsingBootAct() {
 }
 
 void BiLiOBSMainWid::mSltHelpAct() {
-	//×¢Òâ£ºµÇÂ¼´°¿ÚµÄ×îÏÂÃæÒ²ÓĞÒ»¸ö°ïÖú°´Å¥£¡
-	//ĞŞ¸ÄÕâÀïµÄÊ±ºòÇë¿¼ÂÇÄÇ±ßÒª²»ÒªÒ»Æğ¸Ä
+	//æ³¨æ„ï¼šç™»å½•çª—å£çš„æœ€ä¸‹é¢ä¹Ÿæœ‰ä¸€ä¸ªå¸®åŠ©æŒ‰é’®ï¼
+	//ä¿®æ”¹è¿™é‡Œçš„æ—¶å€™è¯·è€ƒè™‘é‚£è¾¹è¦ä¸è¦ä¸€èµ·æ”¹
 	//BiLiMsgDlg msgDlg;
 	//msgDlg.mSetTitle(tr("Information"));
 	//msgDlg.mSetMsgTxtAndBtn(tr("Please content maomao in QQ."), false);
@@ -131,7 +131,7 @@ void* BiLiOBSMainWid::mCheckNewVersion(SystemRetInfoDlg* msgDlg)
 		int v1, v2, v3, v4;
 		if (swscanf(gBili_fileVersion.c_str(), L"%d.%d.%d.%d", &v1, &v2, &v3, &v4) == 4)
 		{
-			if (v4 == 0) //Ã»ÓĞbuildºÅµÄ£¬²»¼ì²é¸üĞÂ
+			if (v4 == 0) //æ²¡æœ‰buildå·çš„ï¼Œä¸æ£€æŸ¥æ›´æ–°
 			{
 				if (msgDlg != nullptr)
 					QMetaObject::invokeMethod(msgDlg, "close");
@@ -140,7 +140,7 @@ void* BiLiOBSMainWid::mCheckNewVersion(SystemRetInfoDlg* msgDlg)
 
 			int64_t currentTime = _time64(0);
 
-			if (msgDlg == 0) //¶ÔÓÚ×Ô¶¯¼ì²é¸üĞÂ£¬Ò»Ìì×î¶àÒ»´Î
+			if (msgDlg == 0) //å¯¹äºè‡ªåŠ¨æ£€æŸ¥æ›´æ–°ï¼Œä¸€å¤©æœ€å¤šä¸€æ¬¡
 			{
 				int64_t lastCheckedTime = config_get_int(mBasicConfig, "LastOperations", "CheckUpdateTime");
 
@@ -168,7 +168,7 @@ void* BiLiOBSMainWid::mCheckNewVersion(SystemRetInfoDlg* msgDlg)
 
 			config_set_int(mBasicConfig, "LastOperations", "CheckUpdateTime", currentTime);
 		}
-		else //Î´ÄÜ»ñÈ¡µ½µ±Ç°ÎÄ¼şµÄ°æ±¾
+		else //æœªèƒ½è·å–åˆ°å½“å‰æ–‡ä»¶çš„ç‰ˆæœ¬
 		{
 			if (msgDlg)
 				QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, tr("Fail to get installed version. Please check online.")));
@@ -176,13 +176,13 @@ void* BiLiOBSMainWid::mCheckNewVersion(SystemRetInfoDlg* msgDlg)
 	}
 	catch (CUrlNetworkException&)
 	{
-		//ÍøÂç´íÎó
+		//ç½‘ç»œé”™è¯¯
 		if (msgDlg)
 			QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, tr("Network error.")));
 	}
 	catch (JsonDataError&)
 	{
-		//·şÎñÆ÷ÄÚ²¿´íÎó
+		//æœåŠ¡å™¨å†…éƒ¨é”™è¯¯
 		if (msgDlg)
 			QMetaObject::invokeMethod(this, "OnErrorMessage", Q_ARG(QString, tr("Server error.")));
 	}

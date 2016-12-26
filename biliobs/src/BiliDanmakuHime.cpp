@@ -26,7 +26,7 @@
 #endif
 
 
-#pragma region(·½±ãÊ¹ÓÃµÄsocketº¯Êı)
+#pragma region(æ–¹ä¾¿ä½¿ç”¨çš„socketå‡½æ•°)
 
 static bool GetHostAddress(SOCKADDR_IN* addr, const char* host)
 {
@@ -93,7 +93,7 @@ static int WaitSocket(socket_t s, double timeout = SOCKETTIMEOUT_THRESHOLD)
 	else if (r < 0)
 		throw SocketIOError();
 
-	return -1; //²»Ó¦¸Ã»áÖ´ĞĞµ½ÕâÒ»ĞĞ´úÂë
+	return -1; //ä¸åº”è¯¥ä¼šæ‰§è¡Œåˆ°è¿™ä¸€è¡Œä»£ç 
 }
 
 static int ReadSocketFixedByte(socket_t s, void* pbuf, int len, double timeout = SOCKETTIMEOUT_THRESHOLD)
@@ -108,9 +108,9 @@ static int ReadSocketFixedByte(socket_t s, void* pbuf, int len, double timeout =
 			int readbyte = recv(s, &buf[p], len - p, 0);
 			if (readbyte > 0)
 				p += readbyte;
-			else if (readbyte == 0) //·şÎñÆ÷¹Ø±ÕÁËÁ¬½Ó
+			else if (readbyte == 0) //æœåŠ¡å™¨å…³é—­äº†è¿æ¥
 				throw SocketIOError();
-			else if (readbyte < 0) //»µÁË
+			else if (readbyte < 0) //åäº†
 				throw SocketIOError();
 		}
 		else
@@ -122,7 +122,7 @@ static int ReadSocketFixedByte(socket_t s, void* pbuf, int len, double timeout =
 #pragma endregion
 
 
-#pragma region(GOIMµÄÊı¾İ°ü²Ù×÷Àà)
+#pragma region(GOIMçš„æ•°æ®åŒ…æ“ä½œç±»)
 
 namespace {
 	class GoimPacket
@@ -271,15 +271,15 @@ namespace {
 		std::vector<char> m_data;
 	};
 
-	//½ÓÊÕÒ»Õû¸öpacket
+	//æ¥æ”¶ä¸€æ•´ä¸ªpacket
 	GoimPacket GoimPacket::ReceivePacket(socket_t s)
 	{
 		GoimPacket packet;
 
-		//½ÓÊÕÍ·
+		//æ¥æ”¶å¤´
 		int readByte = ReadSocketFixedByte(s, &packet.header(), sizeof(PacketHeader));
 
-		//¼ì²éÊı¾İÊÇ·ñÕıÈ·
+		//æ£€æŸ¥æ•°æ®æ˜¯å¦æ­£ç¡®
 		if (readByte != sizeof(PacketHeader))
 			throw SocketIOError();
 
@@ -296,10 +296,10 @@ namespace {
 			throw SocketIOError();
 		}
 
-		//»áÓĞ10MÒÔÉÏµÄ°ü£¿³öÎÊÌâÁË°É
+		//ä¼šæœ‰10Mä»¥ä¸Šçš„åŒ…ï¼Ÿå‡ºé—®é¢˜äº†å§
 		if (packet.header().get_payload_length() > 10485760)
 		{
-			//µ±×÷ÊÇÍøÂç´íÎó
+			//å½“ä½œæ˜¯ç½‘ç»œé”™è¯¯
 			throw SocketIOError();
 		}
 
@@ -312,7 +312,7 @@ namespace {
 				throw SocketIOError();
 		}
 
-		//µ½ÕâÀï¶¼Ã»Å×Òì³£ÄÇÊÇÃ»ÎÊÌâÁË
+		//åˆ°è¿™é‡Œéƒ½æ²¡æŠ›å¼‚å¸¸é‚£æ˜¯æ²¡é—®é¢˜äº†
 		return std::move(packet);
 	}
 };
@@ -348,7 +348,7 @@ bool BiliDanmakuHime::Start()
 {
 	isStopping = false;
 
-	//¿ªÏß³ÌºóÌ¨¸É»î
+	//å¼€çº¿ç¨‹åå°å¹²æ´»
 	pthread_create(&networkThread, 0, &BiliDanmakuHime::DanmakuThreadWrapper, this);
 
 	return true;
@@ -390,7 +390,7 @@ bool BiliDanmakuHime::DanmakuThread(void* p)
 	int seq = 1;
 	try
 	{
-		//½âÎöÓòÃû
+		//è§£æåŸŸå
 		sockaddr_in danmakuServerAddr;
 		danmakuServerAddr.sin_family = PF_INET;
 		for (int i = 0; i < sizeof(danmakuServerAddr.sin_zero); ++i)
@@ -400,26 +400,26 @@ bool BiliDanmakuHime::DanmakuThread(void* p)
 
 		danmakuServerAddr.sin_port = htons(DANMAKUSERVERPORT);
 
-		//´´½¨Ì×½Ó×Ö
+		//åˆ›å»ºå¥—æ¥å­—
 		This->danmakuSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 		if (This->danmakuSocket == SOCKET_ERROR)
 			return false;
 
-		//ÉèÖÃµ½·Ç×èÈû
+		//è®¾ç½®åˆ°éé˜»å¡
 		u_long ioctlParam = 1;
 		ioctlsocket(This->danmakuSocket, FIONBIO, &ioctlParam);
 
-		//Á¬ÉÏÈ¥
+		//è¿ä¸Šå»
 		connect(This->danmakuSocket, (SOCKADDR*)&danmakuServerAddr, sizeof(danmakuServerAddr));
 
-		//µÈ´ıÁ¬½Ó³É¹¦
+		//ç­‰å¾…è¿æ¥æˆåŠŸ
 		if (WaitSocket<WAITTYPE_WRITE>(This->danmakuSocket) < 0)
 		{
 			closesocket(This->danmakuSocket);
 			return false;
 		}
 
-		{//µÇÂ¼ÇëÇó
+		{//ç™»å½•è¯·æ±‚
 			GoimPacket loginPacket(seq++, GoimPacket::REQ_AUTH);
 			std::stringstream loginPayload;
 			loginPayload << "{\"roomid\":" << This->roomId << ",\"uid\":" << This->uId << "}";
@@ -449,11 +449,11 @@ bool BiliDanmakuHime::DanmakuThread(void* p)
 
 		time_t lastPeopleCountUpdateTime = 0;
 
-		//¿ªÊ¼µÈ´ıºÍ´¦ÀíÍÆËÍ
+		//å¼€å§‹ç­‰å¾…å’Œå¤„ç†æ¨é€
 		for (;;)
 		{
-			//ÊÇ·ñÒª¸üĞÂÈËÊı
-			//Ã¿20Ãë·¢ËÍÒ»¸öĞÄÌøÖ¸Áî
+			//æ˜¯å¦è¦æ›´æ–°äººæ•°
+			//æ¯20ç§’å‘é€ä¸€ä¸ªå¿ƒè·³æŒ‡ä»¤
 			if (time(0) - lastPeopleCountUpdateTime > 20)
 			{
 				GoimPacket heartBeatPacket(seq++, GoimPacket::REQ_HEARTBEAT);
@@ -465,18 +465,18 @@ bool BiliDanmakuHime::DanmakuThread(void* p)
 				lastPeopleCountUpdateTime = time(0);
 			}
 
-			//½ÓÊÕºÍ´¦ÀíÏûÏ¢
-			//Èç¹ûÒ»¶ÎÊ±¼äÃ»ÊÕµ½¾Í»ØÈ¥¼ì²éÒª²»Òª·¢ĞÄÌø
+			//æ¥æ”¶å’Œå¤„ç†æ¶ˆæ¯
+			//å¦‚æœä¸€æ®µæ—¶é—´æ²¡æ”¶åˆ°å°±å›å»æ£€æŸ¥è¦ä¸è¦å‘å¿ƒè·³
 			if (WaitSocket<WAITTYPE_READ>(This->danmakuSocket, 5) > 0)
 			{
 				GoimPacket recvPacket = GoimPacket::ReceivePacket(This->danmakuSocket);
 
 				switch (recvPacket.GetHeader().get_command())
 				{
-				case GoimPacket::RESP_AUTH: //ÑéÖ¤ĞÅÏ¢·µ»Ø£¬ÏÖÔÚÕâÀïÖ±½ÓºöÂÔ¡­¡­
+				case GoimPacket::RESP_AUTH: //éªŒè¯ä¿¡æ¯è¿”å›ï¼Œç°åœ¨è¿™é‡Œç›´æ¥å¿½ç•¥â€¦â€¦
 					break;
 
-				case GoimPacket::RESP_HEARTBEAT: //ĞÄÌøÊı¾İ°ü£¬´øÈËÊıµÄ
+				case GoimPacket::RESP_HEARTBEAT: //å¿ƒè·³æ•°æ®åŒ…ï¼Œå¸¦äººæ•°çš„
 				{
 					int dataLen;
 					const std::uint32_t* pbeAudienceCount;
@@ -488,9 +488,9 @@ bool BiliDanmakuHime::DanmakuThread(void* p)
 					}
 					break;
 				}
-				case GoimPacket::RESP_MESSAGE: //jsonÊı¾İ°ü£¬µ¯Ä»Ö®ÀàµÄ
+				case GoimPacket::RESP_MESSAGE: //jsonæ•°æ®åŒ…ï¼Œå¼¹å¹•ä¹‹ç±»çš„
 				{
-					//µ÷ÓÃ»Øµ÷º¯Êı
+					//è°ƒç”¨å›è°ƒå‡½æ•°
 					if (This->onJson)
 					{
 						try

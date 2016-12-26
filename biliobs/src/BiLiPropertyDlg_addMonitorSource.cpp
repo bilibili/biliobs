@@ -24,8 +24,8 @@ END_IMPL_PROPDLG(BiLiMonitorSourcePropertyDlg, "monitor_capture");
 BiLiMonitorSourcePropertyDlg::~BiLiMonitorSourcePropertyDlg() {}
 
 void BiLiMonitorSourcePropertyDlg::setupSourcePropertiesUI() {
-	//×¢Òâ£ºÌí¼Ó¿Ø¼þÊ±£¬¼ÇµÃ¸ù¾ÝÐèÒªÔÚ×îºóÌí¼Ó¿Ø¼þµÄ±ä¶¯Í¨Öª¼àÊÓ£¡
-	//·ñÔò¿ÉÄÜµ¼ÖÂµãÁËÈ·¶¨Ö®ºóÉèÖÃÃ»ÓÐ±£´æ½øÈ¥
+	//æ³¨æ„ï¼šæ·»åŠ æŽ§ä»¶æ—¶ï¼Œè®°å¾—æ ¹æ®éœ€è¦åœ¨æœ€åŽæ·»åŠ æŽ§ä»¶çš„å˜åŠ¨é€šçŸ¥ç›‘è§†ï¼
+	//å¦åˆ™å¯èƒ½å¯¼è‡´ç‚¹äº†ç¡®å®šä¹‹åŽè®¾ç½®æ²¡æœ‰ä¿å­˜è¿›åŽ»
 
 	ui.PropertyNameLab->setText(tr("Monitor Capture"));
 
@@ -110,7 +110,7 @@ void BiLiMonitorSourcePropertyDlg::setupSourcePropertiesUI() {
 	//QObject::connect(ScreenShotCheckBox, SIGNAL(stateChanged(int)), this, SIGNAL(mSglScreenShotState(int)));
 	this->setProperty("ScreenShotCB", qVPtr<QCheckBox>::toVariant(ScreenShotCheckBox));
 
-	//½ØÆÁ¹´Ñ¡Ê±µÄÐÐÎª
+	//æˆªå±å‹¾é€‰æ—¶çš„è¡Œä¸º
 	QObject::connect(ScreenShotCheckBox, &QCheckBox::stateChanged, this, &BiLiMonitorSourcePropertyDlg::OnScreenShotCheckBoxChanged);
 	QMetaObject::connectSlotsByName(ui.PropertyWid);
 
@@ -124,7 +124,7 @@ void BiLiMonitorSourcePropertyDlg::setupSourcePropertiesUI() {
 	DataToWidget(BILI_DATA_BOOL(), ScreenShotCheckBox, settings, "is_limit_rect");
 	obs_data_release(settings);
 
-	//Ìí¼Ó¼àÌý¿Ø¼þ±ä¶¯
+	//æ·»åŠ ç›‘å¬æŽ§ä»¶å˜åŠ¨
 	mChangeEvnetFilter->Watch({ MonitorNameComboBox, MouseCapCheckBox, ScreenShotCheckBox });
 	connect(mChangeEvnetFilter.get(), SIGNAL(OnChangedSignal()), this, SLOT(mSltOnSettingChanged()));
 }
@@ -157,7 +157,7 @@ void BiLiMonitorSourcePropertyDlg::OnScreenShotCheckBoxChanged(int state)
 
 	if (state == Qt::Checked)
 	{
-		//¼àÊÓÆÁÄ»½ØÈ¡²Ù×÷£¬×Ô¶¯ÇÐ»»ÏÔÊ¾Æ÷
+		//ç›‘è§†å±å¹•æˆªå–æ“ä½œï¼Œè‡ªåŠ¨åˆ‡æ¢æ˜¾ç¤ºå™¨
 		QObject::connect(App()->mGetMainWindow()->mAreaCap, &bili_area_cap::mSglSelectComplite, this, &BiLiMonitorSourcePropertyDlg::OnScreenShotCompelte);
 	}
 }
@@ -172,13 +172,13 @@ void BiLiMonitorSourcePropertyDlg::OnScreenShotCompelte(bool hasSelect)
 
 		std::regex resolutionRegex("[^@]*@ (-?\\d+,-?\\d+)( \\([^\\)]*\\))?$");
 
-		//»ñÈ¡µ±Ç°Ñ¡È¡ÇøÓòËùÊôµÄÏÔÊ¾Æ÷µÄ×óÉÏ½Ç¾ø¶Ô×ø±ê
+		//èŽ·å–å½“å‰é€‰å–åŒºåŸŸæ‰€å±žçš„æ˜¾ç¤ºå™¨çš„å·¦ä¸Šè§’ç»å¯¹åæ ‡
 		QPoint orgin = areaCap->mSelectedWidRectOrgin;
-		//±éÀúÏÔÊ¾Æ÷ÁÐ±í
+		//éåŽ†æ˜¾ç¤ºå™¨åˆ—è¡¨
 		int itemCount = MonitorNameComboBox->count();
 		for (int i = 0; i < itemCount; ++i)
 		{
-			//»ñÈ¡ÁÐ±íÖÐÄ³Ò»ÏîËù±íÊ¾µÄÏÔÊ¾Æ÷µÄ×ø±êÎ»ÖÃ
+			//èŽ·å–åˆ—è¡¨ä¸­æŸä¸€é¡¹æ‰€è¡¨ç¤ºçš„æ˜¾ç¤ºå™¨çš„åæ ‡ä½ç½®
 			std::string itemText = MonitorNameComboBox->itemText(i).toUtf8().constData();
 			std::smatch resolutionMatch;
 			if (std::regex_match(itemText, resolutionMatch, resolutionRegex))
@@ -186,7 +186,7 @@ void BiLiMonitorSourcePropertyDlg::OnScreenShotCompelte(bool hasSelect)
 				int posX, posY;
 				if (sscanf(resolutionMatch[1].str().c_str(), "%d,%d", &posX, &posY) == 2)
 				{
-					//ÅÐ¶Ï×ø±êÎ»ÖÃÊÇ²»ÊÇÄ¿±êÏÔÊ¾Æ÷
+					//åˆ¤æ–­åæ ‡ä½ç½®æ˜¯ä¸æ˜¯ç›®æ ‡æ˜¾ç¤ºå™¨
 					if (posX == orgin.x() && posY == orgin.y())
 					{
 						MonitorNameComboBox->setCurrentIndex(i);
