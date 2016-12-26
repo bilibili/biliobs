@@ -1,5 +1,5 @@
 # biliobs
-### 直播姬基于或引用了以下项目
+### 直播机基于或引用了以下项目
 + [Qt5](http://www.qt.io/)
 + [obs-studio](https://github.com/jp9000/obs-studio)
 + [openssl](https://github.com/openssl/openssl)
