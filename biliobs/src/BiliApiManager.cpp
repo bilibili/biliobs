@@ -22,6 +22,8 @@ IBiliAPI* BiliAPIMan::GetInstance() {
         return instance_;
     
     HMODULE hModule = LoadLibraryW(L"bililogin.DLL");
+   // HMODULE hModule = LoadLibraryW(L"bililive_secret.dll");
+  
     if (hModule) {
 
         int (__stdcall *CreateBiliApiEngine)(const char* fileVersion, IBiliAPI** pApi);
@@ -31,19 +33,19 @@ IBiliAPI* BiliAPIMan::GetInstance() {
 			std::string tmp;
 			std::copy(gBili_fileVersion.begin(), gBili_fileVersion.end(), std::back_inserter(tmp));
             CreateBiliApiEngine(tmp.c_str(), &instance_);
-
+            
 			if (!instance_)
 				exit(0);
 
 			IBiliLogin* (__stdcall *getBiliLogin)(void *api);
 	        *(LPVOID*)&getBiliLogin = GetProcAddress(hModule, "getBiliLogin");
 			if (getBiliLogin){
-				IBiliLoginPtr pBiliLogin(getBiliLogin((void *)instance_), std::mem_fn(&IBiliLogin::release_));
+				/*IBiliLoginPtr pBiliLogin(getBiliLogin((void *)instance_), std::mem_fn(&IBiliLogin::release_));
 
 				QObject *obj = (QObject *)(pBiliLogin.get()->getOut_());
 				gBili_mid = (obj->property("mid")).value<QString>().toStdString();
 				gBili_expires  = *(uint64_t *)(obj->property("expires")).value<void *>();
-				gBili_userLoginName = (obj->property("usrLoginName")).value<QString>().toStdString();
+				gBili_userLoginName = (obj->property("usrLoginName")).value<QString>().toStdString();*/
 			}
         }
         else { 

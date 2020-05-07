@@ -1,9 +1,10 @@
 
+
 set PROJECT_ROOT=%~dp0\..\
 set PROJECT_PLUGINS_ROOT=%PROJECT_ROOT%\plugins
 set PROJECT_DEBUG_PATH=%PROJECT_ROOT%build\Debug
 set PROJECT_RELEASE_PATH=%PROJECT_ROOT%build\Debug
-set QTDIR="C:\Qt\Qt5.5.0\5.5\msvc2013"
+set QTDIR="C:\Qt\Qt5.14.1\5.14.1\msvc2017"
 
 mkdir %PROJECT_DEBUG_PATH%
 copy %PROJECT_ROOT%\third_party_lib\curl\dlls\*.dll %PROJECT_DEBUG_PATH%

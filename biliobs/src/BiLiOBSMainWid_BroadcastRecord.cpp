@@ -456,6 +456,7 @@ void* BiLiOBSMainWid::mRetriveUserInfo()
 	try
 	{
 		//获取房间信息
+		
 		BiliJsonPtr roomInfoResult = biliApi->GetRoomInfo(lexical_cast<int>(gBili_mid));
 
 		int code = roomInfoResult->GetVal<JSON_INTEGER>({ "code" });
