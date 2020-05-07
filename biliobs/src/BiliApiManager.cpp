@@ -40,12 +40,12 @@ IBiliAPI* BiliAPIMan::GetInstance() {
 			IBiliLogin* (__stdcall *getBiliLogin)(void *api);
 	        *(LPVOID*)&getBiliLogin = GetProcAddress(hModule, "getBiliLogin");
 			if (getBiliLogin){
-				/*IBiliLoginPtr pBiliLogin(getBiliLogin((void *)instance_), std::mem_fn(&IBiliLogin::release_));
+				IBiliLoginPtr pBiliLogin(getBiliLogin((void *)instance_), std::mem_fn(&IBiliLogin::release_));
 
 				QObject *obj = (QObject *)(pBiliLogin.get()->getOut_());
 				gBili_mid = (obj->property("mid")).value<QString>().toStdString();
 				gBili_expires  = *(uint64_t *)(obj->property("expires")).value<void *>();
-				gBili_userLoginName = (obj->property("usrLoginName")).value<QString>().toStdString();*/
+				gBili_userLoginName = (obj->property("usrLoginName")).value<QString>().toStdString();
 			}
         }
         else { 
