@@ -1,2 +1,16 @@
 
 *.pdb
+*.user
+*.opendb
+*.db
+*.ipch
+biliobs/.vs/biliobs_all/v16/.suo
+*.tlog
+*.obj
+*.props
+*.idb
+*.log
+*.filters
+*.vcxproj
+*.vcxproj
+*.vcxproj
