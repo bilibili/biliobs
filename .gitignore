@@ -135,3 +135,4 @@ base/base.vcxproj
 base/base.vcxproj
 biliobs/biliobs.vcxproj
 biliobs/biliobs.vcxproj.filters
+*.exp
