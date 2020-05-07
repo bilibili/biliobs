@@ -19,12 +19,12 @@
     <CharacterSet>Unicode</CharacterSet>
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -55,6 +55,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..;..\third_party\icu\source\i18n;..\third_party\icu\source\common;..\third_party\tcmalloc\chromium\src</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4091;4127;4351;4355;4503;4589;4611;4100;4121;4244;4505;4510;4512;4610;4838;4995;4996;4456;4457;4458;4459;4312;4702;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
