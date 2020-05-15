@@ -22,6 +22,8 @@ IBiliAPI* BiliAPIMan::GetInstance() {
         return instance_;
     
     HMODULE hModule = LoadLibraryW(L"bililogin.DLL");
+   // HMODULE hModule = LoadLibraryW(L"bililive_secret.dll");
+  
     if (hModule) {
 
         int (__stdcall *CreateBiliApiEngine)(const char* fileVersion, IBiliAPI** pApi);
@@ -31,7 +33,7 @@ IBiliAPI* BiliAPIMan::GetInstance() {
 			std::string tmp;
 			std::copy(gBili_fileVersion.begin(), gBili_fileVersion.end(), std::back_inserter(tmp));
             CreateBiliApiEngine(tmp.c_str(), &instance_);
-
+            
 			if (!instance_)
 				exit(0);
 

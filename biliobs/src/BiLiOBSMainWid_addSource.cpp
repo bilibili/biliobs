@@ -9,7 +9,7 @@
 
 #include <QMenu>
 #include <QCheckBox>
-
+#include<libobs/obs.h>
 namespace {
 	struct InvokeDoAdjustType
 	{

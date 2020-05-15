@@ -103,7 +103,7 @@
 # error  Do not know how to set up type aliases.  Edit port.h for your system.
 #endif
 
-typedef __int8 int8_t;
+//typedef __int8 int8_t;
 typedef __int16 int16_t;
 typedef __int32 int32_t;
 typedef __int64 int64_t;
@@ -318,16 +318,16 @@ inline int perftools_vsnprintf(char *str, size_t size, const char *format,
 }
 #endif
 
-#ifndef HAVE_SNPRINTF
-inline int snprintf(char *str, size_t size, const char *format, ...) {
-  va_list ap;
-  int r;
-  va_start(ap, format);
-  r = perftools_vsnprintf(str, size, format, ap);
-  va_end(ap);
-  return r;
-}
-#endif
+//#ifndef HAVE_SNPRINTF
+//inline int snprintf(char *str, size_t size, const char *format, ...) {
+//  va_list ap;
+//  int r;
+//  va_start(ap, format);
+//  r = perftools_vsnprintf(str, size, format, ap);
+//  va_end(ap);
+//  return r;
+//}
+//#endif
 
 #define PRIx64  "I64x"
 #define SCNx64  "I64x"

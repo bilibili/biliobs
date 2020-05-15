@@ -10,7 +10,7 @@
 #include <functional>
 #include "ui_BiLiPropertyDlg.h"
 
-#include "obs.h"
+//#include "obs.h"
 #include "BiliUIConfigSync.hpp"
 #include "BiliFilterUtility.hpp"
 
@@ -236,10 +236,11 @@ private:
 
 class BiLiPropertyDialogFactory
 {
-protected:
+public:
 	virtual ~BiLiPropertyDialogFactory() {} //所有的factory对象都是static的，所以不要释放
 public:
 	BiLiPropertyDialogFactory() : mNextFactory(0) {}
+
 	virtual BiLiPropertyDlg* Create(QString &name, obs_sceneitem_t* pSceneItem, bool isNewSource, QWidget *parent = 0) = 0;
 	virtual bool CheckId(const char* sourceId) = 0;
 

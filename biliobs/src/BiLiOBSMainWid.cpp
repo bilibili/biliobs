@@ -347,13 +347,13 @@ void BiLiOBSMainWid::mOBSInit() {
 	emit OnRetryButtonClicked();
 
 	//检查更新
-	worker.AddTask(std::bind(&BiLiOBSMainWid::mCheckNewVersion, this, nullptr));
+	//worker.AddTask(std::bind(&BiLiOBSMainWid::mCheckNewVersion, this, nullptr));
 
 	//获取头像
-	worker.AddTask(std::bind(&BiLiOBSMainWid::mGetUserFacePixmapTaskWrapper, weak_ref_, &BiLiOBSMainWid::mGetUserFacePixmapTask));
+	//worker.AddTask(std::bind(&BiLiOBSMainWid::mGetUserFacePixmapTaskWrapper, weak_ref_, &BiLiOBSMainWid::mGetUserFacePixmapTask));
 
 	//获取房间礼物数
-	worker.AddTask(std::bind(&BiLiOBSMainWid::mUpdateRoomPresentCountTaskWrapper, weak_ref_, &BiLiOBSMainWid::mUpdateRoomPresentCountTask));
+	//worker.AddTask(std::bind(&BiLiOBSMainWid::mUpdateRoomPresentCountTaskWrapper, weak_ref_, &BiLiOBSMainWid::mUpdateRoomPresentCountTask));
 
 	loadDanmakuHistoryConfig();
 }

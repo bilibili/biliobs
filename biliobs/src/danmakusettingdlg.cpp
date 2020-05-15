@@ -2,6 +2,8 @@
 #include "danmakusettingdlg.h"
 
 #include <assert.h>
+#include<QButtonGroup>
+
 
 DanmakuSettingDlg::DanmakuSettingDlg(config_t* basicConfig, QWidget *parent)
 	: AdvSetttingBaseDlg(parent)

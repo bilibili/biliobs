@@ -130,21 +130,30 @@ bool InstallDX(){
 
 
 int main(int argc, char *argv[]) {
+	base::CommandLine::Init(argc, argv);
+     base::CommandLine* cmd_line = base::CommandLine::ForCurrentProcess();
 
-    base::CommandLine::Init(argc, argv);
-    base::CommandLine* cmd_line = base::CommandLine::ForCurrentProcess();
-
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 11, 0))
+	 QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
 #ifdef WIN32
+	
+	
 	HANDLE instanceMutex = CreateMutexW(NULL, TRUE, InstanceMutexName);
 	if (GetLastError() == ERROR_ALREADY_EXISTS)
 	{
 		CloseHandle(instanceMutex);
 		return 0;
 	}
-    if( cmd_line->HasSwitch("console") ){
-        AllocConsole();
-        freopen("con", "w", stdout);
-    }
+
+		if (cmd_line->HasSwitch("console")) {
+			AllocConsole();
+			freopen("con", "w", stdout);
+		}
+
+
+
+
 #endif
 
 	bIsShouldRestart = false;
@@ -154,7 +163,7 @@ int main(int argc, char *argv[]) {
 	BiLiOBSApp.setWindowIcon(QIcon(":/SysIcon/BlueIcon"));
 
 	gBili_fileVersion = BiliGetFileVertion(QCoreApplication::applicationFilePath().toStdWString());
-
+	//gBili_fileVersion = L"3.13.3.1616";
 	QFile styleFile(":/QSS/BiLiStyle");
 	if (styleFile.open(QFile::ReadOnly)) {
 		qApp->setStyleSheet(styleFile.readAll());
@@ -183,7 +192,7 @@ int main(int argc, char *argv[]) {
 	SetUnhandledExceptionFilter((LPTOP_LEVEL_EXCEPTION_FILTER)AppCrashHandleCallback);
 
 	//check disable auto login
-    if (cmd_line->HasSwitch("disable-auto-login")){
+  if (cmd_line->HasSwitch("disable-auto-login")){
         gBili_isDisableLogin = true;
     }else{
         gBili_isDisableLogin = false;

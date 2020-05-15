@@ -21,7 +21,7 @@ struct NoThrowOnJsonError{};
 //=======================================================
 struct JsonFreeT
 {
-	void operator()(json_t*& json) const
+	void operator()(json_t* json) const
 	{
 		if (json != 0)
 		{

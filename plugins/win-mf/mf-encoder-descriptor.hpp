@@ -11,6 +11,7 @@
 #include <vector>
 
 #include <util/windows/ComPtr.hpp>
+#include<string>
 
 namespace MF {
 
