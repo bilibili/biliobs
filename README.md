@@ -26,4 +26,4 @@
  例如obs_data()  是 jason 结构中的最小单位。根据相关的界面操作来 创建 临时或者持久化的 json 文件到 哔哩哔哩制定的 data 路径下来完成操作源的增加或更新 。本人将持续跟进该项目研究。
  
  20200507 
- 将部分ui继承 到了 obs-studio 自己的fork分支 https://github.com/moruoxian/obs-studio/tree/AddBiliUI 中
+ 将部分ui集成 到了 obs-studio 自己的fork分支 https://github.com/moruoxian/obs-studio/tree/AddBiliUI 中 并修改了相关的交互
